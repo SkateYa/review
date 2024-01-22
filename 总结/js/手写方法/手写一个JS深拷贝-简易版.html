@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function deepCopy(obj) {
+        //判断是否是简单数据类型，
+        if (typeof obj == "object") {
+          //复杂数据类型
+          var result = obj.constructor == Array ? [] : {};
+          for (let i in obj) {
+            result[i] = typeof obj[i] == "object" ? deepCopy(obj[i]) : obj[i];
+          }
+        } else {
+          //简单数据类型 直接 == 赋值
+          var result = obj;
+        }
+        return result;
+      }
+
+      var result = deepCopy({ a: 1, b: 2 });
+      console.log(result);
+    </script>
+  </body>
+</html>

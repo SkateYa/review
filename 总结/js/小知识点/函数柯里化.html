@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //定义：把一个多个参数的函数转化为单参数函数的方法
+
+      // function uri_curring(protocol){
+      //     return function (hostname,pathname){
+      //         return `${protocol}${hostname}${pathname}`
+      //     }
+      // }
+
+      // // 返回一个函数
+      // const uri_https = uri_curring('https://')
+
+      // const uri2 = uri_https('www.baidu.com','/点赞')
+      // const uri3 = uri_https('www.baidu.com','/投币')
+      // const uri4 = uri_https('www.baidu.com','/转发')
+
+      // console.log(uri2,uri3,uri4)
+
+      //   判断ie还是其他浏览器
+      const whichEvent = (function () {
+        if (window.addEventListener) {
+          return function (element, type, listener, useCapture) {
+            element.addEventListener(
+              type,
+              function (e) {
+                listener.call(element, e);
+              },
+              useCapture
+            );
+          };
+        } else if (window.attachEvent) {
+          return function (element, type, handler) {
+            element.addEventListener("on" + type, function (e) {
+              handler.call(element, e);
+            });
+          };
+        }
+      })();
+
+      // function add() {
+      //     var total = [...arguments].reduce((a, b) => a + b);
+
+      //     function sum() {
+      //         total += [...arguments].reduce((a, b) => a + b);;
+      //         return sum;
+      //     }
+      //     //隐式转换
+      //     sum.toString = function () {
+      //         return total;
+      //     }
+      //     return sum;
+      // }
+
+      // 定义一个内部函数inner,inner来接受第二次传入的参数（第二个括号）
+      // let inner = function(){
+      //     // 把第二个括号的参数传入到第一个括号的参数里面
+      //     args.push(...arguments)
+      //     console.log('args',args)
+      //     let sum = args.reduce((pre,cur)=>{
+      //         return pre+cur
+      //     })
+      //     return sum
+      // }
+
+      function add() {
+        // 因为参数不确定,所以不设置形参了,把保存参数的arguments赋值给arg变量保存起来,（第一个括号）
+        let args = Array.prototype.slice.call(arguments);
+        // 定义一个内部函数inner,inner来接受第二次传入的参数（第二个括号）
+        let inner = function () {
+          // 把第二个括号的参数传入到第一个括号的参数里面
+          args.push(...arguments);
+          return inner;
+        };
+        inner.toString = function () {
+          return args.reduce((pre, cur) => {
+            return pre + cur;
+          });
+        };
+        // 返回内部函数实现基本的柯里化
+        return inner;
+      }
+      let result = add(1)(2)(3)(4);
+      console.log(result);
+      console.log(add(1)(2)(3)(4));
+      const result1 = add(1)(2)(3)(4);
+      console.log("result1:", parseInt(result1));
+
+      // console.log(add(1)(2)(3))
+      // console.log(add(1,2,3)(4))
+      // console.log(add(1)(2)(3)(4)(5))
+      //   add(1)(2)(3)=6
+      //   add(1,2,3)(4)=10
+      //   add(1)(2)(3)(4)(5) =15
+
+      //   function add() {
+      //     let args = Array.prototype.slice.call(arguments);
+      //     args.push(...arguments);
+      //     add.toString = function () {
+      //       return args.reduce(function (prev, cur) {
+      //         return prev + cur;
+      //       });
+      //     };
+      //     return add;
+      //   }
+      const nameList1 = [
+        { mid: "哈傻k", profession: "中单" },
+        { mid: "沙皇", profession: "中单" },
+        { mid: "卡牌", profession: "中单" },
+        { mid: "发条", profession: "中单" },
+      ];
+      const nameList2 = [
+        { adc: "轮子妈", profession: "ADC" },
+        { adc: "VN", profession: "ADC" },
+        { adc: "老鼠", profession: "ADC" },
+      ];
+      const curring =name =>element=>element[name]
+
+      const name_mid = curring('mid')
+      const name_abc = curring('abc')
+      console.log(name_mid,name_abc)
+      console.log(nameList1.map(name_mid))
+      console.log(nameList2.map(name_mid))
+    //   console.log(nameList1.map((hero) => hero.mid));
+    //   console.log(nameList2.map((hero) => hero.adc));
+    </script>
+  </body>
+</html>

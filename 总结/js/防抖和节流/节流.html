@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 节流（throttle）：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效
+      /* 
+      应用场景： 
+         1. 滚动屏幕
+
+
+          鼠标连续不断地触发某事件（如点击），单位时间内只触发一次；
+          监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断。例如：懒加载；
+          浏览器播放事件，每个一秒计算一次进度信息等
+
+          按钮提交事件（当然也可做成点击后就loading）
+          页面滚动事件的触发
+          累计计算鼠标移动距离
+      */
+      function coloring() {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        let color = `rgb(${r},${g},${b})`;
+        console.log("coloring", color);
+        document.body.style.background = color;
+      }
+
+      function throttle(func, delay) {
+        let timer;
+        return function () {
+          // 判断触发的事件是否在时间间隔内，如果在时间间隔内就不触发事件了，如果不在就触发事件
+          // 如果timer被赋值了，也就是任务还在等待执行，暂时不改变timer的值
+          // 如果timer没被赋值了，或者任务执行完了，那就给他赋值执行任务就好了
+          // 清空timer的值，因为清空行为是在延迟执行任务以后发生的，所以直接赋值为null就行了
+          if (!timer) {
+            timer = setTimeout(() => {
+              func.apply(this, arguments);
+              timer = null;
+            }, delay);
+          }
+        };
+      }
+      window.addEventListener("resize", throttle(coloring, 1000));
+    </script>
+  </body>
+</html>

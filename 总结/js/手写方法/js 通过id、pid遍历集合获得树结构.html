@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let adreeJson = [
+        { id: 1, name: "陕西省", pid: 0 },
+        { id: 2, name: "山西省", pid: 0 },
+        { id: 3, name: "广东省", pid: 0 },
+        { id: 4, name: "西安市", pid: 1 },
+        { id: 5, name: "宝鸡市", pid: 1 },
+        { id: 6, name: "莲湖区", pid: 4 },
+        { id: 7, name: "雁塔区", pid: 4 },
+        { id: 8, name: "深圳市", pid: 3 },
+        { id: 9, name: "宝安区", pid: 8 },
+      ];
+      let adressTree = [
+        {
+          id: 1,
+          name: "陕西省",
+          pid: 0,
+          child: [
+            {
+              id: 4,
+              name: "西安市",
+              pid: 1,
+              child: [
+                { id: 6, name: "莲湖区", pid: 4 },
+                { id: 7, name: "雁塔区", pid: 4 },
+              ],
+            },
+            {
+              id: 5,
+              name: "宝鸡市",
+              pid: 1,
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "山西省",
+          pid: 0,
+          child: [],
+        },
+        {
+          id: 3,
+          name: "广东省",
+          pid: 0,
+          child: [
+            {
+              id: 8,
+              name: "深圳市",
+              pid: 3,
+              child: [{ id: 9, name: "宝安区", pid: 8 }],
+            },
+          ],
+        },
+      ];
+
+      // 第一种
+      function getTop(arry) {
+          return arry.filter(item => item.id == item.pid || item.pid == 0)
+      }
+
+      function getChild(pArry, arry) {
+          pArry.forEach(idt => {
+              idt.child = arry.filter(item => idt.id == item.pid)
+              if ((idt.child).length > 0) {
+                  getChild(idt.child, arry)
+              }
+          })
+          return pArry
+      }
+
+      let topTree = getTop(adreeJson)
+      console.log(getChild(topTree, adreeJson))
+
+      // 第二种
+      var flatToTree = flats => {
+          flats.forEach(item => {
+              var index = flats.findIndex(item1 => item1.id === item.pid)
+              if (index !== -1) {
+                  //判断 flats[index] 里有无child 如果没有则创建 如果有则直接把 item push到child里
+                  ((flats[index].child) || (flats[index].child = [])).push(item)
+                  //等同于：
+                  // if (!flats[index].child) {
+                  //     flats[index].child = []
+                  // }
+                  // flats[index].child.push(item)
+                  //或：
+                  // flats[index].child = flats[index].child || []
+                  // flats[index].child.push(item)
+              }
+          })
+          return flats.filter(dt => dt.pid === 0)//只获取父节点为0的值
+      }
+      console.log(flatToTree(adreeJson))
+
+
+    //   第3种方法
+      function formatRouterTree(data) {
+        let parents = data.filter((p) => p.pid === 0);
+        let children = data.filter((c) => c.pid !== 0);
+        dataToTree(parents, children);
+        function dataToTree(parents, children) {
+          parents.map((p) => {
+            children.map((c, i) => {
+              if (c.pid === p.id) {
+                let _c = JSON.parse(JSON.stringify(children));
+                _c.splice(i, 1);          
+                if (p.children) {
+                  p.children.push(c);
+                } else {
+                  p.children = [c];
+                }
+                dataToTree([c], _c);
+              }
+            });
+          });
+        }
+        return parents;
+      }
+
+      console.log(formatRouterTree(adreeJson));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>数据绑定</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <template>
+        <div id="app">
+          <child-component @click="handleClick"></child-component>
+        </div>
+      </template>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    /* 
+    自定义事件：子组件在父组件中使用时，直接绑定在子组件上的事件就是自定义事件，必须经过子组件的触发vm.$emit()才能执行
+    原生事件：直接在子组件里的模板上绑定的事件，子组件引入后是可以直接触发的
+
+
+    在dom元素上绑定的事件，触发的是dom的原生事件
+    在组件上绑定的事件，触发的是自定义事件，需要用this.$emit(‘eventName’)来触发。
+
+    */
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+    var ChildComponent = Vue.extend({
+      name: "child-component",
+      template: '<div @click="handleChildClick">ddd</div>',
+      methods: {
+        handleChildClick() {
+          console.log("触发的是dom原生事件");
+          //   this.$emit("click", 2);
+        },
+      },
+    });
+
+    new Vue({
+      el: "#root",
+      data: {
+        name: "尚硅谷",
+      },
+      components: { ChildComponent },
+      methods: {
+        // 这里调用是不会触发click事件的，因为是自定义事件，不是原生的dom事件
+        handleClick() {
+          console.log("trigger click");
+        },
+      },
+    });
+  </script>
+</html>

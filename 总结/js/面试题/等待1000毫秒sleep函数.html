@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+</html>
+<script>
+  // 实现一个 sleep 函数，比如 sleep(1000) 意味着等待1000毫秒，可从 Promise、Generator、Async/Await 等角度实现
+
+  //1. Promise
+/*   const sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  };
+  sleep(1000).then(() => {
+    console.log(1);
+  });
+ */
+  //2. Generator
+/*   function* sleepGenerator(time) {
+    yield new Promise(function (resolve, reject) {
+      setTimeout(resolve, time);
+    });
+  }
+  sleepGenerator(1000)
+    .next()
+    .value.then(() => {
+      console.log(1);
+    }); */
+
+  //3. async
+    /*  const sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  };
+
+  async function sleepAsync() {
+    console.log("fuck the code");
+    await sleep(1000);
+    console.log("fuck the code again");
+  }
+
+  sleepAsync(); */
+
+  //ES5
+  function sleep(callback, time) {
+    if (typeof callback === "function") setTimeout(callback, time);
+  }
+
+  function output() {
+    console.log(1);
+  }
+  sleep(output, 1000);
+
+
+</script>

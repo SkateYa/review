@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        // js数组对象如何根据y值进行排序，排完之后相同的y再根据x进行排序
+      // 定义一个包含x和y值的数组对象
+      var arr = [
+        { x: 0, y: 0 },
+        { x: 2, y: 0 },
+        { x: 2, y: 1 },
+        { x: 3, y: 1 },
+        { x: 3, y: 0 },
+        { x: 0, y: 1 },
+        // ... 其他元素
+      ];
+
+      // 根据y值进行排序
+      arr.sort(function (a, b) {
+        if (a.y === b.y) {
+          // 如果y值相同，则按照x值进行排序
+          return a.x - b.x;
+        } else {
+          return a.y - b.y;
+        }
+      });
+
+      // 排序后的数组对象
+      console.log(arr);
+    </script>
+  </body>
+</html>

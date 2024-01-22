@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*   什么是原型？
+         每一个对象都有他的原型对象，他可以使用自己原型对象上的所有属性和方法。
+         
+         获取原型的方法：
+           1. 是通过对象的__proto__来获取
+           2. 是通过构造函数的prototype属性来拿到原型
+           3. 是通过类的prototype属性
+
+        面试题：构造函数中的this指向谁？
+            指向new创建的对象
+       */
+
+
+       /*  
+       let cat = {
+          name: "猫",
+        };
+        cat.__proto__.eat = function () {
+          console.log("吃鱼");
+        };
+        cat.eat()
+      */
+
+      function Cat(name, age) {
+        this.name = name;
+      }
+
+      let cat = new Cat("猫");
+      Cat.prototype.eat = function () {
+        console.log("吃鱼");
+      };
+      cat.eat();
+    </script>
+  </body>
+</html>

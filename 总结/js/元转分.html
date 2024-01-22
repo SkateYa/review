@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const regFenToYuan = (fen) => {
+        var num = fen;
+        num = fen * 0.01;
+        num += "";
+        var reg =
+          num.indexOf(".") > -1
+            ? /(\d{1,3})(?=(?:\d{3})+\.)/g
+            : /(\d{1,3})(?=(?:\d{3})+$)/g;
+        num = num.replace(reg, "$1");
+        num = toDecimal2(num);
+        return num;
+      };
+      toDecimal2 = (x) => {
+        var f = parseFloat(x);
+        if (isNaN(f)) {
+          return false;
+        }
+        var f = Math.round(x * 100) / 100;
+        var s = f.toString();
+        var rs = s.indexOf(".");
+        if (rs < 0) {
+          rs = s.length;
+          s += ".";
+        }
+        while (s.length <= rs + 2) {
+          s += "0";
+        }
+        return s;
+      };
+     console.log(regFenToYuan(40))
+     console.log(regFenToYuan(420))
+     console.log(regFenToYuan(-2.0))
+     console.log(regFenToYuan(-22))
+
+    // function fenToYuan(n) {
+    //   const s = String(n)
+    //   const len = s.length
+    //   if (len === 1) {
+    //     return '0.0' + s
+    //   } else if (len === 2) {
+    //     return '0.' + s
+    //   } else {
+    //     return s.substring(0, len - 2) + '.' + s.substring(len - 2)
+    //   }
+    // }
+    // console.log(fenToYuan(-4999))
+    // console.log(fenToYuan(-2))
+    </script>
+  </body>
+</html>

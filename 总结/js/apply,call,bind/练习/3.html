@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var array = ["marshall", "eminem"];
+      var elements = [0, 1, 2];
+      array.push.apply(array, elements);
+      console.log(array); //['marshall','eminem',0,1,2]
+
+      //找出数组中最大值和最小值
+      var numbers = [5, 6, 2, 3, 7];
+      //使用Math.min和Math.max以及apply函数时的代码
+      var max = Math.max.apply(null, numbers);
+      var min = Math.min.apply(null, numbers);
+      console.log(max);  // 7
+      console.log(min);  // 2
+    </script>
+  </body>
+</html>

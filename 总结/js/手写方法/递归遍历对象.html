@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function traverseObject(obj) {
+        for (var key in obj) {
+          if (typeof obj[key] === "object") {
+            // 如果当前属性值为对象类型，则进行递归调用
+            traverseObject(obj[key]);
+          } else {
+            console.log("属性名：", key);
+            console.log("属性值：", obj[key]);
+          }
+        }
+      }
+
+      // 测试代码
+      var myObj = {
+        name: "John",
+        age: 30,
+        address: {
+          city: "New York",
+          country: "USA",
+        },
+        hobbies: ["reading", "coding"],
+      };
+      traverseObject(myObj);
+    </script>
+  </body>
+</html>

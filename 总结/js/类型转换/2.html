@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //作用域和NaN 这里不具体讲作用域，意在说明NaN
+      var b = 1;
+      function outer() {
+        var b = 2;
+        function inner() {
+          b++;
+          console.log(b); 
+          var b = 3;
+        }
+        inner();
+      }
+      outer();
+      //输出结果 NaN
+    </script>
+  </body>
+</html>

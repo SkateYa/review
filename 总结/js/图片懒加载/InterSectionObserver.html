@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <p>
+      传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+    </p>
+    <img data-src="./images/1.png" alt="" />
+    <img data-src="./images/2.png" alt="" />
+    <img data-src="./images/3.png" alt="" />
+    <script>
+      // 通过 InterSectionObserver造的对象来观察目标与视口是否有交叉，来决定是否让 img 有 src。
+      // new一个观察实例，并通过观察实例身上的observe属性观察每一个图片。定义callback回调函数，设置 目标图片出现时改变属性
+
+      /*
+        1.observer.observe(DOM节点) 观察哪个DOM节点
+        2.observer.unobserve(DOM节点) 取消观察某DOM节点
+        3.callback目标能看见触发一次；目标元素看不见了又触发一次 
+        */
+      let images = document.querySelectorAll("img");
+
+      const callback = (entries) => {
+        entries.forEach((entry) => {
+          // 图片是否进入可视区域
+          if (entry.isIntersecting) {
+            // entry.target是目标元素
+            const image = entry.target;
+            const data_src = image.getAttribute("data-src");
+            image.setAttribute("src", data_src);
+            console.log("触发");
+            // 取消观察某DOM节点
+            observer.unobserve(image);
+          }
+        });
+      };
+      const observer = new IntersectionObserver(callback);
+      //遍历所有图片，使得所有图片被观察
+      images.forEach((image) => {
+        // 观察哪个DOM节点
+        observer.observe(image);
+      });
+    </script>
+  </body>
+</html>

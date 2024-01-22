@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05-双飞翼布局</title>
+
+    <style type="text/css">
+      /* 
+      双飞翼布局，双飞翼布局相对于圣杯布局来说，左右位置的保留是通过中间列的 margin 值来实现的，
+      而不是通过父元素的 padding 来实现的。本质上来说，也是通过浮动和外边距负值来实现的。
+       */
+      /* 中间盒子 */
+      .center {
+        float: left;
+        height: 100px;
+        width: 100%;
+        background: yellow;
+      }
+      /* 必须要 */
+      .center p {
+        margin: 0 100px; /* 让左右盒子不盖住中间盒子 */
+      }
+      /* 左边盒子 */
+      .left {
+        float: left;
+        margin-left: -100%; /* 左边外边距设置-100% */
+
+        width: 100px;
+        height: 100px;
+        background: blue;
+      }
+      /* 右边盒子 */
+      .right {
+        float: left;
+        margin-left: -100px; /* 左边外边距设置负自身宽度 */
+
+        width: 100px;
+        height: 100px;
+        background: green;
+      }
+      /* // 伪类清浮动 */
+      .clear:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 双飞翼布局相对于圣杯布局来说，左右位置的保留是通过中间列的 margin 值来实现的，
+      而不是通过父元素的 padding 来实现的。本质上来说，也是通过浮动和外边距负值来实现的。
+     -->
+    <div class="clear">
+      <div class="center">
+        <p>内容部分</p>
+      </div>
+      <div class="left">左边盒子</div>
+      <div class="right">右边盒子</div>
+    </div>
+  </body>
+</html>

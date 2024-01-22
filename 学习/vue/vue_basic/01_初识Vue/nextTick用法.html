@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识Vue</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+			初识Vue：
+				1.想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象；
+				2.root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法；
+				3.root容器里的代码被称为【Vue模板】；
+				4.Vue实例和容器是一一对应的；
+				5.真实开发中只有一个Vue实例，并且会配合着组件一起使用；
+				6.{{xxx}}中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性；
+				7.一旦data中的数据发生改变，那么页面中用到该数据的地方也会自动更新；
+
+				注意区分：js表达式 和 js代码(语句)
+						1.表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方：
+									(1). a
+									(2). a+b
+									(3). demo(1)
+									(4). x === y ? 'a' : 'b'
+
+						2.js代码(语句)
+									(1). if(){}
+									(2). for(){}
+		-->
+
+    <!-- 准备好一个容器 -->
+    <div class="app">
+      <div ref="msgDiv">{{msg}}</div>
+      <div v-if="msg1">Message got outside $nextTick: {{msg1}}</div>
+      <div v-if="msg2">Message got inside $nextTick: {{msg2}}</div>
+      <div v-if="msg3">Message got outside $nextTick: {{msg3}}</div>
+      <button @click="changeMsg">Change the Message</button>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+      new Vue({
+        el: ".app",
+        data: {
+          msg: "Hello Vue.",
+          msg1: "",
+          msg2: "",
+          msg3: "",
+        },
+        methods: {
+          /* 
+          这是因为message数据在发现变化的时候，vue并不会立刻去更新Dom，而是将修改数据的操作
+         放在了一个异步操作队列中，如果我们一直修改相同数据，异步操作队列还会进行去重，等待
+         同一事件循环中的所有数据变化完成之后，会将队列中的事件拿来进行处理，进行DOM的更新。 */
+         
+        // Vue 在修改数据后，视图不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。
+          changeMsg() {
+            this.msg = "Hello world.";
+            this.msg1 = this.$refs.msgDiv.innerHTML;
+            this.$nextTick(() => {
+              this.msg2 = this.$refs.msgDiv.innerHTML;
+            });
+            this.msg3 = this.$refs.msgDiv.innerHTML;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

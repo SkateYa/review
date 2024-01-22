@@ -1,0 +1,119 @@
+/* pages/user/index.wxss */
+page{
+    background-color: #edece8;
+}
+.user-info-wrap{
+    height: 45vh;
+    background-color: var(--themeColor);
+    position: relative;
+    .user-img-wrap{
+        position: relative;
+        .user-bg{
+            height: 50vh;
+            // 高斯模糊
+            filter: blur(8rpx);
+        }
+        .user-info{
+            position: absolute;
+            left:50%;
+            transform: translateX(-50%);
+            top: 30%;
+            text-align: center;
+            .user-icon{
+             width: 120rpx;
+             height: 120rpx;
+             border: 50%;
+            }
+            .user-name{
+                color: #fff;
+                margin-top: 40rpx;
+                // font-size: 40rpx;
+            }
+        }
+    }
+    .user-btn{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top:40%;
+        border: 2rpx solid greenyellow;
+        color: greenyellow;
+        font-size: 38rpx;
+        padding: 30rpx;
+        border-radius: 10rpx;
+    }
+}
+
+.user-content{
+    position: relative;
+    .user-main{
+        color: #666;
+        position: absolute;
+        width: 90%;
+        left:50%;
+        transform: translateX(-50%);
+        top:-40rpx;
+        padding-bottom: 100rpx;
+        .history-wrap{
+            background-color: #fff;
+            display: flex;
+            navigator{
+                flex:1;
+                text-align: center;
+                padding:10rpx 0;
+                .his-num{
+                    color: var(--themeColor);
+                }
+                .his-name{
+
+                }
+            }
+        }
+        .order-wrap{
+            background-color: #fff;
+            margin-top: 30rpx;
+            .order-title{
+              font-size: 30rpx;
+              padding: 30rpx;
+              border-bottom: 1px solid #ccc;
+            }
+            .order-content{
+                display: flex;
+                navigator{
+                   padding: 15rpx 0;
+                   flex:1;
+                   text-align: center;
+                    .iconfont{
+                        color: var(--themeColor);
+                    }
+                    .order-name{
+                    
+                    }
+                }
+            }
+        }
+        .address-wrap{
+            margin-top: 30rpx;
+            background-color: #fff;
+            padding: 20rpx;
+        }
+        .app-info-wrap{
+            margin-top: 30rpx;
+            background-color: #fff;
+            .app-info-item{
+                padding: 20rpx;
+                border-bottom: 1px solid #ccc;
+                text{}
+            }
+            .app-info-contact{
+                display: flex;
+                justify-content: space-between;
+             }
+        }
+        .recommend-wrap{
+            margin-top: 30rpx;
+            background-color: #fff;
+            padding: 20rpx;
+        }
+    }
+}

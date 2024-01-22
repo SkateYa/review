@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #canvasId {
+        width: 200px;
+        height: 200px;
+        /* background-color: blue; */
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvasId"></canvas>
+    <script>
+      let canvas = document.getElementById("canvasId");
+      let ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ff0000";
+      ctx.fillRect(0, 0, 200, 200);
+      let base64url = canvas.toDataURL();
+      console.log(base64url);
+    </script>
+  </body>
+</html>

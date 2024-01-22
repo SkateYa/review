@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //
+      /*  let arr1 = [
+        { id: "1", txt: "first" },
+        { id: "2", txt: "second" },
+        { id: "3", txt: "third" },
+      ];
+
+      let arr2 = [{ id: "2", txt: "second" }, { id: "3", txt: "third" }];
+
+      let arr3 = arr1.filter((e1) => !arr2.some((e2) => e2.id === e1.id));
+
+      console.log(arr3); */
+
+      //   let arr1 = [
+      //     { id: 1, name: "张三", age: 20, hobby: ["吃饭", "睡觉", "打豆豆"] },
+      //     { id: 2, name: "李四", age: 21, hobby: ["吃饭", "睡觉", "打豆豆"] },
+      //     { id: 3, name: "王五", age: 22, hobby: ["吃饭", "睡觉", "打豆豆"] },
+      //     { id: 4, name: "赵六", age: 23, hobby: ["吃饭", "睡觉", "打豆豆"] },
+      //   ];
+      //   let arr2 = [
+      //     { id: 3, name: "王五" },
+      //     { id: 4, name: "赵六" },
+      //   ];
+
+      //   let arr = arr1.filter((item) => {
+      //     return arr2.find((prop) => {
+      //       return prop.id !== item.id;
+      //     });
+      //   });
+
+      //   console.log(arr)
+
+      let names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"];
+
+      let nameNum = names.reduce((pre, cur,index) => {
+        console.log(pre,cur,index)
+        if (cur in pre) {
+          pre[cur]++;
+        } else {
+          pre[cur] = 1;
+        }
+        return pre;
+      }, {});
+      console.log(nameNum); //{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}
+    </script>
+  </body>
+</html>

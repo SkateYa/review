@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>剁手</button>
+    <script>
+      //  防抖（debounce）：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时，重新触发定时器。
+      /* 
+      应用场景：
+          1. 改变页面大小的统计
+          2. 滚动页面位置的统计
+          3. 输入框连续输入的请求次数控制 （防止表单多次提交）
+
+          登录、发短信等按钮避免用户点击太快，以致于发送了多次请求，需要防抖
+          调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖
+          文本编辑器实时保存，当无任何更改操作一秒后进行保存
+
+
+          输入框远程查询事件
+          在线文档自动保存
+          浏览器视口大小改变
+      */
+      var btn = document.querySelector("button");
+      let a = 1,
+        b = 2,
+        c = 3;
+      function payMoney(a, b, c) {
+        console.log("剁手");
+        // console.log(this, a, b, c);
+      }
+      function debounce(func, delay) {
+        let timer;
+        // 使用闭包解决还没点击就执行函数的情况
+        return function () {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => {
+            // 修改this指向和添加参数
+            func.apply(this, arguments);
+            console.log('arguments',this, ...arguments)
+          }, delay);
+        };
+      }
+
+      // 蛋老师讲的
+      function debounce1(func, delay) {
+        let timer;
+        // 使用闭包解决还没点击就执行函数的情况
+        return function () {
+          let context = this
+          let args = arguments
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(function() {
+            // 修改this指向和添加参数
+            func.apply(context, args);
+            console.log('args',context,...args)
+          }, delay);
+        };
+      }
+
+      btn.addEventListener("click", debounce(payMoney, 1000,222,333),'11','22');
+      btn.addEventListener("click", debounce1(payMoney, 1000,222,333),'11','22');
+
+      // btn.addEventListener("click", debounce1(payMoney, 1000,222,333),'11','22');
+      // btn.addEventListener("click", payMoney);
+    </script>
+  </body>
+</html>

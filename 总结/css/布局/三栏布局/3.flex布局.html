@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* 利用 flex 布局，左右两栏设置固定大小，中间一栏设置为 flex:1。 */
+    .outer {
+      display: flex;
+      height: 100px;
+    }
+
+    .left {
+      width: 200px;
+      height: 100px;
+      background: tomato;
+    }
+    
+    .center {
+      flex: 1;
+      height: 100px;
+      background: lightgreen;
+    }
+
+    .right {
+      width: 200px;
+      height: 100px;
+      background: gold;
+    }
+
+
+  </style>
+  <body>
+    <!--  左右两栏设置固定大小，中间一栏设置为 flex:1  -->
+    <div class="outer">
+      <div class="left"></div>
+      <div class="center"></div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>

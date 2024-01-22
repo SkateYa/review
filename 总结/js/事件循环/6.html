@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 执行顺序问题，考察频率挺高的，先自己想答案**
+      setTimeout(function () {
+        console.log(1);
+      });
+      new Promise(function (resolve, reject) {
+        console.log(2);
+        resolve(3);
+      }).then(function (val) {
+        console.log(val);
+      });
+      console.log(4);
+    //   2,4,3,1
+    </script>
+  </body>
+</html>

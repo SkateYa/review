@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 打印出 1 - 10000 之间的所有对称数 例如 121、1331 等        
+        // var result = [...Array(10000).keys()].filter((x) => { 
+        //     return x.toString().length > 1 && x === Number(x.toString().split('').reverse().join('')) 
+        // })
+       
+
+
+      var res =  [...new Array(10000).keys()].filter(item=>{
+           return item.toString().length > 1 && item === Number(item.toString().split('').reverse().join(''))
+        })
+        console.log(res)
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        // es6写法
+       function person(...arg){
+        console.log(this.name)
+        console.log(...arg)
+       }  
+       */
+      //    es5写法
+      function person(a, b, c, d) {
+        return {
+          name: this.name,
+          a,
+          b,
+          c,
+          d,
+        };
+        // console.log(this);
+        // console.log(a, b, c, d);
+      }
+      var egg = { name: "蛋老师" };
+
+      //   es5写法---蛋老师
+      Function.prototype.newApply = function (obj, arr) {
+        var obj = obj || window, result;
+        //  this指向person函数，在obj中添加属性p,值为person函数，在obj中执行person函数，则this指向obj
+        obj.p = this;
+        if (!arr) {
+          result = obj.p();
+        } else {
+          var newArguments = [];
+          for (var i = 0; i < arr.length; i++) {
+            //newArguments.push(arguments[i]);
+            //newArguments ==> ['arguments[1]', 'arguments[2]', 'arguments[3]', 'arguments[4]']
+            newArguments.push("arr[" + i + "]");
+          }
+          var fun = "obj.p(" + newArguments + ")";
+          console.log(fun);
+          result = eval(fun);
+        }
+
+        // p值为person函数
+        // obj.p(newArguments);
+        // 执行完删除person函数
+        delete obj.p;
+        return result;
+      };
+      var result = person.newApply(null, ["点赞", "收藏", "转发", "充电"]);
+      console.log("result", result);
+      // person.call(null, "点赞", "收藏", "转发", "充电");
+    </script>
+  </body>
+</html>

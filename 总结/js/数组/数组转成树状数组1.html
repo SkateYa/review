@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr1 = [
+        {
+          menuId: 1,
+          name: "系统管理1",
+          parentMenu: null,
+        },
+        {
+          menuId: 2,
+          name: "系统管理2",
+          parentMenu: null,
+        },
+        {
+          menuId: 3,
+          name: "系统管理1_0",
+          parentMenu: 1,
+        },
+        {
+          menuId: 4,
+          name: "系统管理1_1",
+          parentMenu: 1,
+        },
+        {
+          menuId: 5,
+          name: "系统管理2_0",
+          parentMenu: 2,
+        },
+        {
+          menuId: 6,
+          name: "系统管理2_2_0",
+          parentMenu: 5,
+        },
+        {
+          menuId: 7,
+          name: "系统管理3",
+          parentMenu: null,
+        },
+        {
+          menuId: 8,
+          name: "系统管理1-1-2",
+          parentMenu: 4,
+        },
+      ];
+
+      // 方法一 常规思路 递归
+      function toTree1(arr) {
+        // 这个就是一级数组 最后上面的数组只有三个是一级的
+        const parentA = arr.filter((item) => !item.parentMenu);
+        const childA = arr.filter((item) => item.parentMenu);
+
+        console.log('parentA',parentA)
+        console.log('childA',childA)
+        /** 这个就是小蝌蚪找妈妈的具体实现,其实可以写在一个函数里面,
+                 但是为了易懂,就麻烦点儿摘出来一个函数 **/
+        tree1(parentA, childA);
+
+        return parentA;
+      }
+
+      function tree1(parentA, childA) {
+        for (const item of parentA) {
+          item.children = [];
+
+          for (const i in childA) {
+            const v = childA[i];
+            if (item.menuId === v.parentMenu) {
+              item.children.push(v);
+
+              // 这一步递归 如果没有下面三行代码 只能找到第一级对应的children第二级目录
+              let c = JSON.parse(JSON.stringify(childA)); // 简单深拷贝一下
+              // 能走到这儿，说明这个娃 已经找到父亲了 不需要在遍历了 所以删了 你要是非的不删也可以
+              // 注意这里是具体根据业务的，如果不同父目录下面可能有相同的子目录，这里就不能删除了
+              c.splice(i, 1);
+              // 这里需要把当前儿子 加上【】转为数组因为tree1接受的是父，子数组
+              tree1([v], c);
+            }
+          }
+        }
+      }
+
+      console.log("toTree2", toTree1(arr1));
+    </script>
+  </body>
+</html>

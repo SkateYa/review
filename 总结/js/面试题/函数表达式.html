@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 函数表达式与函数声明不同，函数名只在该函数内部有效，并且此绑定是常量绑定。
+对于一个常量进行赋值，在 strict 模式下会报错，非 strict 模式下静默失败。
+IIFE中的函数是函数表达式，而不是函数声明。 */
+      var b = 10;
+      (function b() {
+        b = 20;
+        console.log(b);
+      })();
+
+      //     ƒ b() {
+      //     b = 20;
+      //     console.log(b);
+      //   }
+    </script>
+  </body>
+</html>

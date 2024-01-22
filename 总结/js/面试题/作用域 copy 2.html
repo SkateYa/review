@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function joinString(foo) {
+        var arr = foo.split("-");
+        var newArr = arr.map((item, index) => {
+          if (index > 0) {
+            item = item.charAt(0).toUpperCase() + item.slice(1);
+          }
+          return item;
+        });
+        var result = newArr.join('');
+        return result;
+      }
+
+      var foo = "get-element-by-id";
+      console.log(joinString(foo));
+    </script>
+  </body>
+</html>

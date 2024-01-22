@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    /*         
+
+          thenable（任何含有then()方法的对象或函数。）
+    结论：async函数在抛出返回值时，会根据返回值类型开启不同数目的微任务
+
+        return结果值：非thenable、非promise（不等待）
+        return结果值：thenable（等待 1个then的时间）
+        return结果值：promise（等待 2个then的时间） 
+
+    */
+      async function async1() {
+        await new Promise((resolve, reject) => {
+          resolve();
+        });
+        console.log("A");
+      }
+
+      async1();
+
+      new Promise((resolve) => {
+        console.log("B");
+        resolve();
+      })
+        .then(() => {
+          console.log("C");
+        })
+        .then(() => {
+          console.log("D");
+        });
+
+      // 最终结果👉: B A C D 
+    </script>
+  </body>
+</html>

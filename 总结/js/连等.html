@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 第三行代码 涉及到一个运算符优先级的问题,".“的优先级>”="的优先级,
+      // 所以a.x = a ={n:2},先执行的是a.x,此时a={n:1,x:undefined},b={n:1,x:undefined};再来看赋值运算符,
+      // 从右往左执行,所以这段代码a重新被赋值给了一个对象,此时a={n:2},执向了另一个对象的引用地址,但在a被重新赋值之前,
+      // a.x已经执行完成了,所以这会a,b的值分别为:a={n:2},b={n:1,x:{n:2}};a,b指向了两个不同的对象内存地址.
+
+      // 所以上述代码打印结果为:undefied,{n:2}
+
+      var a = { n: 1 };
+      var b = a; // 持有a，以回查
+      a.x = a = { n: 2 };
+      console.log(a.x); // --> undefined
+      console.log(b.x); // --> {n:2}
+
+      // 过程如下：
+      //   var a = { n: 1 };
+      //   var b = a;
+      //   a.x = { n: 2 };
+      //   a = { n: 2 };
+
+      //   a={n:1}
+      //   b={n:1}
+      //   a={n:2,x:{n:2}}
+    </script>
+  </body>
+</html>

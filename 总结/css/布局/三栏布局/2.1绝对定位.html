@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-绝对定位</title>
+
+  <style type="text/css">
+    /* <!--  利用**绝对定位**，左右中三栏设置为绝对定位  --> */
+    .container {
+        position: relative;
+        height: 100px;
+    }
+    .left {
+        position: absolute;
+        background: tomato;
+        width: 100px;
+        height: 100px;
+    }
+    .center {
+        position: absolute;
+        height: 100px;
+        left: 100px;
+        right: 100px;
+        background: gold;
+    }
+    .right {  
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        right: 0;
+        background: lightgreen;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="left">左边区域</div>
+    <div class="center">中间区域</div>
+    <div class="right">右边区域</div>
+</div>
+</body>
+</html>

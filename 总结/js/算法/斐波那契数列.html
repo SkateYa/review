@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 斐波那契数列：1，1，2，3，5，8，13，21，34，55，89..
+
+      function fibonacci(num) {
+        if (num === 1 || num === 2) {
+          return 1;
+        }
+        return fibonacci(num - 1) + fibonacci(num - 2);
+      }
+
+      // 求第n项
+      const generateFib = (n) => {
+        let fibArr = [];
+        let i = 0;
+        while (i < n) {
+          if (i <= 1) {
+            fibArr.push(i);
+          } else {
+            fibArr.push(fibArr[i - 1] + fibArr[i - 2]);
+          }
+          i++;
+        }
+        return fibArr;
+      };
+      // [0, 1, 1, 2, 3, 5, 8, 13]
+      console.log("斐波那契数列", generateFib(8));
+      // 求斐波那契数列的第n项
+
+      // 递归，数据过大会造成溢出(浏览器卡死)
+      function fib(n) {
+        if (n < 2) return n;
+        return fib(n - 1) + fib(n - 2);
+      }
+      console.log(fib(4)); // 3
+
+      // 动态规划=============
+      const dynamicFib = (n) => {
+        if (n < 2) {
+          return n;
+        }
+        let newArr = [0, 1];
+        for (let i = 2; i <= n; i++) {
+          newArr.push(newArr[0] + newArr[1]);
+          newArr.splice(0, 1);
+          console.log("newArr", newArr);
+        }
+        return newArr[1];
+      };
+
+      console.log(dynamicFib(4)); // 3
+
+      // 一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+      // 跳到 n 阶假设有 f(n)种方法。
+
+      // 往前倒退，如果青蛙最后一次是跳了 2 阶，那么之前有 f(n-2)种跳法; 如果最后一次跳了 1 阶，那么之前有 f(n-1)种跳法。
+
+      // 所以：f(n) = f(n-1) + f(n-2)。就是斐波那契数列
+    </script>
+  </body>
+</html>

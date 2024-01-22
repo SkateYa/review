@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*   1.给字符串对象定义一个addPrefix函数，当传入一字符串str时，它会返回新的带有指定前缀的字符串，例如:
+            console.log("world".addPrefix("hello"))控制台会输出:"helloworld" */
+
+      //   String.prototype.addPrefix = function (str) {
+      //       console.log(this)
+      //     return str + this;
+      //   };
+      //   console.log("world".addPrefix("hello"));
+
+    //   var str = "nininihaoa";
+    //   var o = {};
+    //   for (var i = 0, length = str.length; i < length; i++) {
+    //     // var char = str[i];
+    //     var char = str.charAt(i);
+    //     if (o[char]) {
+    //       //char就是对象o的一个属性，o[char]是属性值，o[char]控制出现的次数
+    //       o[char]++; //次数加1
+    //     } else {
+    //       o[char] = 1; //若第一次出现，次数记为1
+    //     }
+    //   }
+    //   console.log(o); //输出的是完整的对象，记录着每一个字符及其出现的次数
+    //   //遍历对象，找到出现次数最多的字符和次数
+    //   var max = 0;
+    //   var maxChar = null;
+    //   for (var key in o) {
+    //     if (max < o[key]) {
+    //       max = o[key]; //max始终储存次数最大的那个
+    //       maxChar = key; //那么对应的字符就是当前的key
+    //     }
+    //   }
+    //   console.log("最多的字符是" + maxChar);
+    //   console.log("出现的次数是" + max);
+
+      var str = "nininihaoa";
+      var o = {};
+      for (var i = 0, length = str.length; i < length; i++) {
+        var char = str.charAt(i);
+        if (o[char]) {
+          o[char]++; //次数加1
+        } else {
+          o[char] = 1; //若第一次出现，次数记为1
+        }
+      }
+      console.log(o); //输出的是完整的对象，记录着每一个字符及其出现的次数
+      //遍历对象，找到出现次数最多的字符的次数
+      var max = 0;
+      for (var key in o) {
+        if (max < o[key]) {
+          max = o[key]; //max始终储存次数最大的那个
+        }
+      }
+      for (var key in o) {
+        if (o[key] == max) {
+          console.log(key);
+          console.log("最多的字符是" + key);
+          console.log("出现的次数是" + max);
+        }
+      }
+    </script>
+  </body>
+</html>

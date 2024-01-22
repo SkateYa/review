@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+1）call、apply和bind都可以改变函数的this指向
+2）call、apply和bind第一个参数的是this要指向的对象
+3）call、apply和bind都可以后续为函数传参，apply是将参数并成一个数组，call和bind是将参数依次列出。
+4）call、apply都是直接调用，bind生成的this指向改变函数需要手动调用。
+ */
+      function Cat() {
+        this.name = "coco";
+        this.say = function (age, sex) {
+          console.log(
+            "my name is " + this.name + ", sex is " + sex + ", age is " + age
+          );
+        };
+      }
+
+      function Mouse(name) {
+        this.name = name;
+        console.log("Mouse", this.name);
+      }
+
+      const cat = new Cat();
+      const mouse = new Mouse("Tom");
+      /*  cat.say里面的this本来是指向实例cat的，但这里使用了属性call和apply，使cat实例里面this指向了mouse，
+      所以this.name=‘Tom’，可以看出call和apply作用是一样的。 */
+      cat.say.call(mouse, 28, "男");
+      cat.say.apply(mouse, [28, "男"]);
+      // my name is Tom, sex is 男, age is 28
+      // my name is Tom, sex is 男, age is 28
+
+      const foo = cat.say.bind(mouse, 28, "男");
+      console.log(typeof foo);
+      foo();
+      // function
+      // my name is Tom, sex is 男, age is 28
+    </script>
+  </body>
+</html>

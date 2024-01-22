@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>利用**绝对定位**，左右两栏设置为绝对定位，中间设置对应方向大小的 margin 的值。</title>
+  </head>
+  <style>
+    /* 利用**绝对定位**，左右两栏设置为绝对定位，中间设置对应方向大小的 margin 的值。 */
+    .outer {
+      position: relative;
+      height: 100px;
+    }
+
+    .left {
+      position: absolute;
+      width: 200px;
+      height: 100px;
+      background: tomato;
+    }
+
+    .center {
+      margin-left: 200px;
+      margin-right: 200px;
+      height: 100px;
+      background: lightgreen;
+    }
+
+    .right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100px;
+      background: gold;
+    }
+  </style>
+  <body>
+    <div class="outer">
+      <div class="left"></div>
+      <div class="center"></div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>

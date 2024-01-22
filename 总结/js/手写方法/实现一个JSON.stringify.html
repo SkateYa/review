@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function jsonStringify(obj) {
+        let type = typeof obj;
+        if (type !== "object") {
+          if (/string|undefined|function/.test(type)) {
+            obj = '"' + obj + '"';
+          }
+          return String(obj);
+        } else {
+          let json = [];
+          let arr = Array.isArray(obj);
+          for (let k in obj) {
+            let v = obj[k];
+            let type = typeof v;
+            if (/string|undefined|function/.test(type)) {
+              v = '"' + v + '"';
+            } else if (type === "object") {
+              v = jsonStringify(v);
+            }
+            json.push((arr ? "" : '"' + k + '":') + String(v));
+          }
+          return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+        }
+      }
+      console.log(jsonStringify({ x: 5 })); // "{"x":5}"
+      console.log(jsonStringify([1, "false", false])); // "[1,"false",false]"
+      console.log(jsonStringify({ b: undefined })); // "{"b":"undefined"}"
+
+      console.log(JSON.stringify({ x: 5 })); // "{"x":5}"
+      console.log(JSON.stringify([1, "false", false])); // "[1,"false",false]"
+      console.log(JSON.stringify({ b: undefined })); // "{"b":"undefined"}"
+    </script>
+  </body>
+</html>

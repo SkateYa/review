@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="" id="fileId" />
+    <img src="" alt="" />
+    <script>
+    /*
+    1. 前端上传图片的原理是：运用input type=“file”的标签获取图片，再使用FileReader这个对象 new 一个实例，
+    通过这个对象的readAsDataURL()方法读取file标签获取的图片并转换为base64格式，完成之后通过ajax之类的方式传到后台。
+
+    2. 图片上传需要检测上传的图片是否变化，所以这里选择js的onchange事件.先获取input,img的dom元素,
+    在input type=‘file'的demo元素下，有一个files属性，里面是我们上传的文件信息，打印一下，就可以看到上传文件的名字，类型等信息。
+    
+    3. 然后运用 FileReader 这个对象，FileReader主要用于将文件内容读入内存，通过一系列异步接口，
+    可以在主线程中访问本地文件。使用FileReader对象，web应用程序可以异步的读取存储在用户计算机上的文件(或者原始数据缓冲)内容，
+    可以使用File对象或者Blob对象来指定所要处理的文件或数据。这里用到了里面的 readAsDataURL 这个方法，
+    它能把文件用base64格式读出。
+    
+    */
+      const file = document.getElementById("fileId");
+      var image = document.querySelector ("img");
+      file.onchange = function (e) {
+
+        //  1. 通过FileReader来读取图片
+        let reader = new FileReader();
+        // 异步读取文件内容，结果用data:url的字符串形式表示
+        reader.readAsDataURL(e.target.files[0]);
+
+        /*当读取操作成功完成时调用*/
+        reader.onload = function (event) {
+          image.setAttribute("src", event.target.result)
+          console.log(event.target.result);
+        };
+
+        // 2. 通过createObjectURL来读取图片
+         console.log(URL.createObjectURL(e.target.files[0]))
+      };
+    </script>
+  </body>
+</html>

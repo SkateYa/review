@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn(name,age) {
+        this.name = name;
+        this.age = age;
+        return 11;
+      }
+      function myNew(fn, ...arg) {
+        console.log(arg)
+        let obj = {};
+        obj.__proto__ = fn.prototype;
+        const result = fn.apply(obj, arg);
+        return result instanceof Object ? result : obj;
+      }
+      var a = myNew(fn, 11, 33);
+      console.log(a)
+
+      function Fun(age, name) {
+        this.age = age;
+        this.name = name;
+        return 11;
+      }
+
+      function create(fn, ...args) {
+        //1.创建了一个空的对象
+        const obj = {}; //var obj = Object.create({})
+        //2.将空对象的原型，指向于构造函数的原型
+        // 等价于  Object.setPrototypeOf(obj, fn.prototype);         
+         obj.__proto__ = fn.prototype
+        //3.将空对象作为构造函数的上下文(改变this指向)
+        const result = fn.apply(obj, args);
+        //4.对构造函数有返回值的处理判断,如果返回的是基本类型不影响结果，如果是引用类型，修改结果
+        return result instanceof Object ? result : obj;
+      }
+
+      console.log(create(Fun, 18, "张三")); // Fun {age: 18, name: '张三'}
+      console.log('ddd',myNew.__proto__ === Function.prototype)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 
+    父盒子的宽度为500，子盒子的宽度为600，超出100，超出的100，如何进行比例缩放
+
+    第一个盒子：1/4 * 100 = 25 最终第一个盒子200-25=175
+    第二个盒子：2/4 * 100 = 50 最终第二个盒子200-50 = 150
+    第三个盒子：1/4 * 100 = 25 最终第一个盒子200-25=175 
+    */
+      .box {
+        width: 500px;
+        height: 100px;
+        background-color: hotpink;
+        display: flex;
+      }
+
+      .box div {
+        width: 200px;
+      }
+
+      .box div:nth-child(1) {
+        flex-shrink: 1;
+      }
+
+      .box div:nth-child(2) {
+        flex-shrink: 2;
+      }
+
+      .box div:nth-child(3) {
+        flex-shrink: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  </body>
+</html>

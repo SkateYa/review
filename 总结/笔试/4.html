@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function changeObjectProperty(o) {
+        o.siteUrl = "http://www.csser.com/";
+        o = new Object();
+        o.siteUrl = "http://www.popcg.com/";
+      }
+      var csser = new Object();
+      changeObjectProperty(csser);
+      console.log(csser.siteUrl); 
+      // 'http://www.csser.com/'
+
+
+
+
+      console.log(Object.constructor === Object.constructor.prototype.constructor); // true
+
+      function obj(o) {
+        o.a = 1;
+      }
+      var json = new Object();
+
+      console.log(obj(json)); // undefined  没有返回值
+      console.log(json)
+    </script>
+  </body>
+</html>

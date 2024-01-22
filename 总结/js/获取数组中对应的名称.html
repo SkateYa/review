@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let records = [
+        {
+          transType: 0,
+          createTime: "2022-11-09 15:26:53",
+          name: "不转码",
+          outFormat: "",
+          bitrate: 1000,
+          id: "1",
+          resolution: "",
+          status: 1,
+        },
+        {
+          transType: 1,
+          createTime: "2022-11-09 15:27:17",
+          name: "高清",
+          outFormat: "MP4",
+          bitrate: 1000,
+          id: "2",
+          resolution: "800*600",
+          status: 1,
+        },
+        {
+          transType: 1,
+          createTime: "2022-11-22 13:49:36",
+          name: "4k",
+          outFormat: "MP4",
+          bitrate: 1000,
+          id: "3",
+          resolution: "320*280",
+          status: 1,
+        },
+        {
+          transType: 1,
+          createTime: "2022-11-22 15:17:32",
+          name: "超清",
+          outFormat: "WMV",
+          bitrate: 23,
+          id: "5",
+          resolution: "320*280",
+          status: 1,
+        },
+      ];
+
+      let ids = ['1', '2', '3']
+      let names = []
+      records.forEach((item,index)=>{
+         ids.forEach((value,i)=>{
+            if(i===index){
+                names.push(item.name)
+            }
+         });
+      })
+
+      console.log('names',names)
+    </script>
+  </body>
+</html>

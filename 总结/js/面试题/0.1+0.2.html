@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      计算机底层是通过二进制来计算的，都会转成二进制再计算;
+      十进制转为二进制是用的乘2取整的方法，只计算小数位
+      十进制 0.1 -二进制 0.0001100110
+      0.1x2=0.2，整数部分是0
+      0.2x2=0.4，整数部分是0
+      0.4x2 = 0.8，整数部分是0~
+      0.8x2=1.6，整数部分是1
+      0.6x2=1.2，整数部分是1
+      0.2x2=0.4，整数部分是0
+      会无限循环
+      */
+      var result = 0.1+0.2 
+      console.log(result) //0.30000000000000004
+    </script>
+  </body>
+</html>

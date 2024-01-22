@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //第2题值类型和引用类型的传递
+
+      function Person(name, age, salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+      }
+
+      function f1(person) {
+        person.name = "Ls";
+        person = new Person("aa", 18, 10);
+      }
+      var p = new Person("zs", 18, 1000);
+      console.log(p.name); // zs
+      f1(p); 
+      console.log(p.name); // ls
+    </script>
+  </body>
+</html>

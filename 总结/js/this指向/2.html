@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name = "小白";
+
+      function special() {
+        console.log("姓名:" + this.name);
+      }
+
+      var girl = {
+        name: "小红",
+        detail: function () {
+          console.log("姓名: " + this.name);
+        },
+        woman: {
+          name: "小黄",
+          detail: function () {
+            console.log("姓名:" + this.name);
+          },
+        },
+        special: special,
+      };
+      girl.detail(); // 小红
+      girl.woman.detail(); //小黄
+      girl.special(); //小红
+    </script>
+  </body>
+</html>

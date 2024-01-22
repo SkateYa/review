@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        font-size: 20px;
+      }
+
+      .child {
+        font-size: 2em;
+      }
+
+      html {
+        font-size: 30px;
+      }
+
+      .child-2 {
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+    现在我们知道了什么是 em，我们来看看 rem。rem 是 CSS 中另一个测量长度的单位，
+    它代表 root em。既然我们知道 em 等于当前字体的尺寸，我们就可以推断出 root em 是指根元素的字体尺寸，
+    而根元素通常是指 <html> 元素。
+
+    和 em 一样，rem 也是从父元素那里继承它的大小，但 rem 看的父元素不是它上面的 div 或 section，
+    而是围绕它的第一个元素，也就是 html 元素。让我们用前面的代码做一个例子。同样的 html 代码，
+    只是多了一个 div。使用 rem 单元可以使页面上元素的大小有更大的伸缩性和灵活性，因为如果你改变根元素的字体大小，
+    所有用 rem 单元确定大小的元素都会自动更新，以保持它们的相对大小。
+    -->
+    <div class="parent">
+      I'm parent div set to 20px
+      <div class="child">I'm the child div set to 2em, 40px.</div>
+      <div class="child-2">I'm the child div set to 2rem, 60px.</div>
+    </div>
+  </body>
+</html>

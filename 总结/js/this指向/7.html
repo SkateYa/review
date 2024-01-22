@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function foo() {
+        console.log(this.a); // 1
+      }
+      var a = 1;
+      foo();
+
+      const obj = {
+        a: 2,
+        foo: foo,
+      };
+      obj.foo(); // 2
+
+      // 对于 new 的方式来说，this 被永远绑定在了 c 上面，不会被任何方式改变 this
+      const c = new foo(); // undefined
+    </script>
+  </body>
+</html>

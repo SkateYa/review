@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>数据绑定</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <template>
+        <div id="app">
+          <!-- 2. 如果我们想直接触发绑定的自定义事件, 使用vue为我们提供的事件修饰符：.native, 即： -->
+          <child-component @click.native="handleClick"></child-component>
+          <!-- <child-component @click="handleClick"></child-component> -->
+        </div>
+      </template>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    /* 
+      https://blog.csdn.net/qyl_0316/article/details/117415608
+
+      自定义事件：子组件在父组件中使用时，直接绑定在子组件上的事件就是自定义事件，必须经过子组件的触发vm.$emit()才能执行
+      原生事件：直接在子组件里的模板上绑定的事件，子组件引入后是可以直接触发的
+
+
+      在dom元素上绑定的事件，触发的是dom的原生事件
+      在组件上绑定的事件，触发的是自定义事件，需要用this.$emit(‘eventName’)来触发。
+
+      触发绑定的自定义事件的2种方式
+        1. 给组件加上.native修饰符
+        2. 通过$emit触发
+  
+    */
+
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+    var ChildComponent = Vue.extend({
+      name: "child-component",
+      template: '<div @click="handleChildClick">ddd</div>',
+      methods: {
+        handleChildClick() {
+          console.log("触发的是dom原生事件");
+          // 1. 如果想触发自定义的click事件，就得在子组件里对元素进行事件绑定，这个触发的才是原生的Dom事件。
+          // this.$emit("click", 2);
+        },
+      },
+    });
+
+    new Vue({
+      el: "#root",
+      data: {
+        name: "尚硅谷",
+      },
+      components: { ChildComponent },
+      methods: {
+        // 这里调用是不会触发click事件的，因为是自定义事件，不是原生的dom事件
+        handleClick() {
+          console.log("trigger click");
+        },
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    /* 
+    // 变量提升
+    function Foo() {
+        getName = function () {
+          console.log(1);
+        };
+        return this;
+      }
+      // 变量名和函数名相同，以函数名为准
+      // var getName
+
+
+      // 被下面的getName替代
+      // function getName() {
+      //   console.log(5);
+      // }
+
+      // **************************
+      Foo.getName = function () {
+        console.log(2);
+      };
+      Foo.prototype.getName = function () {
+        console.log(3);
+      };
+      getName = function () {
+        console.log(4);
+      };
+     
+    
+    */
+
+
+      //创建了foo()方法，里面有全局变量并赋值为一个方法，
+      //return this，目前this指向全局
+      function Foo() {
+        console.log('this', this)
+        getName = function () {
+          console.log(1);
+        };
+        return this;
+      }
+      //写一个Foo的静态方法
+      Foo.getName = function () {
+        console.log(2);
+      };
+      //给Foo的原型创建一个getName方法，当创建一个Foo实例时，
+      //如果Foo没有定义getName方法就会去原型对象中找
+      Foo.prototype.getName = function () {
+        console.log(3);
+      };
+      //创建一个变量，赋值一个函数，
+      //相当于var getName,getName=function(){...}
+      var getName = function () {
+        console.log(4);
+      };
+      //创建一个全局方法，命名为getName()方法
+      function getName() {
+        console.log(5);
+      }
+
+      Foo.getName(); // 2
+      // 调用全局中的getName(),全局getName()提升的比var getName高，
+      // 而var getName 与全局getName()方法重名，则会覆盖掉全局的getName()方法，
+      // 覆盖掉5，所以后面调用的是var getName //4
+      getName(); // 4
+      // Foo()返回的是window，相当于window.getName()
+      //在这调用了 getName = function () {  console.log(1);};
+
+      // 运行的是Foo()，Foo()中有个全局变量，又是个getName(),运行Foo会覆盖之前全局的getName(),而Foo()中return this,指向了全局。//1
+      Foo().getName(); // 1
+      // Foo()中的getName变成了window.getName(),所以覆盖了4的值
+      // 此刻的全局方法是Foo()中的getName()，//1
+      getName(); // 1
+      new Foo.getName(); // 2
+      // 对象如何找属性|方法; 先在对象本身找===>构造函数中找===>对象原型中找===>构造函数原型中找===>对象上一层原型查找
+      // (new Foo()).getName()
+
+      // 先创建一个Foo()实例，再调用Foo()中的getName()方法，Foo()中没有去原型中找
+      new Foo().getName(); // 3 相当于 var f = new Foo（）  f.getName()
+      // new new Foo().getName() 与new Foo.getName()相似。多一个new跟之前的没什么区别
+      new new Foo().getName(); // 3
+
+      // 这道题相当经典了 花点时间自己去看下吧
+
+
+
+    </script>
+  </body>
+</html>

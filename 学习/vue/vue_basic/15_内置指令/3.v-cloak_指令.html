@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>v-cloak指令</title>
+		<style>
+			[v-cloak]{
+				display:none;
+			}
+		</style>
+		<!-- 引入Vue -->
+	</head>
+	<body>
+		<!-- 
+			v-cloak指令（没有值）：
+				1.本质是一个特殊属性，Vue实例创建完毕并接管容器后，会删掉v-cloak属性。
+				2.使用css配合v-cloak可以解决网速慢时页面展示出{{xxx}}的问题。
+
+				但是，需要注意的是，在使用{{}}展示或更新页面数据时：当网速比较慢时，
+				会出现一个不好的过度现象，会让用户先看到我们的表达式（上面页面中的{{name}}），
+				然后才看到data中的值（尚硅谷）即所谓的闪烁问题！
+        -->
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2 v-cloak>{{name}}</h2>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</body>
+	
+	<script type="text/javascript">
+		console.log(1)
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+		
+		new Vue({
+			el:'#root',
+			data:{
+				name:'尚硅谷'
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //   let fn = function (a, b) {
+    //     console.log(this, a, b);
+    //   };
+    //   let obj = { name: "obj" };
+    //   fn.call(obj, 1, 2); // this:obj    a:1         b:2
+    //   fn.call(1, 2); // this:1      a:2         b:undefined
+    //   fn.call(); // this:window a:undefined b:undefined
+    //   fn.call(null); // this=window a=undefined b=undefined
+    //   fn.call(undefined); // this=window a=undefined b=undefined
+      console.log('---------------------------')
+
+      "use strict"
+      let fn1 = function (a, b) {
+        console.log(this, a, b);
+      };
+      let obj1 = { name: "obj" };
+      fn1.call(obj1, 1, 2); // this:obj        a:1          b:2
+      fn1.call(1, 2); // this:1          a:2          b=undefined
+      fn1.call(); // this:undefined  a:undefined  b:undefined
+      fn1.call(null); // this:null       a:undefined  b:undefined
+      fn1.call(undefined); // this:undefined  a:undefined  b:undefined
+    </script>
+  </body>
+</html>

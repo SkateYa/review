@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      1、.运算符优先，a.x此时保持对{n: 1}的引用，也就是b也保持对{n: 1}的引用，于是{n: 1} => {n: 1, x: undefined}，
+      此时a和b还是对原来对象的引用，只不过原来对象增加了x属性
+      2、=从右往左，a = {n: 2}，此时a的引用已经变成了{n: 2}这个对象
+      3、a.x=a，此时a.x是保持对{ n: 1, x: undefined}中的x引用，也就是b.x，
+      于是{ n: 1, x: undefined} => {n: 1, x: { n: 2}}，即b.x = { n: 2 } 
+      */
+      var a = { n: 1 };
+      var b = a;
+      a.x = a = { n: 2 };
+
+      console.log(a.x); // undefined
+      console.log(b.x); //   {n:2}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> overflow 溢出不隐藏 test </title>
+    <style type="text/css">
+        p {
+           
+            width: 180px;      
+            border: 1px solid red;
+            height: 45px;
+
+             /*  溢出隐藏 */
+        overflow: hidden;
+        /* 作为弹性伸缩盒子模型显示。 */
+        display: -webkit-box;
+        /* 设置伸缩盒子的子元素排列方式：从上到下垂直排列 */
+        -webkit-box-orient: vertical;
+        /* 显示的行数 */
+        -webkit-line-clamp: 2;
+        }
+
+
+
+
+
+
+
+        d{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+
+
+        dd{
+            overflow: hidden;
+            display: -webkit-flex;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 兼容火狐和谷歌浏览器 -->
+    <p>商品1商品2商品3商品4商品5商品6商品7商品8商品9商品10商品11</p>
+</body>
+
+
+
+
+</html>

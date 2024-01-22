@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // sort排序
+      const sortArr = [5, 2, 1, 3, 6, 8, 4, 5, 7, 0, 15];
+      const sortAns = sortArr.sort();
+      console.log(sortAns, "----------------------sort排序");
+      // [0, 1, 15, 2, 3, 4, 5, 5, 6, 7, 8] '----------------------sort排序'
+
+      const sortArr1 = [5, 2, 1, 3, 6, 8, 4, 5, 7, 0, 15];
+      const sortAns1 = sortArr1.sort((a, b) => {
+        return a - b;
+      });
+      console.log(sortAns1, "----------------------sort1排序");
+      // [0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 15] '----------------------sort1排序'
+
+      const sortArr2 = ["Banana", "Orange", "Apple", "Mango"];
+      const sortAns2 = sortArr2.sort();
+      console.log(sortAns2, "----------------------sort2排序");
+      // ['Apple', 'Banana', 'Mango', 'Orange'] '----------------------sort2排序'
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 将数组去除其中相同数字返回一维数组，并计算出数组全部数据相加总值
+      const ary = [1, 22, 3, 4, 5.56, 6, 7, "5", [5, 5, [4, 2]], 3, 23, 4, "1"];
+      let result = [...new Set(ary.flat(Infinity))]
+      console.log(result)
+      let sum = result.reduce((pre,cur)=>{
+        return pre+cur
+      },0)
+      console.log(sum)
+    </script>
+  </body>
+</html>

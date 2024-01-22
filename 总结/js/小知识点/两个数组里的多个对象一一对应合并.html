@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj1 = [
+        {
+          id: 980550455852,
+          model: "XQG70-S1208FW",
+          color: "白",
+          invStatusName: "正品",
+        },
+        {
+          id: 980550566221,
+          model: "XQB70-C3006",
+          color: "灰",
+          invStatusName: "正品",
+        },
+      ];
+
+      var obj2 = [
+        {
+          price: "6666",
+        },
+        {
+          price: "8888",
+        },
+      ];
+      var obj = obj1.map((item, index) => {
+        return { ...item, ...obj2[index] };
+      });
+      console.log(obj);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>三栏布局</title>
+  <link rel="stylesheet" href="">
+  <style type="text/css" media="screen">
+    html * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="absolute margin">
+    <style type="text/css" media="screen">
+      /* 需要知道元素的宽高 */
+      .absolute.margin .wrapper>div {
+        min-height: 100px;
+      }
+
+      .absolute.margin .outer {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background: red;
+      }
+
+      .absolute.margin .inner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: yellow;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">absolute + 负margin 需要知道元素的宽高 </div>
+      </div>
+    </article>
+  </section>
+
+
+  <section class="absolute auto margin">
+    <style type="text/css" media="screen">
+      .absolute.auto.margin .outer {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background: rgb(224, 195, 195);
+      }
+
+      .absolute.auto.margin .inner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: yellow;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">absolute auto margin 需要知道元素的宽高 </div>
+      </div>
+    </article>
+  </section>
+
+
+  <section class="absolute calc">
+    <style type="text/css" media="screen">
+      .absolute.calc .outer {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background: rgb(104, 119, 189);
+      }
+
+      .absolute.calc .inner {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: yellow;
+        left: calc(50% - 50px);
+        top: calc(50% - 50px);
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">absolute calc 需要知道元素的宽高</div>
+      </div>
+    </article>
+  </section>
+
+  <section class="absolute transform">
+    <style type="text/css" media="screen">
+      .absolute.transform .outer {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background: rgb(226, 97, 97);
+      }
+
+      .absolute.transform .inner {
+        position: absolute;
+        background: yellow;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">absolute transform 不需要知道子元素宽高 </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="flex">
+    <style type="text/css" media="screen">
+      .flex .outer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+        background: rgb(57, 15, 211);
+      }
+
+      .flex .inner {
+        background: yellow;
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">flex 不需要知道子元素宽高 </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="table">
+    <style type="text/css" media="screen">
+      .table .outer {
+        display: table-cell;
+        width: 800px;
+        height: 300px;
+        text-align: center;
+        vertical-align: middle;
+        background: red;
+      }
+
+      .table .inner {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: yellow;
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">table 需要知道子元素宽高 </div>
+      </div>
+    </article>
+  </section>
+  
+  <section class="grid">
+    <style type="text/css" media="screen">
+      .grid .outer {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
+        height: 300px;
+        background: rgb(17, 201, 109);
+      }
+
+      .grid .inner {
+        background: rgb(38, 0, 255);
+      }
+    </style>
+    <article class="wrapper">
+      <div class="outer">
+        <div class="inner">grid 不需要知道子元素宽高 </div>
+      </div>
+    </article>
+  </section>
+</body>
+
+</html>

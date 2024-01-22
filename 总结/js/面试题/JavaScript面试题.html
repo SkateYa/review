@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 这几天面试上几次碰上这道经典的题目，特地从头到尾来分析一次答案。
+      // 这道题的经典之处在于它综合考察了面试者的JavaScript的综合能力，
+      // 包含了变量定义提升、this指针指向、运算符优先级、原型、继承、全局变量污染、对象属性及原型属性优先级等知识。
+      function Foo() {
+        getName = function () {
+          console.log(1);
+        };
+        return this;
+      }
+      //添加静态方法
+      Foo.getName = function () {
+        console.log(2);
+      };
+      Foo.prototype.getName = function () {
+        console.log(3);
+      };
+      var getName = function () {
+        console.log(4);
+      };
+      function getName() {
+        console.log(5);
+      }
+
+      //请写出以下输出结果：
+      // Foo.getName是访问Foo函数上存储的静态属性
+      Foo.getName(); // 2
+      // 
+      // 所以第二问的答案就是4，5的函数声明被4的函数表达式覆盖了。
+      getName(); // 4
+      // Foo().getName(); 先执行了Foo函数，然后调用Foo函数的返回值对象的getName属性函数。
+      // Foo函数的第一句getName = function () { alert (1); };是一句函数赋值语句，注意它没有var声明。
+      // 所以先向当前Foo函数作用域内寻找getName变量，没有。再向当前函数作用域上层，即外层作用域内寻找是否含有getName变量，
+      // 找到了，也就是第二问中的alert(4)函数，将此变量的值赋值为function(){alert(1)}。
+      // 此处实际上是将外层作用域内的getName函数修改了。
+      // 注意：此处若依然没有找到会一直向上查找到window对象，若window对象中也没有getName属性，就在window对象中创建一个getName变量。
+      // 之后Foo函数的返回值是this，this的指向是由所在函数的调用方式决定的。而此处的直接调用方式，this指向window对象。
+      // 遂Foo函数返回的是window对象，相当于执行window.getName()，而window中的getName已经被修改为alert(1)，所以最终会输出1
+      Foo().getName(); // 1
+// 直接调用getName函数，相当于window.getName()，因为这个变量已经被Foo函数执行时修改了，遂结果与第三问相同，为1。
+// 也就是说Foo执行后把全局的getName函数给重写了一次，所以结果就是Foo()执行重写的那个getName函数。
+      getName(); // 1
+      // new (Foo.getName)();
+      new Foo.getName(); // 2
+      new Foo().getName(); // 3
+      // new ((new Foo()).getName)();
+      new new Foo().getName(); // 3
+
+      /* 
+            function Foo() {
+              getName = function () { alert(1); }; // 这里的 getName 是一个全局变量赋值，因为没有使用 var、let、const 关键字
+              return this;
+            }
+            Foo.getName = function () { alert(2); }; // 把函数作为一个属性添加到构造函数上
+            Foo.prototype.getName = function () { alert(3); }; // 把函数作为一个属性添加到原型对象上
+            var getName = function () { alert(4); }; // 变量赋值
+            function getName() { alert(5); } // 函数声明，提升到了作用域顶部
+
+            Foo.getName(); // 2，直接调用构造函数上的函数属性
+            getName(); // 4，调用了变量 getName 赋值的匿名函数
+
+            Foo().getName(); // 1，先执行了 Foo() 函数，给全局变量 getName 赋值，而且返回的是 window，因此 window.getName() 相当于 getName()，而 getName() 此时等于全局变量 getName 赋值的匿名函数
+            getName(); // 1，同上，全局变量 getName 已经被赋值为一个新的函数
+
+            new Foo.getName(); // 2，先调用了构造函数，但没有创建新对象，因为将函数属性直接挂载到了构造函数上，之后调用函数并强制创建新对象
+            new Foo().getName(); // 3，先创建一个新对象，然后调用其原型对象中的 getName 方法
+            new new Foo().getName(); // 3，先创建一个新对象，之后和上一个例子一样执行了两次 new，但第二次 new 并没有什么实际效果，因为在第一次 new 时已经创建了新对象，并调用了其原型对象中的 getName 方法
+ */
+    </script>
+  </body>
+</html>

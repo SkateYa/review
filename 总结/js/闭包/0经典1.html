@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 闭包= 内层函数+引用的外层函数变量
+      
+      function outer(){
+        let a=10;
+        function inner(){
+          // 打断点，如果出现Closure，说明有闭包，闭包不一定有return，不一定会有内存泄漏
+            console.log(a)
+        }
+        inner()
+      }
+      outer()
+    </script>
+  </body>
+</html>

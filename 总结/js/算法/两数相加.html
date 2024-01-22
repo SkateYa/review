@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 输入：l1 = [2,4,3], l2 = [5,6,4]
+        // 输出：[7,0,8]
+        // 解释：342 + 465 = 807.
+        var l1 = [2, 4, 3]
+        var l2 = [5, 6, 4]
+        // var addTwoNumbers = function (l1, l2) {
+        //   var  num1 = l1.reverse()
+        //   var  num2 = l2.reverse()
+
+        //   var sum = Number(num1.join(''))+Number(num2.join(''))
+        //   var result = String(sum).split('')
+        //   return result.reverse()
+        // };
+
+
+
+
+        // var addTwoNumbers = function (l1, l2) {
+
+        //     function reverse(v) {
+        //         let arr = []
+        //         for (let i = v.length - 1; i >= 0; i--) {
+        //             arr.push(v[i])
+        //         }
+        //         return arr
+        //     }
+        //     var num1 = reverse(l1)
+        //     var num2 = reverse(l2)
+        //     var sum = Number(num1.join('')) + Number(num2.join(''))
+        //     sum = String(sum)
+        //     // var result = String(sum).split('')
+        //     let result = []
+        //     for (let i = 0; i < sum.length; i++) {
+        //         result.push(Number(sum[i]))
+        //     }
+        //     return reverse(result)
+        // };
+
+
+
+        var addTwoNumbers = function (l1, l2) {
+            var node = new ListNode('head')
+            var temp = node //哑结点
+            var n = 0
+            var sum = 0
+            while (l1 != null || l2 != null) {
+                var n1 = (l1 != null) ? l1.val : 0
+                var n2 = (l2 != null) ? l2.val : 0
+                sum = n1 + n2 + n
+                n = parseInt(sum / 10)
+                temp.next = new ListNode(sum % 10) //设置当前结点的下一个结点
+                temp = temp.next //将当前结点前进到下一个结点
+                if (l1 != null) {
+                    l1 = l1.next
+                }
+                if (l2 != null) {
+                    l2 = l2.next
+                }
+
+            }
+            if (n > 0) {
+                temp.next = new ListNode(n)
+            }
+            return node.next
+        };
+        console.log(addTwoNumbers(l1, l2))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .image1 {
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        animation: slide1 2s ease-in-out forwards;
+      }
+
+      .image2 {
+        position: absolute;
+        bottom: 0;
+        left: 500px;
+        opacity: 0;
+        animation: slide2 2s ease-in-out forwards 300ms;
+      }
+
+      @keyframes slide1 {
+        0% {
+          bottom: 0;
+          opacity: 0;
+        }
+        100% {
+          bottom: 200px;
+          opacity: 1;
+        }
+      }
+
+      @keyframes slide2 {
+        0% {
+          bottom: 0;
+          left: 500px;
+          opacity: 0;
+        }
+        100% {
+          bottom: 200px;
+          left: 0;
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      使用css实现: 2张图片从底部慢慢滑动到顶部，其中图片1从透明度0慢慢变成透明度1，滑到top为0的位置，
+      图片2的left为500px，比图片1延后300ms从底部透明度0滑动到top为200px的位置，透明度变为1
+     -->
+    <div class="container">
+      <img
+        class="image1"
+        src="https://img1.baidu.com/it/u=4049022245,514596079&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1687885200&t=4c18a8c1d3c1f30c7248452db0f5ef93"
+        alt="Image 1"
+      />
+      <img
+        class="image2"
+        src="https://img1.baidu.com/it/u=3129770633,3933811923&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1687885200&t=db49a5a2c973a671e2608e2e4891bf95"
+        alt="Image 2"
+      />
+    </div>
+  </body>
+</html>

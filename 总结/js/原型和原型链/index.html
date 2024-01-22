@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 理解原型最关键的是理清楚__proto__、prototype、constructor三者的关系，我们先看看几个概念：
+
+        __proto__属性在所有对象中都存在，指向其构造函数的prototype对象；prototype对象只存在（构造）函数中，用于存储共享属性和方法；constructor属性只存在于（构造）函数的prototype中，指向（构造）函数本身。
+        一个对象或者构造函数中的隐式原型__proto__的属性值指向其构造函数的显式原型 prototype 属性值，关系表示为：instance.__proto__ === instance.constructor.prototype
+        除了 Object，所有对象或构造函数的 prototype 均继承自 Object.prototype，原型链的顶层指向 null：Object.prototype.__proto__ === null
+        Object.prototype 中也有 constructor：Object.prototype.constructor === Object
+        构造函数创建的对象（Object、Function、Array、普通对象等）都是 Function 的实例，它们的 __proto__ 均指向 Function.prototype。 
+        
+        
+        */
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 在这里,把方法running定义在了Person的prototype属性上了
+      Person.prototype.running = function (info) {
+        console.log(info);
+      };
+
+      const obj = {};
+
+      const person = new Person("moment", 18);
+      const student = new Person("supper", 16);
+
+      console.log(obj.__proto__ === Object.prototype); // true
+      console.log(Object.constructor === Function); // true
+      console.log(Function.prototype.__proto__ === Object.prototype); // true
+      console.log(Function.constructor === Function); // true
+      console.log(
+        Person.__proto__.constructor.__proto__ === Function.prototype
+      ); // true
+      console.log(
+        student.__proto__.__proto__.constructor.__proto__ === Function.prototype
+      ); // true
+      console.log(Function.constructor.__proto__ === Function.prototype); // true
+      console.log(Object.constructor === Function.constructor); // true
+      console.log(Object instanceof Function); // true
+      console.log(Function instanceof Object); // true
+      console.log(Function.prototype.__proto__ === Object.prototype); // true
+    </script>
+  </body>
+</html>

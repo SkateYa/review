@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> overflow 溢出不隐藏 test </title>
+    <style type="text/css">
+        p {
+           
+            width: 180px;      
+            border: 1px solid red;
+            height: 45px;
+
+             /*  溢出隐藏 */
+            overflow: hidden;
+            /*重点是white-space:nowrap;强制不换行这个属性，单行文本的使用*/
+            /* 规定段落中的文本不进行换行 */
+            white-space: nowrap;
+             /* 溢出用省略号显示 */
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 兼容火狐和谷歌浏览器 -->
+    <p>商品1商品2商品3商品4商品5商品6商品7商品8商品9商品10商品11</p>
+</body>
+
+</html>

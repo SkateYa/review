@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [];
+      for (let i = 0; i < 10; i++) {
+        arr.push(
+          () =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                console.log("done", i);
+                resolve();
+              }, 100 * i);
+            })
+        );
+      }
+
+      const parallelRun = () => {
+        const runingTask = new Map();
+        const inqueue = (totalTask, max) => {
+          // 正在运行的任务个数 < 最大个数 
+          while (runingTask.size < max && totalTask.length) {
+            // 删除第一个元素
+            const newTask = totalTask.shift();
+            // 
+            const tempName = totalTask.length;
+            runingTask.set(tempName, newTask);
+            newTask().finally(() => {
+              runingTask.delete(tempName);
+              inqueue(totalTask, max);
+            });
+          }
+        };
+        return inqueue;
+      };
+
+      parallelRun()(arr, 6);
+    </script>
+  </body>
+</html>

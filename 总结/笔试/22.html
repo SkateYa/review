@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+              //  最害怕这种题目了，总是想不明白，一开始说了结果是3，后来面试官让我再想想
+      //  仔细缕了一下后发现，fn() 里的函数声明虽然会提前，但不会提前到最外层，只会到 fn() 的顶层
+      //  里面的 foo = 3 修改的其实是里面函数的那个声明，不会影响到外部，所以最终的结果应该是 1
+
+      var foo = 1;
+      function fn() {
+          foo = 3;
+          return;
+          function foo() {
+              // todo
+          }
+      }
+      fn();
+      console.log(foo);
+    </script>
+  </body>
+</html>
