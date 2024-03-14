@@ -20,14 +20,17 @@
       */
 
       // 选择排序
+      // 定义：选择排序是一种简单的排序算法，每次从未排序部分找到最小（或最大）的元素，然后放到已排序部分的末尾。
       const arr = [5, 2, 1, 3, 6, 8, 4, 5, 7, 0, 15];
       for (let i = 0; i < arr.length - 1; i++) {
         let minIndex = i; //用于存储最小值的下标，排序刚开始时，假设最小值的下标就是选中的基准数据下标
         for (let j = i + 1; j < arr.length; j++) {
           if (arr[j] < arr[minIndex]) {
+            // 如果找到更小的数，记录它的索引
             minIndex = j;
           }
         }
+        // 将最小元素与当前索引的元素进行交换
         [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
       }
       console.log(arr, "----------------------选择排序");

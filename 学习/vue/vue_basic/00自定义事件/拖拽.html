@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>数据绑定</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <template>
+        <div class="body flex">
+          <div draggable="true"></div>
+          <ul>
+            <li
+              draggable="true"
+              :ref="'li' + index + 1"
+              v-for="(item, index) in list"
+              :key="index"
+              @dragstart="dragstart(index)"
+            >
+              {{ item }}
+            </li>
+          </ul>
+          <div
+            class="box center"
+            @drop.prevent="drop"
+            @dragover.prevent="dragover"
+          >
+            <div class="delete" @click="deleteBox()">删除</div>
+            <p v-show="content">{{ text }}</p>
+          </div>
+        </div>
+      </template>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    /* 
+    自定义事件：子组件在父组件中使用时，直接绑定在子组件上的事件就是自定义事件，必须经过子组件的触发vm.$emit()才能执行
+    原生事件：直接在子组件里的模板上绑定的事件，子组件引入后是可以直接触发的
+
+
+    在dom元素上绑定的事件，触发的是dom的原生事件
+    在组件上绑定的事件，触发的是自定义事件，需要用this.$emit(‘eventName’)来触发。
+
+    */
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+    var ChildComponent = Vue.extend({
+      name: "child-component",
+      template: '<div @click="handleChildClick">ddd</div>',
+      methods: {
+        handleChildClick() {
+          console.log("触发的是dom原生事件");
+          //   this.$emit("click", 2);
+        },
+      },
+    });
+
+    new Vue({
+      el: "#root",
+      data() {
+        return {
+          list: [
+            "拖放内容1",
+            "拖放内容2",
+            "拖放内容3",
+            "拖放内容4",
+            "拖放内容5",
+            "拖放内容6",
+          ],
+          text: "",
+          content: false,
+        };
+      },
+      computed: {},
+      watch: {},
+      mounted() {},
+      methods: {
+        deleteBox() {
+          this.content = false;
+        },
+        // 拖动开始
+        dragstart(index) {
+          this.text = "您已成功拖放元素" + (index + 1);
+        },
+        // 进行放置
+        drop(event) {
+          this.content = true;
+          console.log("drop", event);
+        },
+        // 放置位置 - 阻止默认事件
+        dragover(event) {
+          event.preventDefault();
+        },
+      },
+    });
+  </script>
+  <style lang="scss" scoped>
+    .body {
+      user-select: none; // 禁止选中文字
+      margin: 20px;
+      font-size: 16px;
+      ul {
+        li {
+          border-radius: 5px;
+          cursor: pointer;
+          margin-bottom: 10px;
+          padding: 5px 10px;
+          line-height: 26px;
+          background-color: rgb(221, 221, 221);
+        }
+      }
+      .box {
+        position: relative;
+        margin-left: 100px;
+        width: 500px;
+        height: 500px;
+        border: 1px solid #999;
+        .delete {
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 5px 10px;
+          background-color: rgba(243, 89, 84, 0.3);
+          border-radius: 5px 0px 5px 5px;
+        }
+        .delete:hover {
+          color: #fff;
+          background-color: rgb(243, 89, 84);
+        }
+        p {
+          font-size: 26px;
+          font-weight: bold;
+          animation: light 1s linear 1;
+        }
+      }
+      @keyframes light {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  </style>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise API - race</title>
+  </head>
+  <body>
+    <script>
+        // allSettled，它同样是接受一个数组，但它不会执行.catch，只会执行.then，也是等所有请求结束后，
+        // 返回一个数组，数组里的每项与参数的数组每项一一对应，返回的每项包含字段：
+
+        // status：状态（rejected/fulfilled），value：成功返回的值，reason：失败返回的值。
+
+        // 我一般用它的场景是页面中有多个表单需要校验，这样多个表单的validate方法就是一个数组，
+        // allSettled方法的参数，然后我可以找到第几个表单校验失败。
+              let p1 = new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                      resolve('OK');
+                  }, 1000);
+              })
+              let p2 = Promise.reject('Error');
+              let p3 = Promise.resolve('Oh Yeah');
+              let p4 = Promise.reject('no');
+
+              //调用
+              const result = Promise.allSettled([p1, p2, p3, p4]);
+
+              console.log(result);
+    </script>
+  </body>
+</html>

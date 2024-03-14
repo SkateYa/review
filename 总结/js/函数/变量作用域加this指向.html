@@ -14,7 +14,7 @@
         name = "Oaoafly"; //去掉var变成了全局变量
         var privateName = "Stacsw";
         return function () {
-          console.log(this); //window
+          console.log('this',this); //window
           return privateName;
         };
       }

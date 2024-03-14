@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Worker 示例</title>
+  </head>
+  <body>
+    <h1>Web Worker 示例</h1>
+    <p>请输入一个数字：</p>
+    <input type="number" id="numberInput" />
+    <button onclick="startWorker()">开始计算</button>
+    <p id="result"></p>
+
+    <script>
+    /*  
+      数列中某一项的值，等于它的前一项加上前前一项的和。
+      1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233…… 
+    */
+      // 创建 Worker 实例
+      var worker = new Worker("worker.js");
+
+      // 监听来自 Worker 的消息
+      // 接受消息
+      worker.onmessage = function (event) {
+        console.log('index---onmessage', event)
+        // 从 Worker 接收到计算结果
+        var result = event.data;
+        document.getElementById("result").innerText = "计算结果为：" + result;
+      };
+
+      // 监听 Worker 错误
+      worker.onerror = function (error) {
+        console.error("Worker Error:", error);
+      };
+
+      // 开始计算
+      function startWorker() {
+        console.log('kaishijisuasn')
+        var number = document.getElementById("numberInput").value;
+        // 向 Worker 发送数据
+        // 发送消息
+        worker.postMessage(number);
+      }
+    </script>
+  </body>
+</html>

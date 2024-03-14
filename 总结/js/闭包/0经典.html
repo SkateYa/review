@@ -10,7 +10,7 @@
     <script>
       function outer(){
         let a=10;
-        // 外部如果想要便用闭包的变量，则此时则需要 return
+        // 外部如果想要使用闭包的变量，则此时则需要 return
         return function inner(){
             console.log(a)
         }

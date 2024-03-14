@@ -1246,8 +1246,11 @@ webpack.config.js
 
 ```
   externals: {
-    // 拒绝jQuery被打包进来
-    jquery: 'jQuery'
+    // 拒绝jQuery,vue等被打包进来
+    'jquery': 'jQuery'
+    'vue': 'Vue',
+    'vue-router':'VueRouter',
+    'vuex':'Vuex'
   }
 ```
 
