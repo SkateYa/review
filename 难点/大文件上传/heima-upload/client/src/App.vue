@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SparkMD5 from 'spark-md5'
+// SparkMD5计算hash值
 
 // 1MB = 1024KB = 1024 * 1024B
 const CHUNK_SIZE = 1024 * 1024
