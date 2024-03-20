@@ -13,19 +13,15 @@ https://blog.csdn.net/weixin_50085094/article/details/129588753
 前端解决移动端适配
 https://blog.csdn.net/Xl4277/article/details/108973623
 
- px2rem，iphone6和iphonex如何换算
- 水平垂直居中
-css定高不定宽 如何设置水平垂直居中
-promise promise.all如果有失败的如何处理
-拦截promise的错误抛出，监听那个promise失败
-防抖，节流 及使用场景
-vue2和vue3双向绑定的差异
-watch和computed的区别，异步请求放哪里
-data，watch，computed，methods同时命名一个属性或方法，命名相同会不会报错，有没有异常提示
-可以命名，但是有执行顺序， 会覆盖，但是不会影响页面的执行，抛出一个错误
-vue-router 的传参方式
+
+
+
+
+
+
+
 router和route的区别
-vue-router的路由模式
+
 哪个会在浏览器中缓存下来当前访问的路由，
 hash和history底层调用的方法
 首屏渲染 优化为2s，采用了哪些措施，
@@ -93,9 +89,25 @@ vue3新特性：
 
 
 
-###
-###
-###
+### ​ ==和===有什么不同？
+
+==  :  比较的是值
+		
+		string == number || boolean || number ....都会隐式转换
+		通过valueOf转换（valueOf() 方法通常由 JavaScript 在后台自动调用，并不显式地出现在代码中。）
+
+=== ： 除了比较值，还比较类型
+
+### null和undefined的区别
+
+1. 作者在设计js的都是先设计的null（为什么设计了null：最初设计js的时候借鉴了java的语言）,表示无的值最好不要是对象，基本类型是最好的
+2. null会被隐式转换成0，很不容易发现错误。
+3. 先有null后有undefined，出来undefined是为了填补之前的坑。
+
+具体区别：JavaScript的最初版本是这样区分的：null是一个表示"无"的对象（空对象指针），转为数值时为0；undefined是一个表示"无"的原始值，转为数值时为NaN。
+
+### 拦截promise的错误抛出，监听那个promise失败
+在JavaScript中，你可以使用.catch()方法来拦截一个Promise的错误抛出。当Promise被拒绝（rejected）时，.catch()方法中的回调函数会被调用，并接收拒绝的原因（即错误对象）。
 
 ### 浏览器立即更新
 浏览器渲染是一个队列机制的，比如js改变浏览器样式1千次，但是浏览器会吧1千次作为一个队列，最终进行一个异步更新，更新的时候只改变最后一次样式更新，如何打破浏览器队列机制，让浏览器立即更新，位置信息（offsetLeft，clientY等），当获取这些属性时，浏览器立即更新
