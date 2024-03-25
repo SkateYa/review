@@ -21,7 +21,10 @@
         this.name = "张三";
       }
       // 原型链继承
+      // 
       Child.prototype = Object.create(Parent.prototype);
+      // Child.prototype 的原始属性和方法会丢失.
+      // 修复构造函数的指向
       Child.prototype.constructor = Child;
       let o4 = new Child();
       console.log(o4, o4.name, o4.age); // Child {age: 100, name: '张三'} '张三' 100

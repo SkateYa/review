@@ -15,6 +15,10 @@
        */
 
       function createChild(parent) {
+        // parent对象作为child对象的原型
+        // child对象继承了parent对象的属性和方法，成为了一个新的对象，
+        // 同时保留了parent对象的原型链关系。通过这种方式，
+        // child对象可以访问parent对象中定义的属性和方法，实现了对象之间的原型继承。
         const child = Object.create(parent);
         child.name = "Child";
         child.sayHello = function () {
