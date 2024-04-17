@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./spark-md5.js"></script>
+  </head>
+  <body>
+    <!-- 上传图片地址： https://www.file.io/ -->
+    <input type="file" name="" id="" />
+    <script>
+      const inp = document.querySelector("input");
+      inp.onchange = async (e) => {
+        const file = inp.files[0];
+        if (!file) return;
+        const piece = file.slice(0, 100);
+        console.log("piece", piece);
+        const chunks = createChunks(file, 1 * 1024 * 1024);
+        console.log("chunks", chunks);
+        const result = await hash(chunks)
+        console.log('result', result)
+      };
+      function hash(chunks) {
+       return new Promise((resolve, reject) => {
+        const spark = new SparkMD5();
+        function _read(i) {
+          if (i >= chunks.length) {
+            console.log(spark.end());
+            resolve(spark.end())
+            return; // 读取完成
+          }
+          const blob = chunks[i];
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const bytes = e.target.result; // 读取到的字节数组
+            spark.append(bytes);
+            _read(i + 1);
+          };
+          reader.readAsArrayBuffer(blob);
+        }
+        _read(0);
+       })
+      }
+
+      function createChunks(file, chunkSize) {
+        const result = [];
+        for (let i = 0; i < file.size; i += chunkSize) {
+          result.push(file.slice(i, i + chunkSize));
+        }
+        return result;
+      }
+    </script>
+  </body>
+</html>
