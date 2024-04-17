@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const students = ["学生1", "学生2", "学生3", "学生4"];
+      // 1.sort
+      /*  
+      sort()方法如果指定了一个函数，那么会按照这个函数的返回值来对数组进行排序：
+      如果返回值大于0，那么被比较的相邻两个数a和b，a会排到b的后面，
+      如果返回值等于0，那么a和b的位置不变
+      如果返回值小于0，那么a会排到b的前面。
+      但是，用sort()方法不能实现真正意义上的完全乱序,要实现完全乱序，需要用到 Fisher–Yates shuffle 洗牌算法。
+      */
+      students.sort(function () {
+        return Math.random() - 0.5;
+      });
+      // 2. Fisher–Yates shuffle 洗牌算法
+      // 该方法就是每次在数组中随机产生一个位置，依次将数组中的每一项与该次产生的随机位置上的元素交换位置：
+      function rd(students) {
+        let length = students.length,
+          index; // index: 随机数
+        for (let point = length - 1; point >= 0; point--) {
+          index = Math.floor(Math.random() * point);
+          // 交换两个元素的值
+          students[index] = [ students[point], (students[point] = students[index])][0];
+          return students;
+        }
+      }
+
+      // https://www.zhihu.com/question/68330851/answer/266506621
+      Array.prototype.shuffle = function () {
+        var array = this;
+        var m = array.length,
+          t,
+          i;
+        while (m) {
+          i = Math.floor(Math.random() * m--);
+          t = array[m];
+          array[m] = array[i];
+          array[i] = t;
+        }
+        return array;
+      };
+
+      console.log(rd(students));
+    </script>
+  </body>
+</html>

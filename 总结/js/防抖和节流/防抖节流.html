@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1 id="title">我是标题</h1>
+      <p id="content">我是内容</p>
+    </div>
+    <script>
+      // 防抖 在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时，重新出发定时器。
+     /* 
+        应用场景
+        登录、发短信等按钮避免用户点击太快，以致于发送了多次请求，需要防抖
+        调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖
+        文本编辑器实时保存，当无任何更改操作一秒后进行保存
+       */
+      function debounce(fun,delay){
+        let timer
+        return function(){
+          if(timer) clearTimeout(timer)
+          timer = setTimeout(()=>{
+            fun.apply(this,arguments)
+          },delay)
+        }
+      }
+
+      // 节流  规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效
+      /* 
+        应用场景
+        鼠标连续不断地触发某事件（如点击），单位时间内只触发一次；
+        监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断。例如：懒加载；
+        浏览器播放事件，每个一秒计算一次进度信息等
+      */
+      function throttle(fun,delay){
+          let timer
+          return function(){
+            if(!timer){
+              timer = setTimeout(()=>{
+                fun.apply(this,arguments)
+                timer = null
+              },delay)
+            }
+          }
+      }
+    </script>
+  </body>
+</html>

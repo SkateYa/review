@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 请实现一个大数加法函数，不使用BigInt，用以处理极大数字之间的加法运算。数据约定：两个数字均为正整数。
+      function bigNumberAdd(num1, num2) {
+        // 下标
+        let i = num1.length - 1;
+        let j = num2.length - 1;
+        let carry = 0; // 余数
+        let result = "";
+
+        while (i >= 0 || j >= 0 || carry > 0) {
+          let sum = carry;
+          if (i >= 0) {
+            sum += parseInt(num1[i--]);
+          }
+          if (j >= 0) {
+            sum += parseInt(num2[j--]);
+          }
+          result = (sum % 10) + result; // 结果
+          carry = Math.floor(sum / 10); // 余数
+        }
+
+        return result;
+      }
+
+      // 测试
+      let num1 = "999999999927362553333323233222133332233342323";
+      let num2 = "89";
+      console.log(bigNumberAdd(num1, num2)); // 999999999927362553333323233222133332233342335
+      console.log((BigInt(num1) + BigInt(num2)).toString());
+    </script>
+  </body>
+</html>

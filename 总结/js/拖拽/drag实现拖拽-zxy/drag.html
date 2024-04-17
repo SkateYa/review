@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: cadetblue;
+		}
+		.show{
+			width: 500px;
+		}
+		.show h1{
+			color: #ffb8c6;
+		}
+		.tshirt{
+			position: relative;
+		}
+		.tshirt .t-shirt{
+			width: 500px;
+			height: 600px;
+		}
+		.empty img{
+			width: 200px;
+			height: 200px;
+		}
+		.patterns{
+			margin-top: 80px;
+			width: 250px;
+			height: 600px;
+			display: flex;
+			overflow-y: scroll;
+			justify-content: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+		.patterns img{
+			padding: 10px;
+			height: 200px;
+			width: 200px;
+			object-fit: contain;
+			transition:all .5s;
+		}
+		.empty{
+			position: absolute;
+			top: 300px;
+			left: 150px;
+			width: 200px;
+			height: 200px;
+			transition:all .5s;
+		}
+	</style>
+</head>
+<body>
+	<section class="show">
+		<h1>拖动你喜欢的图案到衣服上吧</h1>
+		<div class="tshirt">
+			<img class="t-shirt" src="./images/white.jpg" alt="no!不能拖!!">
+			<div class="empty"></div>
+		</div>
+	</section>
+	<section class="patterns">
+		<img draggable="true" src="./images/1.jpg" alt="code">
+		<img draggable="true" src="./images/2.jpg" alt="planet">
+		<img draggable="true" src="./images/3.jpg" alt="superman">
+		<img draggable="true" src="./images/4.jpg" alt="world">
+		<img draggable="true" src="./images/5.jpg" alt="pole">
+		<img draggable="true" src="./images/6.jpg" alt="cosmic-man">
+		<img draggable="true" src="./images/7.jpg" alt="mountain">
+	</section>
+	<script src="./draggable.js"></script>
+</body>
+</html>

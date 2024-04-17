@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 无法拷贝undefined、function、RegExp、Error对象、时间
+        
+        //  undefined
+        var obj
+        // function
+        var obj = function () {
+            console.log(3)
+        };
+
+        // RegExp
+        var obj = new RegExp("a")
+        // time
+        var obj = new Date()
+
+
+        let copyObj = JSON.parse(JSON.stringify(obj));
+        console.log(obj, copyObj);
+
+        //   let obj = {
+        //     a: 1,
+        //     b: {
+        //       c: 1,
+        //     },
+        //   };
+
+        //   let obj1 = Object.assign({}, obj);
+        //   obj1.a = "a"; // 不影响原对象
+        //   obj1.b.c = "c"; // 影响原对象
+
+        //   function deepClone(target) {
+        //     let result;
+        //     if (typeof target === "object") {
+        //       // 如果当前需要深拷贝的是一个对象
+        //       if (Array.isArray(target)) {
+        //         // 如果是一个数组
+        //         result = []; // 将result赋值为一个数组，并且执行遍历
+        //         for (let i in target) {
+        //           result.push(deepClone(target[i])); // 递归克隆数组中的每一项
+        //         }
+        //       } else if (target === null) {
+        //         result = null; // 判断如果当前的值是null，直接赋值为null
+        //       } else if (target.constructor === RegExp) {
+        //         result = target; // 判断如果当前的值是一个RegExp对象，直接赋值
+        //       } else {
+        //         result = {}; // 否则是普通对象，直接for in循环，递归赋值对象的所有值
+        //         for (let i in target) {
+        //           result[i] = deepClone(target[i]);
+        //         }
+        //       }
+        //     } else {
+        //       result = target; // 如果不是对象，就是基本数据类型，直接赋值
+        //     }
+        //     return result; // 返回最终结果
+        //   }
+
+        //使用递归实现深拷贝
+        //   function deepClone(obj) {
+        //     //判断拷贝的obj是对象还是数组
+        //     var objClone = Array.isArray(obj) ? [] : {};
+        //     if (obj && typeof obj === "object") {
+        //       //obj不能为空，并且是对象或者是数组 因为null也是object
+        //       for (key in obj) {
+        //         if (obj.hasOwnProperty(key)) {
+        //           if (obj[key] && typeof obj[key] === "object") {
+        //             //obj里面属性值不为空并且还是对象，进行深度拷贝
+        //             objClone[key] = deepClone(obj[key]); //递归进行深度的拷贝
+        //           } else {
+        //             objClone[key] = obj[key]; //直接拷贝
+        //           }
+        //         }
+        //       }
+        //     }
+        //     return objClone;
+        //   }
+    </script>
+</body>
+
+</html>

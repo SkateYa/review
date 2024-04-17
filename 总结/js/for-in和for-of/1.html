@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*  
+       
+       for…of 是 ES6 新增的遍历方式，允许遍历一个含有 iterator 接口的数据结构（数组、对象等）并且返回各项的值，和 ES3 中的 for…in 的区别如下
+
+        - for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名；可用break或者throw跳出
+        - for… in 会遍历对象的整个原型链，性能非常差不推荐使用，而 for … of 只遍历当前对象不会遍历原型链；可用break或者throw跳出
+        - 对于数组的遍历，for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，for…of 只返回数组的下标对应的属性值；
+
+        无论是 for...in 还是 for...of 都不能遍历出 Symbol 类型的值
+
+        **总结：** for...in 循环主要是为了遍历对象而生，不适用于遍历数组；for...of 循环可以用来遍历数组、类数组对象，字符串、Set、Map 以及 Generator 对象。
+
+        */
+
+
+     // 遍历对象-----------------------------------------------------------------------------------------------------------------
+      let obj = {
+        name: "张三",
+        age: 18,
+        sex: "男",
+      };
+
+      Object.prototype.grade = 66;
+
+      for (let i in obj) {
+        console.log(i);  // name  age sex grade
+      }
+
+
+    //  对于普通对象，没有部署原生的 iterator 接口，直接使用 for...of 会报错
+      for (let i of obj) {
+        console.log(i);
+      }
+      // 报错 obj is not iterable (obj不是可迭代的)
+
+      // 遍历数组-----------------------------------------------------------------------------------------------------------------
+      let arr = ["a", "b", "c"];
+      Array.prototype.ufo = "张三";
+
+      for (let item in arr) {
+        console.log(item);
+      }
+      // 输出 0 1 2 ufo
+
+      for (let item of arr) {
+        console.log(item);
+      }
+      // 输出 a b c
+    </script>
+  </body>
+</html>

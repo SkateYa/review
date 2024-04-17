@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 作用域链只能向上查找，最终找到全局，不能同级（局部）或者向下查找
+      // function fun(){
+      //   var a= 10
+      // }
+      // fun()
+      // console.log(a) // a is not defined
+
+      // if(true){
+      //   var b =10
+      // }
+      // console.log(b) // 10
+
+      // (function () {
+      //   var a = (b = 10);
+      // })();
+      // // console.log(a); //报错 a is not defined
+      // console.log(b); // 10
+
+      // var name = "JavaScript";
+      // function showName() {
+      //   console.log(name);
+      //   if (0) {
+      //     var name = "CSS";
+      //   }
+      // }
+      // showName(); // undefined
+      // function foo() {
+      //   for (var i = 0; i < 5; i++) {}
+      //   console.log(i);
+      // }
+      // foo();
+      // function fn() {
+      //   var num = 1;
+      //   if (true) {
+      //     var num = 2;
+      //     console.log(num); // 2
+      //   }
+      //   console.log(num); // 2
+      // }
+      // fn();
+      // function fn() {
+      //   var a = 1;
+      //   let b = 2;
+      //   {
+      //     let b = 3;
+      //     var c = 4;
+      //     let d = 5;
+      //     console.log(a); // 1
+      //     console.log(b); // 3
+      //     console.log(d); //5
+      //   }
+      //   console.log(b); //2
+      //   console.log(c); //4
+      // }
+      // fn();
+      // console.log(fn)
+      // var fn = function () {
+      //   console.log(1);
+      // };
+      // // 输出结果：Uncaught TypeError: fn is not a function
+
+      // foo();
+      // function foo() {
+      //   console.log(2);
+      // }
+      // // 输出结果：2
+
+      // console.log(foo);
+      // var foo = "变量";
+      // function foo() {
+      //   console.log("函数声明");
+      // }
+      function foo(){
+    console.log("函数声明");
+}
+var foo;
+console.log(foo);   
+foo = "变量";
+
+     
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*   new.target属性允许你检测函数或构造方法是否是通过new运算符被调用的。
+        在通过new运算符被初始化的函数或构造方法中，new.target返回一个指向构造方法或函数的引用。在普通的函数调用中，
+        new.target 的值是undefined。我们可以使用它来检测，一个函数是否是作为构造函数通过new被调用的。 */
+      function Foo() {
+        console.log(new.target);
+        if (!new.target) throw "Foo() must be called with new";
+        console.log("Foo instantiated with new");
+      }
+
+      //  Foo(); // throws "Foo() must be called with new"
+      new Foo(); // logs "Foo instantiated with new"
+    </script>
+  </body>
+</html>

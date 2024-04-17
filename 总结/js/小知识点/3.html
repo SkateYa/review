@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //   // es6写法
+    //   Function.prototype.myCall = function (obj, ...arr) {
+    //     const newObj = obj || window;
+    //     newObj.p = this;
+    //     const result = newObj.p(...arr);
+    //     delete newObj.p;
+    //     return result;
+    //   };
+    //   var result = person.newCall(null, "点赞", "收藏", "转发", "充电");
+    //   var result2 = person.myCall(null, "点赞", "收藏", "转发", "充电");
+    //   console.log("result", result);
+    //   console.log("result2", result2);
+    //  var result3 =  person.call(null, "点赞", "收藏", "转发", "充电");
+    //  console.log('result3',result3)
+
+
+      //   es5写法
+      Function.prototype.newCall = function (obj) {
+        var obj = obj || window;
+        //  this指向person函数，在obj中添加属性p,值为person函数，在obj中执行person函数，则this指向obj
+        obj.p = this;
+        var newArguments = [];
+        for (var i = 1; i < arguments.length; i++) {
+          //newArguments.push(arguments[i]);
+          //newArguments ==> ['arguments[1]', 'arguments[2]', 'arguments[3]', 'arguments[4]']
+          newArguments.push("arguments[" + i + "]");
+        }
+        console.log("newArguments", newArguments);
+        /*  
+            字符串拼接，newArguments会被转成字符串
+            newArguments.toString()
+            'arguments[1],arguments[2],arguments[3],arguments[4]'
+         */
+        // fun ==> obj.p(arguments[1],arguments[2],arguments[3],arguments[4])
+        var fun = "obj.p(" + newArguments + ")";
+        console.log(fun);
+        var result = eval(fun);
+        // p值为person函数
+        // obj.p(newArguments);]
+        // 执行完删除person函数
+        delete obj.p;
+        return result;
+      };
+    </script>
+  </body>
+</html>

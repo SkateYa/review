@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Cat {
+            constructor() {
+                var heart = '❤️'
+                this.name = 'guaiguai'
+                this.jump = function () {}
+            }
+            color = 'white'
+            cleanTheBody = function () {
+                console.log('我会用唾液清洁身体')
+            }
+            hideTheShit() {
+                console.log('我在臭臭完之后会把它藏起来')
+            }
+        }
+        var guaiguai = new Cat()
+        console.log(guaiguai)
+        console.log(Object.keys(guaiguai))
+        guaiguai.cleanTheBody()
+        guaiguai.hideTheShit()
+    </script>
+</body>
+
+</html>

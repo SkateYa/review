@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>菜鸟教程(runoob.com)</title>
+    <style type="text/css">
+        #div1 {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script>
+        /*  
+         在拖动目标上触发事件 (源元素):
+              ondragstart - 用户开始拖动元素时触发
+              ondrag - 元素正在拖动时触发
+              ondragend - 用户完成元素拖动后触发
+        释放目标时触发的事件:
+            ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
+            ondragover - 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
+            ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
+            ondrop - 在一个拖动过程中，释放鼠标键时触发此事件
+               */
+        // 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        // 用户开始拖动元素时触发
+        function drag(ev) {
+            // dataTransfer.setData() 方法设置被拖数据的数据类型和值
+            ev.dataTransfer.setData("Text", ev.target.id);
+        }
+
+        // 在一个拖动过程中，释放鼠标键时触发此事件
+        function drop(ev) {
+            // 调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）
+            ev.preventDefault();
+            // 通过 dataTransfer.getData("Text") 方法获得被拖的数据
+            var data = ev.dataTransfer.getData("Text"); // 'drag1'
+            // 把被拖元素追加到放置元素（目标元素）中
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</head>
+
+<body>
+    <p>拖动图片到矩形框中:</p>
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br />
+    <img id="drag1" src="https://img1.baidu.com/it/u=1546227440,2897989905&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+        draggable="true" ondragstart="drag(event)" width="336" height="69" />
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [3, 48, 66, 6, 71, 99, 101, 120, 151, 188, 209];
+      function searching(target) {
+        var start = 0,
+          end = arr.length - 1,
+          middle,
+          element;
+        while (start <= end) {
+          middle = Math.floor((start + end) / 2);
+          element = arr[middle];
+          if (element === target) {
+            return middle;
+          } else if (target < element) {
+            end = middle - 1;
+          } else {
+            start = middle + 1;
+          }
+        }
+        // 目标数不存在
+        return -1;
+      }
+      console.log(searching(66))
+      
+    </script>
+  </body>
+</html>

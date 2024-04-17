@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 这段代码是一个简单的JavaScript代码块，使用了一个for循环来迭代变量i从0到4。
+    // 在每次循环中，会调用一个立即执行函数，这个函数接受一个参数x，
+    // 然后打印出x的值并递增x的值。因此，循环会输出0、1、2、3、4这五个数字。
+
+    // 在循环结束后，会打印出'z'和i的值。由于i是在for循环外部声明的变量，因此在循环结束后，
+    // i的值会保留为5，所以最后会打印出'z'和5。
+    for (var i = 0; i < 5; i++) {
+      (function (x) {
+        console.log(x++); // 0 1 2 3 4 
+      })(i);
+    }
+    console.log('z',i); // 5
+  </script>
+</body>
+
+</html>

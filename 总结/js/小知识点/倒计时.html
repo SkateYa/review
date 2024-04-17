@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      section {
+        width: 500px;
+        height: 200px;
+        background-color: aqua;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <section>
+        <p>请在以下时间前对视频进行点赞</p>
+        <span class="daySpan"></span>
+        <span class="hourSpan"></span>
+        <span class="minuteSpan"></span>
+        <span class="secondSpan"></span>
+        <p>感谢观看</p>
+      </section>
+    </div>
+    <script>
+      const daySpan = document.querySelector(".daySpan"),
+        hourSpan = document.querySelector(".hourSpan"),
+        minuteSpan = document.querySelector(".minuteSpan"),
+        secondSpan = document.querySelector(".secondSpan"),
+        deadline = new Date("2022-6-18 00:00");
+
+      function countDown() {
+        const now = new Date();
+        // 剩余时间 = 618时间 - 现在的时间
+        const timeRemain = deadline - now;
+        let day, hour, minute, second;
+
+        if (timeRemain < 0) return 0;
+
+        // 余数的规律，我们除以什么数字，那么余数就是被除数减1到0之间的数字
+        second = Math.floor((timeRemain / 1000) % 60);
+        minute = Math.floor((timeRemain / 1000 / 60) % 60);
+        hour = Math.floor((timeRemain / 1000 / 60 / 60) % 24);
+        day = Math.floor(timeRemain / 1000 / 60 / 60 / 24);
+
+        daySpan.innerHTML = day + "天";
+        hourSpan.innerHTML = hour + "时";
+        minuteSpan.innerHTML = minute + "分";
+        secondSpan.innerHTML = second + "秒";
+        setTimeout(countDown, 1000);
+      }
+      countDown();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>offset</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1 {
+      padding: 1rem;
+      color: white;
+      background-color: #aaa;
+    }
+    .photos {
+      position: relative;
+    }
+    .girl {
+      width: 100%;
+    }
+    .cat {
+      width: 30%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      /* z-index: 999; */
+      cursor: move;
+    }
+    .box {
+      width: 30%;
+      height: 20%;
+      background-color: white;
+      position: absolute;
+      top: 280px;
+      left: 160px;
+      opacity: 0.5;
+    }
+    .mouse-move {
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+      padding: 1rem;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <section>
+      <h1>移动图片到相应的位置上</h1>
+      <div class="photos">
+        <img draggable="false"  class="girl" src="./images/flower-girl.jpg" alt="flower-girl" />
+        <img draggable="false" class="cat" src="./images/cat.jpg" alt="cat" />
+        <div class="box"></div>
+      </div>
+      <div>
+        <img class="mouse-move" src="./images/mousemove.png" alt="mousemove" />
+      </div>
+    </section>
+
+    <script src="./offset.js"></script>
+  </body>
+</html>

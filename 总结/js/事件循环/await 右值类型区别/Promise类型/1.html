@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+   /*  TC 39(ECMAScript标准制定者) 对await 后面是 promise 的情况如何处理进行了一次修改，移除了额外的两个微任务，
+    在早期版本，依然会等待两个 then 的时间
+    有大佬翻译了官方解释：更快的 async 函数和 promises[1]，但在这次更新中并没有修改 thenable 的情况 
+    */
+      async function test() {
+        console.log(1);
+        await new Promise((resolve, reject) => {
+          resolve();
+          console.log('zzz')
+        }).then(()=>console.log('yyyy'))
+        console.log(2);
+      }
+
+      test();
+      console.log(3);
+
+      Promise.resolve()
+        .then(() => console.log(4))
+        .then(() => console.log(5))
+        .then(() => console.log(6))
+        .then(() => console.log(7));
+
+      // 最终结果👉: 1 3 2 4 5 6 7
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function Person(name) {
+      //     this.name = 20;
+      //   }
+
+      //   const haluo = new Person("haluo");
+
+      //   let a = {
+      //     data0: "1",
+      //     date1: [new Date("20203-04-28"), new Date("2023-05-05")],
+      //     data2: new RegExp("w+"),
+      //     data3: new Error("10"),
+      //     data4: undefined,
+      //     data5: function () {
+      //       console.log(1);
+      //     },
+      //     data6: NaN,
+      //     data7: haluo,
+      //     data8: Symbol(1),
+      //     // data9: BigInt(1),
+      //   };
+
+      //   let b = JSON.parse(JSON.stringify(a));
+      //   console.log(a);
+      //   //简单的手写深拷贝方法
+      //   function copy(obj) {
+      //     let newObj = null;
+      //     if (typeof obj === "object" && obj !== null) {
+      //       newObj = obj instanceof Array ? [] : {};
+      //       // newObj= Array.isArray(obj)? []:{}
+      //       for (let i in obj) {
+      //         newObj[i] = typeof obj[i] === "object" ? copy(obj[i]) : obj[i];
+      //       }
+      //     } else {
+      //       newObj = obj;
+      //     }
+      //     return newObj;
+      //   }
+      //   console.log(b);
+      //   console.log(copy(a))
+      function bigNumberAdd(num1, num2) {
+  // 下标
+  let i = num1.length - 1;
+  let j = num2.length - 1;
+  let carry = 0; // 余数
+  let result = "";
+
+  while (i >= 0 || j >= 0 || carry > 0) {
+    let sum = carry;
+    if (i >= 0) {
+      sum += parseInt(num1[i--]);
+    }
+    if (j >= 0) {
+      sum += parseInt(num2[j--]);
+    }
+    result = (sum % 10) + result; // 结果
+    carry = Math.floor(sum / 10); // 余数
+  }
+
+  return result;
+}
+
+// 测试
+let num1 = "999999999927362553333323233222133332233342323";
+let num2 = "89";
+console.log(bigNumberAdd(num1, num2)); // 999999999927362553333323233222133332233342335
+console.log((BigInt(num1) + BigInt(num2)).toString());
+
+
+      
+    </script>
+  </body>
+</html>

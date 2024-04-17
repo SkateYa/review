@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function trans(num) {
+        const digits = ["", "十", "百", "千"];
+        const units = ["", "万", "亿"];
+        const nums = [
+          "零",
+          "一",
+          "二",
+          "三",
+          "四",
+          "五",
+          "六",
+          "七",
+          "八",
+          "九",
+        ];
+        let result = "";
+        let unitIndex = 0;
+        while (num > 0) {
+          let chunk = num % 10000;
+          num = Math.floor(num / 10000);
+          let chunkStr = "";
+          let hasZero = false;
+          for (let i = 0; i < 4; i++) {
+            let digit = chunk % 10;
+            chunk = Math.floor(chunk / 10);
+            if (digit > 0) {
+              if (hasZero) {
+                chunkStr = nums[0] + chunkStr;
+                hasZero = false;
+              }
+              chunkStr = nums[digit] + digits[i] + chunkStr;
+            } else {
+              hasZero = true;
+            }
+          }
+          if (chunkStr.length > 0) {
+            chunkStr += units[unitIndex];
+          }
+          result = chunkStr + result;
+          unitIndex++;
+        }
+        if (result.length === 0) {
+          result = nums[0];
+        }
+        return result;
+      }
+      console.log(trans(123456));
+      console.log(trans(100010001));
+      //       trans(123456) —— 十二万三千四百五十六
+      // trans（100010001）—— 一亿零一万零一
+    </script>
+  </body>
+</html>

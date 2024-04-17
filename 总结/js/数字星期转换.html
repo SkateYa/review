@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 6,7
+      function  getWeek(item) {
+      const week = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      let weeks = ''
+      if (item && item.length) {
+        item = item.split(',')
+        item.forEach((i, index) => {
+          const num = parseInt(i)
+          weeks += week[num - 1]
+          if (index != item.length - 1) {
+            weeks += '/'
+          }
+        })
+        return weeks
+      }
+    }
+    console.log('getWeek', getWeek('6,7'))
+    </script>
+</body>
+</html>

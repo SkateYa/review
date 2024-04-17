@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // “ababac” —— “ababa”
+      // “aaabbbcceeff” —— “aaabbb”
+      const str = "“ababac”";
+    //   const str = "aaabbbcceeff";
+      function removeLeastFrequent(str) {
+        const freq = {};
+        for (let i = 0; i < str.length; i++) {
+          const char = str[i];
+          freq[char] = freq[char] ? freq[char] + 1 : 1;
+        }
+        let minFreq = Infinity;
+        for (const char in freq) {
+          if (freq[char] < minFreq) {
+            minFreq = freq[char];
+          }
+        }
+        let result = "";
+        for (let i = 0; i < str.length; i++) {
+          const char = str[i];
+          if (freq[char] !== minFreq) {
+            result += char;
+          }
+        }
+        return result;
+      }
+
+      console.log(removeLeastFrequent(str));
+
+      //   function removeLeastFrequentChar(str) {
+      //     // 记录每个字符出现的次数
+      //     const charCount = {};
+      //     for (let i = 0; i < str.length; i++) {
+      //       if (charCount[str[i]]) {
+      //         charCount[str[i]]++;
+      //       } else {
+      //         charCount[str[i]] = 1;
+      //       }
+      //     }
+
+      //     // 找到出现次数最少的字符
+      //     let minCount = Infinity;
+      //     for (let char in charCount) {
+      //       if (charCount[char] < minCount) {
+      //         minCount = charCount[char];
+      //       }
+      //     }
+
+      //     // 删除出现次数最少的字符
+      //     const regex = new RegExp(char, "g");
+      //     const result = str.replace(regex, "");
+
+      //     return result;
+      //   }
+      //  console.log(removeLeastFrequentChar(str))
+    </script>
+  </body>
+</html>

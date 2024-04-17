@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*   
+        原理：取数组的中间值为基准数据，把数组中剩余的小于基准数据的数据放在基准数据的左边的新数组中，
+        大于的放在右边的新数组中，再分别将这两个新数组按照原数组取中间值，划分左右新数组的方法进行递归，最后即可得到排序好的数组。
+        以 const arr = [5,2,1,3,6,8,4,5,7,0,15]; 为例。
+        第一次排序的基准数据是下标为 5 的数据 8，将小于 8 的剩余数据放入 leftArr 新数组中，
+        将大于 8 的数据放入 rightArr 的新数组中，重复上述步骤。 
+      */
+      // 快速排序
+      // 快速排序是一种高效的排序算法，采用分治的策略。它选择一个基准元素，将数组分成两个子数组，
+      // 使得左边的元素都小于基准，右边的元素都大于基准，然后递归地对子数组进行排序。
+      const arr = [5, 2, 1, 3, 6, 8, 4, 5, 7, 0, 15];
+      function quickFun(arr) {
+        //当进行递归的数组的长度小于等于 1 的时候直接返回该数组
+        if (arr.length <= 1) {
+          return arr;
+        }
+        // 取数组的中间值为基准数据
+        let middleIndex = Math.floor(arr.length / 2); //获取基准数据的下标
+        let middleItem = arr.splice(middleIndex, 1)[0]; //截取基准数据
+        let leftArr = [];
+        let rightArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          // 小的放左边，大的放右边
+          if (arr[i] > middleItem) {
+            rightArr.push(arr[i]);
+          } else {
+            leftArr.push(arr[i]);
+          }
+        }
+
+        return [...quickFun(leftArr), middleItem, ...quickFun(rightArr)]; //将左边数组，基准数据和右边数组进行拼接成一个完整的数组
+      }
+      const quickAns = quickFun(arr);
+      console.log(quickAns, "----------------------快速排序");
+      // [0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 15] '----------------------快速排序'
+
+      /*     
+       for (var i in arr) {
+          if (arr[i] > middleItem) {
+            rightArr.push(arr[i]);
+          }else{
+            leftArr.push(arr[i]);
+          }
+        }
+        return quickFun(leftArr).concat(middleItem,quickFun(rightArr)); //将左边数组，基准数据和右边数组进行拼接成一个完整的数组 */
+    </script>
+  </body>
+</html>

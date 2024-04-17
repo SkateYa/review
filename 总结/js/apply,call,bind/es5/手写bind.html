@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // bind可以配合new使用，但是this会失效
+      // es5写法
+      function person(a, b, c) {
+        console.log(this.name);
+        console.log(a, b, c);
+      }
+      var egg = { name: "蛋老师" };
+
+      person.prototype.collection = "收藏22";
+
+      // es5写法
+      Function.prototype.newBind = function (obj) {
+        if (typeof this !== "function") {
+          throw new TypeError("错误");
+        }
+        // person函数
+        var that = this;
+        //  把数组的slice方法赋值给arguments,并切掉第一个元素
+        var arr = Array.prototype.slice.call(arguments, 1);
+        var o = function () {};
+        var newF = function () {
+          var arr1 = Array.prototype.slice.call(arguments);
+          var arrSum = arr.concat(arr1);
+          // 如果使用了new就返回true
+          // this 是newF函数
+          if (this instanceof o) {
+            that.apply(this, arrSum);
+          } else {
+            that.apply(obj, arrSum);
+          }
+        };
+        o.prototype = that.prototype;
+        newF.prototype = new o();
+        return newF;
+        // console.log(arr);
+        // return function () {
+        //   var arr1 = Array.prototype.slice.call(arguments);
+        //   var arrSum = arr.concat(arr1);
+        //   that.apply(obj, arrSum);
+        // };
+      };
+      //   var result = person.newBind(egg, "点赞", "收藏", "转发")("充电");
+      //   console.log("result", result);
+      Function.prototype.myBind = function (targetObject, ...args1) {
+        const that = this;
+        const F = function () {};
+        F.prototype = this.prototype;
+        const bound = function (...args2) {
+          return that.apply(
+            this instanceof F ? this : targetObject,
+            args1.concat(args2)
+          );
+        };
+        bound.prototype = new F();
+        return bound;
+      };
+      var bibi = person.newBind(egg, "点赞", "收藏", "转发");
+      var b = new bibi("充电");
+      var mbibi = person.myBind(egg, "点赞", "收藏", "转发");
+      var b2 = new mbibi("充电");
+      console.log(b.collection);
+      console.log(b2.collection);
+    </script>
+  </body>
+</html>

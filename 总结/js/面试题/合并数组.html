@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+      给sort()添加一个回调函数，根据回调函数的返回值来自定义排序规则：
+        如果 返回值 > 0，则元素交换位置
+        如果 返回值 < 0，则元素位置不变
+        如果 返回值 = 0，则认为两个元素相等，不交换位置
+     */
+
+      // 请把俩个数组 ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'] 和 ['A', 'B', 'C', 'D']，
+      // 合并为 [A1, A2, A, B1, B2, B, C1, C2, C, D1, D2, D]
+
+      /*  let arr1 = ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2"];
+      let arr2 = ["A", "B", "C", "D"];
+      let newArr2 = arr2.map((item) => {
+        return item + 3;
+      });
+
+      var result = [...arr1, ...newArr2].sort().map((item) => {
+        if (item.includes("3")) {
+          return item.charAt(0);
+        }
+        return item;
+      });
+      console.log(result); */
+
+      var arr1 = ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2"];
+      var arr2 = ["A", "B", "C", "D"];
+      var arr3 = arr1.concat(arr2);
+      arr3.sort().sort(function (a, b) {
+        if (a.charAt(0) == b.charAt(0) && a.length > b.length) {
+          console.log(a, b);
+          return -1;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+      </ul>
+    <script>
+      // 鼠标事件后面这个函数属于回调函数，需要等执行栈里面的正常任务执行以后才会执行队列里面的回调函数结果
+      /*  
+        1.块级作用域：const、let是块级作用域 var没有块级作用域,var只有函数和全局作用域
+        2.声明提升：const、let不存在变量声明的提前，var有声明的提前，所以const和let在声明变量/常量 之前，是没办法获取到的，称为暂时性死区temporal dead zone
+        3.修改值：const 声明的是常量，常量不能被修改(数组和对象可以修改)，let和var声明的是变量，可以被修改
+        4.重复定义：var可以重复定义，let 和const不能重复声明同一个值:如 let a=1 ; let a =2 这样是不被允许的，
+        5.定义循环变量：var、let可以定义循环变量，const不可以
+        6.const在声明时必须赋值，而let和var不需要
+        但var可以，最后一个var声明的值会覆盖之前的 如：var b =1 ;var b =2 console.log(b)  结果为2
+        const let是ES6提出的，var是ES5
+        */
+      var li = document.querySelectorAll("li");
+     
+      for (var i = 0; i < 5; i++) {
+        li[i].onClick = function () {
+            console.log(i)   //4 4 4 4
+        };
+      }
+
+    //   for (var i = 1; i <= 3; i++) {
+    //     setTimeout(function () {
+    //       console.log(i);
+    //     }, 0);
+    //   }
+      //   4 4 4
+    </script>
+  </body>
+</html>

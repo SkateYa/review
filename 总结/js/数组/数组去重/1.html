@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. from && set
+      let arr = [1, 1, 4, 50, 50, 6, 2, 2];
+      let res = Array.from(new Set(arr));
+      console.log(res);
+
+      // 2. filter && indexOf
+      let arr = [2, 2, 33, 44, 33];
+      let res = arr.filter((item, index, arr) => {
+        return arr.indexOf(item) == index;
+      });
+      console.log(res);
+
+      // 3. forEach && includes
+      let arr = [2, 2, 33, 44, 33];
+      let res = [];
+      arr.forEach((item) => {
+        if (!res.includes(item)) {
+          res.push(item);
+        }
+      });
+      console.log(res);
+
+      // 4. filter &&  Map
+      let arr = [2, 2, 33, 44, 33];
+      const tem = new Map();
+      let res = arr.filter((item) => !tem.has(item) && tem.set(item, 1));
+      console.log(res);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fun() {
+        this.a = 0;
+        this.b = function () {
+          console.log(this);
+          console.log(this.a);
+        };
+      }
+      fun.prototype = {
+        b: function () {
+          this.a = 20;
+          console.log(this.a);
+        },
+        c: function () {
+          this.a = 30;
+          console.log(this.a);
+        },
+      };
+
+      var my_fun = new fun();
+      //私有方法	this=>my_fun
+      my_fun.b();
+      console.log(my_fun.a); // 0
+      //公有方法	this=>my_fun this.a = 30（私有属性a修改为30）
+      my_fun.c();
+      console.log(my_fun.a); // 30
+      var my_fun2 = new fun();
+      console.log(my_fun2.a); // 0
+      //this=>my_fun2.__proto__ 当前实例·通过原型链在共有属性增加的了一a:30
+      my_fun2.__proto__.c(); // 30
+      console.log(my_fun2.a); // 0
+      console.log(my_fun2.__proto__.a); // 30
+      // 0,0,30,30,0,30,0,30
+
+
+
+
+
+    //  
+
+    </script>
+  </body>
+</html>

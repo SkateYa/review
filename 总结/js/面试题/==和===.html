@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // null和undefined除了自身外不等于任何值，在比较相等时都不能转换成其他值，null和undefine不全等时是等于的
+      // NaN不等于任何值，包括自身
+      "" == " "; // false
+      "" == 0; //true
+      "   " == 0; //true
+      null == undefined; // true
+      null == 0; //false
+      null == ""; //false
+      undefined == ""; //false
+      undefined == 0; //false
+      "false" == false; //false
+      NaN == NaN; //false
+      NaN == false; //false
+
+      var a = {};
+      var b = {};
+      var c = a;
+
+      a == b; //false
+      a === b; //false
+      a == c; // true
+      a === c; // true
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    解决方案
+    常见的解决方案有：
+    
+    zoom
+    -webkit-transform:scale()
+    -webkit-text-size-adjust:none
+
+   -----------------------------------------------------------------------
+
+
+    -webkit-text-size-adjust:none
+    该属性用来设定文字大小是否根据设备(浏览器)来自动调整显示大小
+    
+    属性值：
+    
+    percentage：字体显示的大小；
+    auto：默认，字体大小会根据设备/浏览器来自动调整；
+    none:字体大小不会自动调整
+
+    这样设置之后会有一个问题，就是当你放大网页时，一般情况下字体也会随着变大，而设置了以上代码后，字体只会显示你当前设置的字体大小，不会随着网页放大而变大了
+
+所以，我们不建议全局应用该属性，而是单独对某一属性使用
+
+需要注意的是，自从chrome 27之后，就取消了对这个属性的支持。同时，该属性只对英文、数字生效，对中文不生效
+</body>
+</html>

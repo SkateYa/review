@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 函数提升优先级高于变量提升，且不会被同名变量声明时覆盖，但是会被同名变量赋值后覆盖
+      // 总结：由于函数声明和变量都会提升，如果函数与变量同名，那么只要在变量赋值前打印的都会是函数，在变量赋值之后打印都是变量的值。
+
+      // console.log(a); // ƒ a(){}  变量a赋值前打印的都会是函数a
+      // var a = 1;
+      // function a() {}
+      // console.log(a); // 1    变量a赋值后打印的都会是变量a的值
+
+      //   a(); // 2
+      //   var a = function () {
+      //     // 看成是一个函数赋值给变量a
+      //     console.log(1);
+      //   };
+      //   a(); // 1
+      //   function a() {
+      //     console.log(2);
+      //   }
+      //   a(); // 1
+
+      function a() {
+        // 函数提升
+        console.log(2);
+      }
+      var a; // 变量提升
+      a(); // 2
+      a = function () {
+        // 变量a赋值后覆盖上面的函数a
+        console.log(1);
+      };
+      a(); // 1
+      a(); // 1
+    </script>
+  </body>
+</html>

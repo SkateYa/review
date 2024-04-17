@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匀速动画</title>
+    <style>
+        .box {
+            position: relative;
+            width: 1000px;
+            margin-top: 20px;
+        }
+        
+        .xiaohuli {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .pikaqiu {
+            position: absolute;
+            top: 150px;
+            left: 0;
+            width: 200px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn1">点击移动小狐狸</button>
+    <button class="btn2">点击移动皮卡丘</button>
+    <div class="box">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F09%2F24%2Fe4c22630d9ecbbe56a5f832974b56d2b.jpg&refer=http%3A%2F%2Fku.90sjimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655368678&t=65c6f6354e70f5bfef9a36cb4c87d01c" alt="" class="xiaohuli">
+        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdingyue.ws.126.net%2FMsgA5OExFJceOFRY2l8CbPwgjWuKyjFeVpUNMGTSLIhx%3D1563003511332compressflag.jpg&refer=http%3A%2F%2Fdingyue.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655368723&t=239fcaacf6e34e8e2a9e0f6053c33cdd" alt="" class="pikaqiu">
+    </div>
+    <script>
+        var btn1 = document.querySelector('.btn1');
+        var btn2 = document.querySelector('.btn2');
+        var xiaohuli = document.querySelector('.xiaohuli');
+        var pikaqiu = document.querySelector('.pikaqiu');
+
+        btn1.addEventListener('click', function() {
+            animate(xiaohuli, 300);
+        })
+
+        btn2.addEventListener('click', function() {
+            animate(pikaqiu, 450);
+        })
+
+        // 动画函数     obj动画对象, target目标左偏移量, callback回调函数
+        function animate(obj, target, callback) {
+            console.log('animate')
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function() {
+
+                obj.style.left = obj.offsetLeft + 5 + 'px';
+
+                if (obj.offsetLeft >= target) {
+                    // 停止动画
+                    clearInterval(obj.timer);
+                    // 如果有回调函数，执行回调函数
+                    if (callback) {
+                        callback();
+                    }
+                }
+
+
+            }, 30);
+        }
+    </script>
+</body>
+
+</html>

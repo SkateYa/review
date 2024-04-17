@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name = "Wscats"; //全局变量
+      window.name = "Wscats"; //全局变量
+      function getName() {
+        name = "Oaoafly"; //去掉var变成了全局变量
+        var privateName = "Stacsw";
+        return function () {
+          console.log('this',this); //window
+          return privateName;
+        };
+      }
+      var getPrivate = getName("Hello"); //当然传参是局部变量，但函数里面我没有接受这个参数
+      console.log(name); //Oaoafly
+      console.log(getPrivate()); //Stacsw
+    </script>
+  </body>
+</html>

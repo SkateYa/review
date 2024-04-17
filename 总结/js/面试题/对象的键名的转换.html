@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*  这题考察的是对象的键名的转换。
+
+对象的键名只能是字符串和 Symbol 类型。
+其他类型的键名会被转换成字符串类型。
+对象转字符串默认会调用 toString 方法。 */
+      // example 1
+      var a = {},
+        b = "123",
+        c = 123;
+      a[b] = "b"; // var a={'123':'b'}
+      a[c] = "c"; // var a ={'123':'b','123':'c'}
+      console.log(a[b]); // c
+
+      //   ---------------------
+      // Symbol 生成的数据是唯一的
+      // example 2
+
+      var a = {},
+        b = Symbol("123"),
+        c = Symbol("123");
+      //   // b 是 Symbol 类型，不需要转换。
+      a[b] = "b"; // var a = {Symbol('123'): 'b'}
+      // c 是 Symbol 类型，不需要转换。任何一个 Symbol 类型的值都是不相等的，所以不会覆盖掉 b。
+      a[c] = "c"; // var a = { Symbol('123'): 'b',Symbol('123'): 'c'}
+      console.log(a[b]); // b
+
+      //   ---------------------
+      // example 3
+      var a = {},
+        b = { key: "123" },
+        c = { key: "456" };
+      // b 不是字符串也不是 Symbol 类型，需要转换成字符串。
+      // 对象类型会调用 toString 方法转换成字符串 [object Object]。
+      a[b] = "b"; // var a= {key:'123': 'b'}
+      // c 不是字符串也不是 Symbol 类型，需要转换成字符串。
+      // 对象类型会调用 toString 方法转换成字符串 [object Object]。这里会把 b 覆盖掉。
+      a[c] = "c"; //  var a= {key:'123': 'b' , {key:'456'}:'c'}
+      console.log(a[b]); // b
+    </script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左右版轮播图</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+ 
+        img {
+            display: block;
+            border: none;
+            
+        }
+ 
+        .banner {
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+ 
+        .banner .bannerWrap {
+            width: 3000px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+ 
+        .banner .bannerWrap div {
+            width: 600px;
+            height: 400px;
+            float: left;
+        }
+ 
+        .banner .focusList {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            bottom: 30px;
+            text-align: center;
+        }
+ 
+        .banner .focusList span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: salmon;
+            margin-right: 20px;
+        }
+ 
+        .banner .focusList span.active {
+            background-color: orangered;
+        }
+ 
+        .banner a {
+            display: block;
+            width: 41px;
+            height: 69px;
+            position: absolute;
+            top: 50%;
+            margin-top: -34.5px;
+            background-color: red;
+            background: url(./img/icon-slides.png) center no-repeat;
+        }
+ 
+        .banner a.btnLeft {
+            left: 0px;
+            background-position: 0px center;
+        }
+ 
+        .banner a.btnRight {
+            right: 0px;
+            background-position: -42px center;
+        }
+    </style>
+</head>
+ 
+<body>
+    <!-- 轮播图区域 -->
+    <div id="banner" class="banner">
+        <!-- 图片区域包裹层 -->
+        <div class="bannerWrap">
+            <div><img src="./img/t1.png" /></div>
+            <div><img src="./img/t2.png" /></div>
+            <div><img src="./img/t3.png" /></div>
+            <div><img src="./img/t4.png" /></div>
+ 
+            <div><img src="./img/t1.png" /></div>
+        </div>
+        <!-- 焦点区域 -->
+        <p class="focusList">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </p>
+        <!-- 左右按钮 -->
+        <a class="btnLeft" href="javascript:;"></a>
+        <a class="btnRight" href="javascript:;"></a>
+    </div>
+    <script src="./js/utils.js"></script>
+    <script>
+        // 获取
+        var banner = document.getElementById("banner"),
+            bannerWrap = banner.getElementsByClassName("bannerWrap")[0],
+            oDivs = bannerWrap.getElementsByTagName("div"),
+            oSpans = banner.getElementsByTagName("span"),
+            oBtns = banner.getElementsByTagName("a");
+        var n = 0;
+        var timer = null;
+ 
+        function autoPlay() {
+            n++;
+            if (n == oDivs.length) {
+                bannerWrap.style.left = "0px";
+                n = 1;
+            }
+            move(bannerWrap, "left", 100, -n * 600);
+            for (var i = 0; i < oSpans.length; i++) {
+                oSpans[i].className = "";
+            }
+            oSpans[n == 4 ? 0 : n].className = "active";
+        }
+        // 左右
+        oBtns[1].onclick = autoPlay;
+        oBtns[0].onclick = function () {
+            n--;
+            if (n == -1) {
+                bannerWrap.style.left = -(oDivs.length - 1) * 600 + 'px';
+                n = oDivs.length - 2;
+            }
+            move(bannerWrap, "left", 100, -n * 600);
+            for (var i = 0; i < oSpans.length; i++) {
+                oSpans[i].className = "";
+            }
+            oSpans[n == 4 ? 0 : n].className = "active";
+        }
+        // 鼠标
+        timer = setInterval(autoPlay, 3000);
+        banner.onmouseover = function () {
+            clearInterval(timer);
+        }
+        banner.onmouseout = function () {
+            timer = setInterval(autoPlay, 3000);
+        }
+        // 焦点
+        for (var i = 0; i < oSpans.length; i++) {
+            oSpans[i].index = i;
+ 
+ 
+            oSpans[i].onclick = function () {
+                if (n == 4) {
+                    bannerWrap.style.left = "0px";
+                }
+ 
+                for (var i = 0; i < oSpans.length; i++) {
+                    oSpans[i].className = "";
+                }
+                this.className = "active";
+ 
+                n = this.index;
+                move(bannerWrap, "left", 100, -this.index * 600);
+ 
+            }
+ 
+        }
+ 
+    </script>
+</body>
+ 
+</html>

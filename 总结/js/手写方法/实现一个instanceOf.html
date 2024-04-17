@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function instanceOf1(left, right) {
+        // 获取对象的原型
+        let proto = left.__proto__;
+        // 获取构造函数的 prototype 对象
+        let prototype = right.prototype;
+         // 判断构造函数的 prototype 对象是否在对象的原型链上
+        while (true) {
+          if (proto === null) return false;
+          if (proto === prototype) return true;
+          // 如果没有找到，就继续从其原型上找
+          proto = proto.__proto__;
+        }
+      }
+    
+      console.log(instanceOf1(2,Object)) 
+
+    </script>
+  </body>
+</html>

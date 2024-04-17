@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // substr(start,length)返回从指定下标开始的长度为length的字符，可以为负数
+      // substring(start,end)返回指定下标间的字符，包含start，不包含end
+      // slice(start,end)返回指定下标间的数组元素，包含start，不包含end
+      // splice(起始下标,删除个数,插入的数1,插入的数2,...) (包括起始下标本身)
+      // substr和substring是字符串特有的方法，slice既是数组方法，也是字符串方法
+
+      var foo = "get-element-by-id";
+      function toString(foo) {
+        var arr = foo.split("-");
+        for (var i = 1; i < arr.length; i++) {
+          // charAt() 方法从一个字符串中返回指定的字符
+          // toLocaleUpperCase() 方法根据本地主机语言环境把字符串转换为大写格式，并返回转换后的字符串。
+          // substring() 方法返回一个字符串在开始索引到结束索引之间的一个子集，或从开始索引直到字符串的末尾的一个子集。
+          // 注意 substr() 方法返回一个字符串中从指定位置开始到指定字符数的字符。
+          // 但是官方文档建议不用它 它被认作是遗留的函数并且可以的话应该避免使用
+          // 使用 substring() 替代它
+          arr[i] =
+            arr[i].charAt(0).toLocaleUpperCase() +
+            arr[i].substr(1, arr[i].length - 1);
+        }
+
+        return arr.join("");
+      }
+      console.log(toString(foo));
+
+      const tagUpper = foo.replace(/-(\w)/g, (r) => r.slice(1).toUpperCase());
+      console.log(tagUpper);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <base href="" />
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
+    <title>SocketIO-EPG </title>
+    <style type="text/css">
+        html,
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #FFF;
+            font-size: 13px;
+            font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Heiti, "黑体", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+            background-color: #2b2b2b;
+        }
+
+        html * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        #message {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #message>div {
+            padding: 4px 8px;
+            border-style: solid;
+            border-color: #FFFFFF;
+            border-width: 0 0 1px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .item {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        #console {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 460px;
+            /*height: 200px;*/
+            bottom: 30px;
+            border: 1px solid red;
+            background-color: #FFFFFF;
+            overflow-y: auto;
+        }
+
+        .message {
+            color: seagreen;
+            font-size: 14px;
+            border-style: solid;
+            border-color: black;
+            border-width: 0 0 1px;
+        }
+    </style>
+    <script type="text/javascript" src="./dist/socket.io.js"></script>
+    <script type="text/javascript" src="./dist/websocket.js"></script>
+</head>
+
+<body>
+    <script>
+        // 当本地缓存方案使用cookie时
+        function getCookie(key) {
+           var arr = localStorage.getItem(key)
+            if (arr) {
+                return JSON.parse(arr)
+            }
+            return null 
+        }
+
+        function setCookie(key, val) {
+            localStorage.setItem(key, JSON.stringify(val)) 
+        }
+
+        var webSocketManage = new WebSocketManage({
+            userAccount: "mazy01", // 用户账号
+            // userAccount: "zxy", // 用户账号
+            routeUrl: "https://ai.pukkavision.com/mns/front", // 获取websoket服务地址
+            // serverUrl: 'http://192.168.2.109:9093',
+            channelCode: 'LT', // 渠道Code
+            // channelCode:'testphone',
+            sceneObj: {}, //场景code与场景关联对象
+            customStorage: true,
+            // messageList:[],
+            // httpAjax: httpAjax,
+            getStorage: getCookie, //从小程序上传
+            setStorage: setCookie, //从小程序上传
+            // 后台场景和消息场景code
+            // httpAjax  
+            // 小程序上那些页面需要展示的
+            handleConnect: function () {
+                console.log('------connect success-------');
+            },
+            // 调用方法
+            handleMessageEvent: function (list) {
+                console.log(list)
+                // this.messageList = list
+                // return list
+                console.log('------handleMessageEvent-------',list);
+            }
+        });
+
+        // webSocketManage.connect();
+
+        // setTimeout(() => {
+        //     webSocketManage.disconncet()
+        // }, 2000);
+
+        // 首页
+        console.log('执行')
+        // 全局页面调用
+        var statusCheckManage = webSocketManage.getMsgTemplate()
+        // statusCheckManage.setScene('test') //消息code
+        statusCheckManage.setScene('LT-TOPICPAGE') //消息code
+        statusCheckManage.init();
+
+        // 在EPG上的小程序二维码页
+        // statusCheckManage && statusCheckManage.initQr();
+
+        // 其他页面
+        // statusCheckManage && statusCheckManage.init();
+
+        // 当离开页面时，关闭小程序状态检测管理器 （清除定时器，断开websocket连接）
+        // statusCheckManage && statusCheckManage.close();
+    </script>
+</body>
+
+</html>

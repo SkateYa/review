@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 2. 原型链继承
+      /* 　重点：让子实例的原型等于父类的实例。
+　　　　优点：1. 实例可继承的属性有：实例的构造函数的属性，父类构造函数属性，父类原型的属性。（新实例不会继承父类实例的属性！）
+　　　　缺点：1. 新实例无法向父类构造函数传参。
+　　　　　　　2. 继承单一。
+　　　　　　　3. 所有新实例都会共享父类实例的属性。（原型上的属性是共享的，一个实例修改了原型属性，另一个实例的原型属性也会被修改！） */
+      function Parent() {
+        this.age = 20;
+        this.hobbyList = ["唱歌", "跳舞"];
+      }
+
+      function Child() {
+        this.name = "张三";
+      }
+
+     //继承父类
+      Child.prototype = new Parent();
+      let c1 = new Child();
+      let c2 = new Child();
+      // 所有新实例都会共享父类实例的属性  如果属性是引用数据类型，修改了一个实例的属性，其他实例的属性都发生变化，如果属性是基本数据类型的话，就不会有这个变化
+      c1.name = "李四";
+      c1.hobbyList.push("打游戏");
+      console.log(c1, c1.hobbyList); // Child {name: '李四'} (3) ['唱歌', '跳舞', '打游戏']
+      console.log(c2, c2.hobbyList); //  Child {name: '张三'} (3) ['唱歌', '跳舞', '打游戏'] */
+    </script>
+  </body>
+</html>

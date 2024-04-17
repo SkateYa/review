@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*   
+      for in和for of的区别
+
+      答： for in： let arr = ['水果'，'肉'，'菜']
+
+      ​ for （ let j in arr）{ console.log（j） } // 0 ，1 ，2
+
+      ​ for in：可以用来遍历对象，也可以用来遍历数组 ( 遍历数组得到索引 ) ，会遍历到数组原型
+
+      ​ for of： for（ let l of arr）{ console.log（l） } // 水果 ，肉 ，菜
+
+      ​ for of：用于遍历数组，直接获得数组中元素的值，不会遍历到数组原型
+
+      ​ 不能遍历对象 */
+
+    let obj = {
+      a: 11,
+      b: 22,
+    };
+    var arr = [11, 22, 33];
+    for (let i in obj) {
+      console.log(i, obj[i]);
+    }
+    for (let i in arr) {
+      console.log(i, arr[i]);
+    }
+    console.log('------------')
+    // 报错
+    //   for(let i of obj){
+    //     console.log(i, obj[i]);
+    //   }
+    for (let i of arr) {
+      console.log(i, arr[i]);
+    }
+  </script>
+</body>
+
+</html>

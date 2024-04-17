@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      // async 返回的是一个promise
+      async function bb() {
+        // console.log("bb");
+        return new Promise((resolve, reject) => {
+            resolve(1)
+        });
+        // 等价于上面
+        // return 1
+      };
+      // console.log(bb(), bb() instanceof Promise);     // Promise true
+      bb().then(value=>{
+        console.log(value)  // 1
+      })
+   
+    </script>
+  </body>
+</html>

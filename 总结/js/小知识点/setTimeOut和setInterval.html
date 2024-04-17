@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // setTimeout(执行代码,时间间隔) 延迟后执行一次
+      // setInterval(执行代码,时间间隔) 间隔执行,重复
+
+      /* 
+      function newInterval(func, millisecond) {
+        func();
+        setTimeout(newInterval, millisecond);
+      } 
+      */
+
+      function newInterval(func, millisecond) {
+        function inside() {
+          func();
+          setTimeout(inside, millisecond);
+        }
+        setTimeout(inside,millisecond);
+      }
+
+      newInterval(like, 1000);
+
+      function like() {
+        console.log("记得点赞哦"+new Date());
+      }
+    </script>
+  </body>
+</html>

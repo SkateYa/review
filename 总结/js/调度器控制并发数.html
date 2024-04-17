@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*         
+        这段代码是一个简单的调度器（Scheduler）类，用于控制并发执行任务的数量。在构造函数中，通过传入一个限制参数（limit），来设置最大并发执行任务的数量。在add方法中，会将一个延迟执行的任务（通过Promise实现）加入到任务队列（queue）中。taskStart方法用于启动任务调度，循环执行request方法来处理任务队列中的任务。
+
+        具体流程是这样的：
+        1. 创建一个Scheduler实例，限制最大并发任务数量为2。
+        2. 定义一个addTask函数，用于向调度器中添加任务。
+        3. 分别向调度器中添加四个任务，每个任务包括一个延迟时间和一个标识。
+        4. 调用scheduler的taskStart方法开始任务调度。
+        5. 在任务调度过程中，会根据最大并发任务数量限制，依次执行任务队列中的任务，并在任务完成后继续请求执行下一个任务，直到所有任务执行完毕。
+
+       要创建一个具有并发限制的Promise调度器，你需要维护一个队列来保存待处理的Promise，
+       以及一个计数器来跟踪当前正在运行的Promise数量。当Promise完成时，你需要更新计数器，
+       并从队列中取出下一个Promise来执行，直到达到并发限制或队列为空。
+
+        这段代码的作用是控制并发执行任务的数量，以避免同时执行过多任务导致系统负荷过大。 
+*/
+        class Scheduler {
+            constructor(limit) {
+                this.queue = [];
+                this.maxCount = limit;
+                this.runCounts = 0;
+            }
+            add(time, order) {
+                const promiseCreator = () => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            console.log(order);
+                            resolve();
+                        }, time);
+                    });
+                };
+                this.queue.push(promiseCreator);
+            }
+            taskStart() {
+                for (let i = 0; i < this.maxCount; i++) {
+                    this.request();
+                }
+            }
+            request() {
+                if (!this.queue || !this.queue.length || this.runCounts >= this.maxCount) {
+                    return;
+                }
+                this.runCounts++;
+                this.queue
+                    .shift()()
+                    .then(() => {
+                        this.runCounts--;
+                        this.request();
+                    });
+            }
+        }
+        const scheduler = new Scheduler(2);
+        const addTask = (time, order) => {
+            scheduler.add(time, order);
+        };
+        addTask(1000, "1");
+        addTask(500, "2");
+        addTask(300, "3");
+        addTask(400, "4");
+        scheduler.taskStart();
+    </script>
+</body>
+
+</html>

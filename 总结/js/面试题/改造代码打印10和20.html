@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script> 
+      // 简单改造下面的代码，使之分别打印 10 和 20
+      var b = 10;
+      (function b() {
+        b = 20;
+        console.log(b);
+      })();
+
+      //  打印10=============================
+
+      var b = 10;
+      (function b(b) {
+        window.b = 20;
+        console.log(b);
+      })(b);
+
+      var b = 10;
+      (function b(b) {
+        b.b = 20;
+        console.log(b);
+      })(b);
+
+      var b = 10;
+      (function () {
+        console.log(b);
+        b = 20;
+      })();
+
+      //   打印20====================================
+      var b = 10;
+      (function b(b) {
+        b = 20;
+        console.log(b);
+      })(b);
+
+      var b = 10;
+      (function b() {
+        var b = 20;
+        console.log(b);
+      })();
+
+      var b = 10;
+      (function b() {
+        let b = 20;
+        console.log(b);
+      })();
+
+      var b = 10;
+      (function () {
+        b = 20;
+        console.log(b);
+      })();
+    </script>
+  </body>
+</html>

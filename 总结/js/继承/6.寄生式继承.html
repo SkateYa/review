@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*    
+      重点：就是给原型式继承外面套了个壳子。
+      优点：没有创建自定义类型，因为只是套了个壳子返回对象（这个），这个函数顺理成章就成了创建的新对象。
+      缺点：没用到原型，无法复用。
+       */
+
+      function createChild(parent) {
+        // parent对象作为child对象的原型
+        // child对象继承了parent对象的属性和方法，成为了一个新的对象，
+        // 同时保留了parent对象的原型链关系。通过这种方式，
+        // child对象可以访问parent对象中定义的属性和方法，实现了对象之间的原型继承。
+        const child = Object.create(parent);
+        child.name = "Child";
+        child.sayHello = function () {
+          console.log(`Hello, I'm ${this.name}`);
+        };
+        return child;
+      }
+
+      const parent = {
+        name: "Parent",
+      };
+
+      const child = createChild(parent);
+      child.sayHello(); // 输出 "Hello, I'm Child"
+
+
+
+      // // 第二种方式
+      // function Parent() {
+      //   this.age = 100;
+      // }
+
+      // function child(obj) {
+      //   function F() {}
+      //   F.prototype = obj; //继承了传入的参数
+      //   return new F(); //返回函数对象
+      // }
+      // var sup = new Parent();
+      // //以上是原型式继承，给原型式继承再套个壳子传递参数
+      // function subObject(obj) {
+      //   var sub = child(obj);
+      //   sub.name = "gar";
+      //   return sub;
+      // }
+      // var sup2 = subObject(sup);
+      // //这个函数经过声明之后就成了可增添属性的对象
+      // console.log(typeof subObject); //function
+      // console.log(typeof sup2); //object
+      // console.log(sup2.name); //"gar"，返回了个sub对象，继承了sub的属性
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   寄生组合式继承（常用）
+
+      // 1.最优解
+      function Parent() {
+        this.age = 100;
+      }
+
+      function Child() {
+        // 借用构造函数模式
+        Parent.call(this);
+        this.name = "张三";
+      }
+      // 原型链继承
+      // 
+      Child.prototype = Object.create(Parent.prototype);
+      // Child.prototype 的原始属性和方法会丢失.
+      // 修复构造函数的指向
+      Child.prototype.constructor = Child;
+      let o4 = new Child();
+      console.log(o4, o4.name, o4.age); // Child {age: 100, name: '张三'} '张三' 100
+
+      //2.第二种方法
+      /*  function Parent() {
+          this.age = 100;
+        }
+
+        function child(obj) {
+          function F() {}
+          F.prototype = obj;
+          return new F();
+        }
+        //child就是F实例的另一种表示法
+        var con = child(Parent.prototype);
+        //con实例(F实例)的原型继承了父类函数的原型//上述更像是原型链继承，只不过只继承了原型属性
+        //组合
+        function Sub() {
+          Parent.call(this); //这个继承了父类构造函数的属性
+        } //解决了组合式俩次调用构造函数属性的缺点//重点
+        Sub.prototype = con; //继承了con实例
+        con.constructor = Sub; //一定要修复实例
+        var sub1 = new Sub(); //Sub的实例就继承了构造函数属性，父类实例，con的函数属性
+        console.log(sub1, sub1.age); //10; */
+    </script>
+  </body>
+</html>

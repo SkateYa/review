@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let emperor = {
+        prince: ["princel", "prince2", "prince3"],
+        princess: ["princessl", "princess2", "princess3"],
+      };
+      // 建一个Symbol的值
+      const prince = Symbol("bastard");
+      emperor[prince] = "bastard";
+
+      // 返回一个给定对象自身的所有 Symbol 属性的数组
+      console.log(Object.getOwnPropertySymbols(emperor));
+
+      //  Symbol.for 创建共享Symbol，如果已存在，直接返回已有的Symbol
+      const bastard1 = Symbol.for("如花");
+      emperor[bastard1] = "如花的儿子";
+      const bastard2 = Symbol.for("如花");
+      emperor[bastard2] = "如花的儿子";
+      const bastard3 = Symbol.for("似水");
+      emperor[bastard3] = "似水的儿子";
+      console.log(emperor);
+      console.log(bastard1 === bastard2); // true
+
+      //   返回已登记Symbol有关的键
+      console.log(bastard1, Symbol.keyFor(bastard1));
+      console.log(bastard2, Symbol.keyFor(bastard2));
+      console.log(bastard3, Symbol.keyFor(bastard3));
+    </script>
+  </body>
+</html>

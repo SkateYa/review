@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let num = 12345678;
+
+    function toThousands(num) {
+      var result = "",
+        counter = 0;
+      num = (num || 0).toString();
+      for (var i = num.length - 1; i >= 0; i--) {
+        counter++;
+        result = num.charAt(i) + result;
+        if ((counter % 3 === 0) & (counter != 0)) {
+          result = "," + result;
+        }
+      }
+      return result;
+    }
+    // toLocaleString()  可以用来格式化，比如数字的格式化，整数部分每三位加一个逗号
+    console.log(num.toLocaleString()); // 12,345,678
+    console.log(toThousands(num)); // 12,345,678
+  </script>
+</body>
+
+</html>

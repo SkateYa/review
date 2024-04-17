@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 例如： fun(4) => 1*2*3*4
+      function fun(x) {
+        if (x === 1) return 1;
+        return x * fun(x - 1);
+      }
+
+      function fux(n) {
+        console.log('arguments', arguments)
+        // arguments.callee代表fux
+        return n - 1 ? n * arguments.callee(n - 1) : 1;
+      }
+
+      console.log(fun(4));
+      console.log(x(4));
+    </script>
+  </body>
+</html>

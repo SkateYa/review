@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .list {
+        display: flex;
+        width: 336px;
+        flex-wrap: wrap
+    }
+    .list-item {
+        width: 100px;
+        height: 50px;
+        margin-top: 10px;
+        border: 1px solid gray;
+        margin-right: 10px;
+        background-color: gray;
+        color: #fff;
+    }
+    /*list-item 和 moving 同时在一个元素时生效*/
+    .list-item.moving {
+        color: transparent;
+        background-color: transparent;
+        border: 1px dashed gray !important;
+    }
+</style>
+
+<body>
+<div class="list">
+    <div draggable="true" class="list-item">1</div>
+    <div draggable="true" class="list-item">2</div>
+    <div draggable="true" class="list-item">3</div>
+    <div draggable="true" class="list-item">4</div>
+    <div draggable="true" class="list-item">5</div>
+    <div draggable="true" class="list-item">6</div>
+    <div draggable="true" class="list-item">7</div>
+    <div draggable="true" class="list-item">8</div>
+    <div draggable="true" class="list-item">9</div>
+</div>
+</body>
+<script type="text/javascript">
+
+    let sourceNode;
+    const list = document.querySelector(".list");
+
+    // 当拖拽开始的时候
+    list.ondragstart = (e) => {
+        console.log("当前拖动的节点：");
+        console.log(e.target);
+        e.target.classList.add("moving");
+        sourceNode = e.target;
+    };
+
+    // 当拖拽进入某个节点时候
+    list.ondragenter = (e) => {
+        if(e.target === list || e.target === sourceNode) {
+            return;
+        }
+        console.log("拖拽到节点：");
+        console.log(e.target);
+        // Array.from ES6：将类数组对象 转成真正的数组  就可以使用数组自带的方法indexOf了
+        const children = Array.from(list.children);
+        const sourceIndex = children.indexOf(sourceNode);
+        const targetIndex = children.indexOf(e.target);
+        // insertBefore 插入的节点如果在list中存在，那么则会删除，再插入新的位置
+        if(sourceIndex < targetIndex) {
+            // 拖拽节点下标小于目标节点的下标
+            // 在目标节点的下一个元素之前插入拖拽的节点
+            list.insertBefore(sourceNode, e.target.nextElementSibling);
+        } else {
+            // 拖拽节点下标大于目标节点的下标
+            // 在目标节点之前插入拖拽的节点
+            list.insertBefore(sourceNode, e.target);
+        }
+    };
+
+    // 当前拖拽节点拖拽结束
+    list.ondragend = (e) => {
+        e.target.classList.remove('moving');
+    }
+    // 381 245 976
+
+
+</script>
+
+</html>

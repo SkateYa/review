@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .outer {
+          height: 100px;
+        }
+        /* .left {
+          float: left;
+          width: 200px;
+          background: tomato;
+        }
+        .right {
+          margin-left: 200px;
+          width: auto;
+          background: gold;
+        } */
+  
+        /* .left {
+          width: 100px;
+          height: 200px;
+          background: red;
+          float: left;
+        }
+        .right {
+          height: 300px;
+          background: blue;
+          overflow: hidden;
+        } */
+  
+        /* .content {
+          display: flex;
+          height: 100px;
+        }
+        .left {
+          width: 200px;
+          background: tomato;
+        }
+        .right {
+          flex: 1;
+          background: gold;
+        } */
+  
+        /* .content {
+          position: relative;
+          height: 100px;
+        }
+        .left {
+          position: absolute;
+          width: 200px;
+          height: 100px;
+          background: tomato;
+        }
+        .right {
+          margin-left: 200px;
+          background: gold;
+        } */
+  
+        .content {
+          position: relative;
+          height: 100px;
+        }
+        .left {
+          width: 200px;
+          height: 100px;
+          background: tomato;
+        }
+        .right {
+          position: absolute;
+          height: 100px;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 200px;
+          background: gold;
+        }
+      </style>
+      
+      
+      <div class="content">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+</body>
+</html>

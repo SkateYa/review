@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            原理：基于插入排序进行的优化，先将整个数组按照数组长度的一半进行分组使用插入排序，
+        完成后，再将整个数组按照数组长度的1/4进行分组使用插入排序，重复以上步骤，直到分组长度为1为止。
+        以 const arr = [5,2,1,3,6,8,4,5,7,0,15]; 为例。
+        arr 数组的长度为 11 ，向下取整得到 5，因此以 5 为间隔进行分组得到：[5,8,15] [2,4] [1,5] [3,7] [6,0]；
+        在分好的数组中分别进行插入排序，可得：[5,8,15] [2,4] [1,5] [3,7] [0,6]；
+        再将得到的数组按照 5 的间隔进行还原得到 [5, 2, 1, 3, 0, 8, 4, 5, 7, 6, 15]；再将 5 进行除 2 
+        并取整得到的数据作为下一轮的间隔数据进行对数组进行分组，对分组后的数组分别再使用插入排序，重复以上步骤 
+        */
+      // 希尔排序
+      // 基于插入排序进行的优化，先将整个数组按照数组长度的一半进行分组使用插入排序，
+      // 完成后，再将整个数组按照数组长度的1/4进行分组使用插入排序，重复以上步骤，直到分组长度为1为止。
+      const arr = [5, 2, 1, 3, 6, 8, 4, 5, 7, 0, 15];
+      function hillFun(arr) {
+        //第一层循环，确定间隔数
+        // 这里的 gap 相当于插入排序中的 1 ，所以在第二层循环中 preIndex = i-gap; 相当于插入排序中的 preIndex = g - 1;
+        for (
+          let gap = parseInt(arr.length / 2);
+          gap > 0;
+          gap = parseInt(gap / 2)
+        ) {
+          //第二层循环，使用插入排序
+          for (let i = gap; i < arr.length; i++) {
+            let preIndex = i - gap;
+            let current = arr[i];
+            while (preIndex >= 0 && current < arr[preIndex]) {
+              arr[preIndex + gap] = arr[preIndex];
+              preIndex -= gap;
+            }
+            arr[preIndex + gap] = current;
+          }
+        }
+        return arr;
+      }
+      const hillAns = hillFun(arr);
+      console.log(hillAns, "----------------------希尔排序");
+      // [0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 15] '----------------------希尔排序'
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    // 1. class+extends继承
+     class Parent{
+        constructor(){
+            this.age = 18
+        }
+     }
+
+     class Child extends Parent{
+        constructor(){
+          // 必须要写，否则报错，super作为函数调用时表示父类的构造函数，
+          // 但super内部的this指向的是子类
+            super()
+            this.name = '张三'
+        }
+     }
+     let o1 = new Child(22)
+     console.log(o1) // child {name:'张三',age:18}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        font-size: 20px;
+      }
+
+      .child {
+        font-size: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        CSS 中的 em 单位是一个相对的测量单位，用于测量网页上元素的大小，主要是字体大小。
+        因为它是相对于其父元素而言的，所以 1 个 em 等于父元素中设置的字体大小。
+
+        这意味着如果你将父 div 中的字体大小设置为 20px，并将子 div 的字体大小设置为 2em，
+        那么子 div 中的字体大小将等于 40px
+    -->
+
+    <div class="parent">
+      I'm parent div set to 20px
+      <div class="child">I'm the child div set to 2em, 40px.</div>
+    </div>
+  </body>
+</html>

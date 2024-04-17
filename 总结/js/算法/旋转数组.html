@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*  输入: [1, 2, 3, 4, 5, 6, 7] 和 k = 3
+        输出: [5, 6, 7, 1, 2, 3, 4]
+        解释:
+        向右旋转 1 步: [7, 1, 2, 3, 4, 5, 6]
+        向右旋转 2 步: [6, 7, 1, 2, 3, 4, 5]
+        向右旋转 3 步: [5, 6, 7, 1, 2, 3, 4] 
+       */
+      function rotate(arr, k) {
+        const len = arr.length;
+        // 因为步数有可能大于数组长度，所以要先取余
+        const step = k % len;
+        return arr.slice(-step).concat(arr.slice(0, len - step));
+      }
+
+      var result = rotate([1, 2, 3, 4, 5, 6], 3);
+
+      console.log(result);
+
+      var arr = [-1, -100, 3, 99];
+      var k = 2;
+
+      for (let i = 0; i < k; i++) {
+        let val = arr.pop();
+        arr.unshift(val);
+      }
+
+      console.log(arr);
+    </script>
+  </body>
+</html>

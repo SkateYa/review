@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+           /*  在一段 JS 脚本（即一个<script>标签中）执行之前，要先解析代码（所以说 JS 是解释执行的脚本语言），
+            解析的时候会先创建一个 全局执行上下文 环境，先把代码中即将执行的（内部函数的不算，因为你不知道函数何时执行）
+            变量、函数声明都拿出来。变量先暂时赋值为undefined，函数则先声明好可使用。这一步做完了，然后再开始正式执行程序。
+            再次强调，这是在代码执行之前才开始的工作。
+
+            我们来看下上面的面试小题目，为什么a是undefined，而b却报错了，实际 JS 在代码执行之前，
+            要「全文解析」，发现var a，知道有个a的变量，存入了执行上下文，而b没有找到var关键字，
+            这时候没有在执行上下文提前「占位」，所以代码执行的时候，提前报到的a是有记录的，只不过值暂时还没有赋值，
+            即为undefined，而b在执行上下文没有找到，自然会报错（没有找到b的引用）。 */
+            console.log(a); // undefined
+            var a = 100;
+
+            fn("zhangsan"); // 'zhangsan' 20
+            function fn(name) {
+              age = 20;
+              console.log(name, age);
+              var age;
+            }
+
+            console.log(b); // 这里报错
+            // Uncaught ReferenceError: b is not defined
+            b = 100;
+    </script>
+  </body>
+</html>

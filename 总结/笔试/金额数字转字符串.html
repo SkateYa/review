@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  样例输入：1234567890
+      // 样例输出：1,234,567,890
+      const num = 1234567890
+      function toString(num) {
+        //  这是最简单的写法
+        //  return num.toLocaleString();
+        const result = [];
+        const str = `${num}`.split("").reverse();
+        for (let i = 0; i < str.length; i++) {
+          if (i && i % 3 === 0) {
+            result.push(",");
+          }
+          result.push(str[i]);
+        }
+        return result.reverse().join("");
+      }
+     const result = toString(num)
+     console.log(result)
+    </script>
+  </body>
+</html>

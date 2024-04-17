@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>将指定区域导出图片</title>
+  <script type="text/javascript" src="https://cdn.staticfile.org/html2canvas/0.4.0/html2canvas.js"></script>
+</head>
+<script type="text/javascript">
+
+// 导出图片
+function CreatImg() {
+ console.log('test');
+  html2canvas(document.getElementById('view'), {
+    onrendered: function(canvas) {
+      // 创建一个canvas
+      // document.body.appendChild(canvas);
+      dataUrl=canvas.toDataURL("image/jpeg", 1.0);
+      DownLoadImg(dataUrl.replace("data:image/jpeg;base64,", ""))
+    },
+  });
+}
+
+function DownLoadImg(content){
+ // 格式
+ var imageType='png';
+ // 文件名
+ var fileName=Date.now();
+ var raw = window.atob(content);
+ var rawLength = raw.length;
+ var uInt8Array = new Uint8Array(rawLength);
+ for(var i = 0; i < rawLength; ++i) {
+     uInt8Array[i] = raw.charCodeAt(i);
+ }
+ var blob = new Blob([uInt8Array], {type:'image/'+imageType}); 
+ var aLink = document.createElement('a');
+ var evt = document.createEvent("HTMLEvents");
+ evt.initEvent("click", true, true);
+ aLink.download = fileName;
+ aLink.href = URL.createObjectURL(blob);
+ aLink.click();
+}
+</script>
+
+<body>
+  <div id="view" style="background:#f2f2f2 100%; width: 600px;margin:50px auto;">
+    <p style="text-align: center;padding:15px 0 20px;font-size:17px;font-weight:bold;height: 0;">2022年高考志愿热门专业</p>
+    <table class="table">
+      <thead>
+      <tr>
+      <th style="width: 60px;vertical-align:middle;text-align:center;">序号</th>
+      <th style="width: 220px;vertical-align:middle;text-align:center;">专业</th>
+      <th style="width: 120px;vertical-align:middle;text-align:center;">专业代码</th>
+      <th style="width: 80px;vertical-align:middle;text-align:center;">学制 </th>
+      <th style="width: 110px;vertical-align:middle;text-align:center;">授予学位</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td style="vertical-align:middle;text-align:center;">1</td>
+      <td style="vertical-align:middle;text-align:center;">临床医学</td>
+      <td style="vertical-align:middle;text-align:center;">100201K</td>
+      <td style="vertical-align:middle;text-align:center;">五年</td>
+      <td style="vertical-align:middle;text-align:center;">医学学士</td>
+      </tr>
+      <tr>
+      <td style="vertical-align:middle;text-align:center;">2</td>
+      <td style="vertical-align:middle;text-align:center;">计算机科学与技术</td>
+      <td style="vertical-align:middle;text-align:center;">080901</td>
+      <td style="vertical-align:middle;text-align:center;">四年</td>
+      <td style="vertical-align:middle;text-align:center;">工学学士</td>
+      </tr>
+      <tr>
+      <td style="vertical-align:middle;text-align:center;">3</td>
+      <td style="vertical-align:middle;text-align:center;">软件工程</td>
+      <td style="vertical-align:middle;text-align:center;">080902</td>
+      <td style="vertical-align:middle;text-align:center;">四年</td>
+      <td style="vertical-align:middle;text-align:center;">工学学士</td>
+      </tr>
+      <tr>
+      <td style="vertical-align:middle;text-align:center;">4</td>
+      <td style="vertical-align:middle;text-align:center;">航空航天工程</td>
+      <td style="vertical-align:middle;text-align:center;">082001</td>
+      <td style="vertical-align:middle;text-align:center;">四年</td>
+      <td style="vertical-align:middle;text-align:center;">工学学士</td>
+      </tr>
+      <tr>
+      <td style="vertical-align:middle;text-align:center;">5</td>
+      <td style="vertical-align:middle;text-align:center;">汉语言文学</td>
+      <td style="vertical-align:middle;text-align:center;">050101</td>
+      <td style="vertical-align:middle;text-align:center;">四年</td>
+      <td style="vertical-align:middle;text-align:center;">文学学士</td>
+      </tr>
+      <tr>
+        <th style="width: 60px;vertical-align:middle;text-align:center;">序号</th>
+        <th style="width: 220px;vertical-align:middle;text-align:center;">专业</th>
+        <th style="width: 120px;vertical-align:middle;text-align:center;">专业代码</th>
+        <th style="width: 80px;vertical-align:middle;text-align:center;">学制 </th>
+        <th style="width: 110px;vertical-align:middle;text-align:center;">授予学位</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td style="vertical-align:middle;text-align:center;">1</td>
+        <td style="vertical-align:middle;text-align:center;">临床医学</td>
+        <td style="vertical-align:middle;text-align:center;">100201K</td>
+        <td style="vertical-align:middle;text-align:center;">五年</td>
+        <td style="vertical-align:middle;text-align:center;">医学学士</td>
+        </tr>
+        <tr>
+        <td style="vertical-align:middle;text-align:center;">2</td>
+        <td style="vertical-align:middle;text-align:center;">计算机科学与技术</td>
+        <td style="vertical-align:middle;text-align:center;">080901</td>
+        <td style="vertical-align:middle;text-align:center;">四年</td>
+        <td style="vertical-align:middle;text-align:center;">工学学士</td>
+        </tr>
+        <tr>
+        <td style="vertical-align:middle;text-align:center;">3</td>
+        <td style="vertical-align:middle;text-align:center;">软件工程</td>
+        <td style="vertical-align:middle;text-align:center;">080902</td>
+        <td style="vertical-align:middle;text-align:center;">四年</td>
+        <td style="vertical-align:middle;text-align:center;">工学学士</td>
+        </tr>
+        <tr>
+        <td style="vertical-align:middle;text-align:center;">4</td>
+        <td style="vertical-align:middle;text-align:center;">航空航天工程</td>
+        <td style="vertical-align:middle;text-align:center;">082001</td>
+        <td style="vertical-align:middle;text-align:center;">四年</td>
+        <td style="vertical-align:middle;text-align:center;">工学学士</td>
+        </tr>
+        <tr>
+        <td style="vertical-align:middle;text-align:center;">5</td>
+        <td style="vertical-align:middle;text-align:center;">汉语言文学</td>
+        <td style="vertical-align:middle;text-align:center;">050101</td>
+        <td style="vertical-align:middle;text-align:center;">四年</td>
+        <td style="vertical-align:middle;text-align:center;">文学学士</td>
+        </tr>
+        <tr>
+            <th style="width: 60px;vertical-align:middle;text-align:center;">序号</th>
+            <th style="width: 220px;vertical-align:middle;text-align:center;">专业</th>
+            <th style="width: 120px;vertical-align:middle;text-align:center;">专业代码</th>
+            <th style="width: 80px;vertical-align:middle;text-align:center;">学制 </th>
+            <th style="width: 110px;vertical-align:middle;text-align:center;">授予学位</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td style="vertical-align:middle;text-align:center;">1</td>
+            <td style="vertical-align:middle;text-align:center;">临床医学</td>
+            <td style="vertical-align:middle;text-align:center;">100201K</td>
+            <td style="vertical-align:middle;text-align:center;">五年</td>
+            <td style="vertical-align:middle;text-align:center;">医学学士</td>
+            </tr>
+            <tr>
+            <td style="vertical-align:middle;text-align:center;">2</td>
+            <td style="vertical-align:middle;text-align:center;">计算机科学与技术</td>
+            <td style="vertical-align:middle;text-align:center;">080901</td>
+            <td style="vertical-align:middle;text-align:center;">四年</td>
+            <td style="vertical-align:middle;text-align:center;">工学学士</td>
+            </tr>
+            <tr>
+            <td style="vertical-align:middle;text-align:center;">3</td>
+            <td style="vertical-align:middle;text-align:center;">软件工程</td>
+            <td style="vertical-align:middle;text-align:center;">080902</td>
+            <td style="vertical-align:middle;text-align:center;">四年</td>
+            <td style="vertical-align:middle;text-align:center;">工学学士</td>
+            </tr>
+            <tr>
+            <td style="vertical-align:middle;text-align:center;">4</td>
+            <td style="vertical-align:middle;text-align:center;">航空航天工程</td>
+            <td style="vertical-align:middle;text-align:center;">082001</td>
+            <td style="vertical-align:middle;text-align:center;">四年</td>
+            <td style="vertical-align:middle;text-align:center;">工学学士</td>
+            </tr>
+            <tr>
+            <td style="vertical-align:middle;text-align:center;">5</td>
+            <td style="vertical-align:middle;text-align:center;">汉语言文学</td>
+            <td style="vertical-align:middle;text-align:center;">050101</td>
+            <td style="vertical-align:middle;text-align:center;">四年</td>
+            <td style="vertical-align:middle;text-align:center;">文学学士</td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+  <input type="button" value="导出图片" onclick="CreatImg()" style="width: 120px;height: 50px;margin:20px auto;display: block;"><br/>
+</body>
+
+</html>

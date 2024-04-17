@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn" @click="download">下载</button>
+    <script>
+      let btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        let text = "测试文字";
+        let str = new Blob([text], { type: "text/plain" });
+        let fileUrl = URL.createObjectURL(str);
+        let a = document.createElement("a");
+        a.href = fileUrl;
+        a.download = "z.txt";
+        a.click();
+        // 释放createObject创建的URL对象
+        URL.revokeObjectURL()
+      });
+    </script>
+  </body>
+</html>

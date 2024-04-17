@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr1 = [
+        {
+          menuId: 1,
+          name: "系统管理1",
+          parentMenu: null,
+        },
+        {
+          menuId: 2,
+          name: "系统管理2",
+          parentMenu: null,
+        },
+        {
+          menuId: 3,
+          name: "系统管理1_0",
+          parentMenu: 1,
+        },
+        {
+          menuId: 4,
+          name: "系统管理1_1",
+          parentMenu: 1,
+        },
+        {
+          menuId: 5,
+          name: "系统管理2_0",
+          parentMenu: 2,
+        },
+        {
+          menuId: 6,
+          name: "系统管理2_2_0",
+          parentMenu: 5,
+        },
+        {
+          menuId: 7,
+          name: "系统管理3",
+          parentMenu: null,
+        },
+        {
+          menuId: 8,
+          name: "系统管理1-1-2",
+          parentMenu: 4,
+        },
+      ];
+
+      function toTree2(arr) {
+        // 先copy一份数据
+        let newA = JSON.parse(JSON.stringify(arr));
+        return newA.filter((p) => {
+          //重点 遍历每一项的时候 都先去先找儿子
+          const c = newA.filter((item) => item.parentMenu === p.menuId);
+          // 找到儿子 就相认
+          c.length && (p.children = c);
+
+          // 返回一级目录
+          return p.parentMenu == null;
+        });
+      }
+
+      console.log("toTree2", toTree2(arr1));
+    </script>
+  </body>
+</html>

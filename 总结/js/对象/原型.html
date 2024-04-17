@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*        
+      构造函数是一种特殊的方法，主要用来在创建对象时初始化对象。每个构造函数都有prototype(原型)
+      (箭头函数以及Function.prototype.bind()没有)属性，
+      这个prototype(原型)属性是一个指针，指向一个对象，这个对象的用途是包含特定类型的所有实例共享的
+      属性和方法，即这个原型对象是用来给实例对象共享属性和方法的。每个实例对象的__proto__都指向这个
+      构造函数/类的prototype属性。
+
+      面向对象的三大特性：封装/继承/多态
+
+      关于new操作符：
+
+      1. new执行的函数, 函数内部默认生成了一个对象
+
+      2. 函数内部的this默认指向了这个new生成的对象
+
+      3. new执行函数生成的这个对象, 是函数的默认返回值 */
+
+      //   ES5例子：
+      function Person(obj) {
+        this.name = obj.name;
+        this.age = obj.age;
+      }
+      // 原型方法
+      Person.prototype.say = function () {
+        console.log("你好,", this.name);
+      };
+      // p为实例化对象，new Person()这个操作称为构造函数的实例化
+      let p = new Person({ name: "番茄", age: "27" });
+      console.log(p.name, p.age); // 番茄 27
+      p.say(); // 你好, 番茄
+
+      //   ES6例子：
+      /*   
+      class Person{
+      	constructor(obj) {
+        	this.name = obj.name
+      		this.age = obj.age
+        }
+        say() {
+        	console.log(this.name)
+        }
+      }
+
+      let p = new Person({name: 'ES6-番茄', age: '27'})
+      console.log(p.name, p.age)
+      p.say() */
+    </script>
+  </body>
+</html>

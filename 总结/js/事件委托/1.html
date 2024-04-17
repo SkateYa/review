@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <ul>
+        <li>1111111</li>
+        <li>22222</li>
+        <li>3333</li>
+      </ul>
+    </div>
+    <script>
+      /* 
+      let ul = document.querySelector("ul");
+      let li = document.querySelectorAll("li");
+      for (let i = 0; i < li.length; i++) {
+        li[i].onclick = function () {
+          console.log(this);  // 当前点击的li元素
+          ul.removeChild(this);
+        };
+      }
+     */
+
+    // 利用事件委托来处理
+    let ul = document.querySelector('ul')
+    ul.onclick=function(e){
+      console.log(e.target)
+      ul.removeChild(e.target)
+    }
+
+    </script>
+  </body>
+</html>

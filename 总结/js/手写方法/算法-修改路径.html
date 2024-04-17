@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*     
+
+      分类：栈与递归
+    题目描述
+    给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为更加简洁的规范路径。
+
+    在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，'//'）都被视为单个斜杠 '/' 。 对于此问题，任何其他格式的点（例如，'...'）均被视为文件/目录名称。
+
+    请注意，返回的 规范路径 必须遵循下述格式：
+
+    始终以斜杠 '/' 开头。
+    两个目录名之间必须只有一个斜杠 '/' 。
+    最后一个目录名（如果存在）不能 以 '/' 结尾。
+    此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。
+    返回简化后得到的 规范路径 。
+
+    提示：
+
+    1 <= path.length <= 3000
+    path 由英文字母，数字，'.'，'/' 或 '_' 组成。
+    path 是一个有效的 Unix 风格绝对路径。
+
+
+    示例 1：
+    输入：path = "/home/"
+    输出："/home"
+    解释：注意，最后一个目录名后面没有斜杠。
+
+    示例 2：
+    输入：path = "/../"
+    输出："/"
+    解释：从根目录向上一级是不可行的，因为根目录是你可以到达的最高级。
+    
+    示例 3：
+    输入：path = "/home//foo/"
+    输出："/home/foo"
+    解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。
+    思路：
+    使用 string.split() 方法, 以斜杠 (/) 为分隔符, 将 Unix 路径 path 拆分为若干字符串组成的数组.
+
+    将字符串顺序压入栈中
+
+    不包含元素, 一个点 (.) 时, 跳过.
+
+    两个点 (..) 时, 将当前栈顶元素移出栈.
+    */
+
+      // 接受一个路径字符串作为参数
+      var simplifyPath = function (path) {
+        const array = path.split("/");
+        // 定义一个空数组stack，用来模拟一个栈的结构
+        const stack = [];
+        // 代码遍历数组array中的每个字符串。如果字符串为空或者为"."，则跳过
+        // 如果字符串为".."，则将stack中的最后一个元素弹出
+        // 否则，将字符串推入stack中
+        for (let str of array) {
+          if (str === "" || str === ".") {
+            continue;
+          } else if (str === "..") {
+            stack.pop();
+          } else {
+            stack.push(str);
+          }
+        }
+        // 在遍历完整个数组后，如果stack为空，则返回根路径"/"
+        if (stack.length === 0) {
+          return "/";
+        }
+        let result = "";
+        // 将stack中的元素按照"/"连接起来，形成最终路径字符串result，然后返回该字符串。
+        for (let str of stack) {
+          result += `/${str}`;
+        }
+        return result;
+      };
+      console.log(simplifyPath("/home/")); //  /home
+      console.log(simplifyPath("/../")); // /
+      console.log(simplifyPath("/home//foo/")); // /home/foo
+    </script>
+  </body>
+</html>

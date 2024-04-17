@@ -1,0 +1,47 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>自动添加水印</title>  
+</head>  
+<body>  
+    <input type="file" id="imageInput" accept="image/*">  
+    <canvas id="canvas"></canvas>  
+    <img id="outputImage" style="display: none;">  
+    <script>  
+        const canvas = document.getElementById('canvas');  
+        const ctx = canvas.getContext('2d');  
+        const imageInput = document.getElementById('imageInput');  
+        const outputImage = document.getElementById('outputImage');  
+        let image;  
+  
+        imageInput.addEventListener('change', function(e) {  
+            image = new Image();  
+            image.onload = function() {  
+                // 裁剪图片  
+                const cropWidth = 500; // 裁剪宽度  
+                const cropHeight = 300; // 裁剪高度  
+                const cropX = (image.width - cropWidth) / 2; // 裁剪起始位置的x坐标  
+                const cropY = (image.height - cropHeight) / 2; // 裁剪起始位置的y坐标  
+                canvas.width = cropWidth; // 设置画布宽度为裁剪宽度  
+                canvas.height = cropHeight; // 设置画布高度为裁剪高度  
+                ctx.drawImage(image, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight); // 在画布上绘制裁剪后的图片  
+                // 添加水印并调整透明度  
+                addWatermark(ctx, 'Watermark', 'watermarkColor', 50, 50, 0.5); // 调整透明度为0.5  
+                // 导出图片  
+                outputImage.src = canvas.toDataURL();  
+            };  
+            image.src = URL.createObjectURL(e.target.files[0]);  
+        });  
+  
+        function addWatermark(context, text, color, x, y, opacity) {  
+            context.font = '30px Arial'; // 设置字体大小和类型  
+            context.fillStyle = color; // 设置填充颜色  
+            context.globalAlpha = opacity; // 设置透明度  
+            context.fillText(text, x, y); // 绘制水印文本  
+            context.globalAlpha = 1; // 重置透明度为默认值1  
+        }  
+    </script>  
+</body>  
+</html>

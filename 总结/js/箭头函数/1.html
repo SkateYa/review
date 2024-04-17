@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 普通函数可以使用arguments，箭头函数不能使用arguments，会报错
+      /*
+      function normal() {
+        return arguments.length;
+      }
+      console.log(normal(1, 2, 3));
+
+      let arrow = () => arguments.length;
+      console.log(arrow(1, 2, 3)); 
+      */
+
+      // 借用闭包实现箭头函数使用arguments
+      function normal() {
+        return () => arguments.length;
+      }
+
+      let arrow = normal(1, 2, 3);
+      console.log(arrow());
+    </script>
+  </body>
+</html>

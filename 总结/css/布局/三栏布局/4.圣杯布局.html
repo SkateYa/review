@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05-圣杯布局</title>
+
+    <style type="text/css">
+      /* 圣杯布局，利用浮动和负边距来实现。父级元素设置左右的 padding，三列均设置向左浮动，
+      中间一列放在最前面，宽度设置为父级元素的宽度，因此后面两列都被挤到了下一行，
+      通过设置 margin 负值将其移动到上一行，再利用相对定位，定位到两边。 
+      */
+      .container {
+        padding: 0 200px; /* 让左盒子有空间能排列到中间盒子的左边 */
+      }
+
+      .left {
+        position: relative;
+        /* 浮动，保证之后的"margin-left"属性可以将自身拉到上一行 */
+        float: left;
+        /* 将元素向左移动属性值的单位，100%相对于父容器计算 */
+        margin-left: -100%;
+        /* 需要将自身再向左移动自身的宽度，进入容器的"padding-left"区域 */
+
+        /* 让左盒子不盖住中间盒子 */
+        /* 移动自身的宽度，刚好进入容器的"padding-left"区域 */
+        left: -200px;
+        
+        width: 200px;
+        height: 100px;
+        background-color: greenyellow;
+      }
+      .center {
+        float: left;
+        width: 100%;
+        height: 100px;
+        background-color: darkorange;
+      }
+
+      .right {
+        float: left;
+        /* 左边外边距设置负自身宽度 */
+        margin-right: -100%;
+
+        width: 200px;
+        height: 100px;
+        background-color: darkgreen;
+      }
+
+      /*  伪类清浮动 */
+      .clear:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center">中间区域</div>
+      <div class="left">左边区域</div>
+      <div class="right">右边区域</div>
+    </div>
+  </body>
+</html>

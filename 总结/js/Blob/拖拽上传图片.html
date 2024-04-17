@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dropArea{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="dropArea" id="fileId">
+    <script>
+        let file=document.getElementById('fileId')
+        // 该事件在拖动元素在放置目标上时触发	 
+        file.ondragover = function(e){
+            e.preventDefault();
+        }
+        // 该事件在拖动元素放置在目标区域时触发
+        file.ondrop = function(e){
+            e.preventDefault()
+            let files = e.dataTransfer.files
+            console.log(e)
+        }
+
+        /*     
+        在拖动目标上触发事件 (源元素):
+        ondragstart - 用户开始拖动元素时触发
+        ondrag - 元素正在拖动时触发
+        ondragend - 用户完成元素拖动后触发
+
+        释放目标时触发的事件:
+        ondragenter - 当被鼠标拖动的对象进入其容器范围内时触发此事件
+        ondragover - 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
+        ondragleave - 当被鼠标拖动的对象离开其容器范围内时触发此事件
+        ondrop - 在拖动元素放置在目标区域时触发
+        */
+    </script>
+</body>
+</html>

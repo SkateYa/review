@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div onclick="console.log('first div')">
+      <div onclick="console.log('second div')">
+        <button onclick="console.log('button')">Click!</button>
+      </div>
+    </div>
+    <script>
+        function uniqueObjects(arr) {  
+            return arr.filter((obj, index, self) => {  
+                return self.findIndex(t => (  
+                    t.id === obj.id && // 假设每个对象都有一个唯一的id属性  
+                    t.name === obj.name // 可以根据需要添加更多的比较条件  
+                )) === index;  
+            });  
+        }  
+        
+        // 示例数组  
+        let array = [  
+            { id: 1, name: 'Alice' },  
+            { id: 2, name: 'Bob' },  
+            { id: 1, name: 'Alice' }, // 重复的对象  
+            { id: 3, name: 'Charlie' }  
+        ];  
+        
+        // 过滤重复对象  
+        let uniqueArray = uniqueObjects(array);  
+        
+        console.log(uniqueArray);
+    </script>
+  </body>
+</html>

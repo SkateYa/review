@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  padding: 1rem;
+  color: white;
+  background-color: #aaa;
+}
+.photos {
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.girl {
+  width: 100%;
+}
+.cat {
+  width: 30%;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 999;
+  cursor: move;
+}
+.box {
+  width: 30%;
+  height: 20%;
+  background-color: white;
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  margin-left: -15%;
+  opacity: 0.5;
+}
+.mouse-move {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 100%;
+}

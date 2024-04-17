@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    /*  
+     let amount = 12345678;
+      function toThousands(amount) {
+        let newNumber = amount.toFixed(2)
+        let arr = newNumber.split('.')
+        let num  = arr[0]
+        let decimalPart = ''
+        num = (num || 0).toString();
+        let counter = 0;
+        let result = "";
+        for (let i = num.length - 1; i >= 0; i--) {
+          counter++;
+          result = num.charAt(i)+result;
+          if (counter % 3 === 1) {
+            result=result+''
+          }
+        }
+        decimalPart = arr.length>1 ? '.'+arr[1]:''
+        return result+decimalPart
+      }
+      console.log(toThousands(amount));
+      console.log(toThousands(123.1)) // 123.10
+      console.log(toThousands(1234))  // 1,234.00
+      console.log(toThousands(1234.56)) // 1,234.56
+      console.log(toThousands(0)) // 0.00 
+      */
+
+
+      // 金额格式化展示，展示出诸如“12,345,678.90“格式的字符串
+        // toLocaleString()  可以用来格式化，比如数字的格式化， 如下 整数部分每三位加一个逗号
+      function toThousands(amount) {
+        let newNumber = amount.toFixed(2);
+        let [num, decimalPart] = newNumber.split(".");
+        num = (num || 0).toString();
+        let result = "";
+        let counter = 0
+        for (let i = num.length - 1; i >= 0; i--) {
+          counter++;
+          result = num.charAt(i) + result;
+          if (counter % 3 === 0 && i !== 0) {
+            result = "," + result;
+          }
+        }
+        return result + "." + (decimalPart ? decimalPart : "00");
+      }
+
+      console.log(toThousands(12345678)); // 12,345,678.00
+      console.log(toThousands(123.1)); // 123.10
+      console.log(toThousands(1234)); // 1,234.00
+      console.log(toThousands(1234.56)); // 1,234.56
+      console.log(toThousands(0)); // 0.00
+    </script>
+  </body>
+</html>

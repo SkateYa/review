@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Worker 示例</title>
+  </head>
+  <body>
+    <h1>Web Worker 示例</h1>
+    <p>
+      计算斐波那契数列的第 <input type="number" id="num" min="1" value="1" /> 项
+    </p>
+    <button id="calculate">计算</button>
+    <p id="result"></p>
+    <!--  
+        Web Worker 的使用场景
+
+        Web Worker 可以在很多场景下使用，特别是在需要处理大量数据或计算密集型任务时。以下是一些 Web Worker 的使用场景：
+
+        图像处理：Web Worker 可以用于处理图像操作，如旋转、裁剪、缩放、滤镜等。这可以提高图像处理的性能和响应速度。
+        数据处理：Web Worker 可以用于处理大量数据，如数据集的过滤、排序、归纳、转换等。这可以提高数据处理的效率和准确性。
+        计算密集型任务：Web Worker 可以用于处理计算密集型任务，如模拟、优化、预测、统计等。这可以提高计算任务的速度和精度。
+        实时通信：Web Worker 可以用于实现实时通信，如聊天室、游戏、视频会议等。这可以提高实时通信的稳定性和性能。
+        离线缓存：Web Worker 可以用于离线缓存，可以将常用的资源预先下载到客户端本地缓存中，并在无法访问互联网时使用缓存中的资源。这可以提高应用程序的可用性和响应速度，尤其是在移动设备上。
+        多线程处理：Web Worker 可以用于实现多线程处理，如并行计算、任务分发、负载均衡等。这可以提高系统的并发性和可伸缩性。
+        总之，Web Worker 可以用于任何需要在后台执行长时间运行的任务，以避免阻塞 UI 线程和提高应用程序的性能和响应速度。 
+        
+        Worker 线程和主线程都通过 postMessage() 方法发送消息，通过 onmessage 事件接收消息。
+    
+    数列中某一项的值，等于它的前一项加上前前一项的和。
+    1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233……
+    -->
+    <script src="worker.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

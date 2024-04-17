@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("是否在线", navigator.onLine);
+      console.log("网速", navigator.connection.downlink, "MB/s");
+      window.addEventListener("online", () => {
+        console.log("网络已连接");
+      });
+      window.addEventListener("offline", () => {
+        console.log("网络已断开");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 节流（throttle）：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效
+      function coloring() {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        let color = `rgb(${r},${g},${b})`;
+        console.log("coloring", color);
+        document.body.style.background = color;
+      }
+
+      function throttle(func, delay) {
+        // 上一次执行的时间
+        let pre = 0;
+        return function () {
+          // 现在的时间
+          let now = new Date();
+          //   如果现在的时间减去上次执行的时间大于delay就执行函数
+          if (now - pre > delay) {
+            func.apply(this, arguments);
+            // 把当前时间赋值给上一次的执行时间
+            pre = now;
+          }
+        };
+      }
+      window.addEventListener("resize", throttle(coloring, 1000));
+    </script>
+  </body>
+</html>

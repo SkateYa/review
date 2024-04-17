@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const data = [
+        {
+          id: "1",
+          name: "test1",
+          children: [
+            {
+              id: "11",
+              name: "test11",
+              children: [
+                {
+                  id: "111",
+                  name: "test111",
+                },
+                {
+                  id: "112",
+                  name: "test112",
+                },
+              ],
+            },
+            {
+              id: "12",
+              name: "test12",
+              children: [
+                {
+                  id: "121",
+                  name: "test121",
+                },
+                {
+                  id: "122",
+                  name: "test122",
+                },
+              ],
+            },
+          ],
+        },
+      ];
+
+      const fn = (data, value) => {
+        let res = [];
+        const dfs = (arr, temp = []) => {
+          for (const node of arr) {
+            if (node.children) {
+              dfs(node.children, temp.concat(node.id));
+            } else {
+              if (node.id === value) {
+                res = temp;
+              }
+              return;
+            }
+          }
+        };
+        dfs(data);
+        return res;
+      };
+      console.log(fn(data, "111"));
+
+      //   const find = (value) => {
+      //     console.log('find',value)
+      //     let result = [];
+      //     let findArr = data;
+      //     let skey = "";
+      //     for (let i = 0, l = value.length; i < l; i++) {
+      //       skey += value[i];
+      //       let item = findArr.find((item) => {
+      //         return item.id == skey;
+      //       });
+
+      //       if (!item) {
+      //         return [];
+      //       }
+
+      //       result.push(item.id);
+      //       if (item.children) {
+      //         findArr = item.children;
+      //       } else {
+      //         if (i < l - 1) return [];
+      //         return result;
+      //       }
+      //     }
+      //   };
+      //   //调用看结果
+      //   function testFun() {
+      //     console.log("1,11,111:", find("111"));
+      //     console.log("1,11,112:", find("112"));
+      //     console.log("1,12,121:", find("121"));
+      //     console.log("1,12,122:", find("122"));
+      //     console.log("[]:", find("113"));
+      //     console.log("[]:", find("1114"));
+      //   }
+      //   testFun()
+    </script>
+  </body>
+</html>

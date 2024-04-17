@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  JavaScript 解释器中存在一种变量声明被提升的机制，也就是说函数声明会被提升到作用域的最前面，
+      // 即使写代码的时候是写在最后面，也还是会被提升至最前面。
+
+    //   JavaScript 解释器中存在一种变量声明被提升的机制，也就是说函数声明会被提升到作用域的最前面，
+    //   即使写代码的时候是写在最后面，也还是会被提升至最前面。
+    //   而用函数表达式创建的函数是在运行时进行赋值，且要等到表达式赋值完成后才能调用。
+
+      // 而用函数表达式创建的函数是在运行时进行赋值，且要等到表达式赋值完成后才能调用。
+      getName(); //oaoafly
+     // 函数表达式
+      var getName = function () {
+        console.log("wscat");
+      };
+      getName(); //wscat
+      // 函数声明
+      function getName() {
+        console.log("oaoafly");
+      }
+      getName(); //wscat
+
+
+
+    //   等同于以下代码
+      var getName; //变量被提升，此时为undefined
+      getName(); //oaoafly 函数被提升 这里受函数声明的影响，虽然函数声明在最后可以被提升到最前面了
+      var getName = function () {
+        console.log("wscat");
+      }; //函数表达式此时才开始覆盖函数声明的定义
+      getName(); //wscat
+      function getName() {
+        console.log("oaoafly");
+      }
+      getName(); //wscat 这里就执行了函数表达式的值
+    </script>
+  </body>
+</html>

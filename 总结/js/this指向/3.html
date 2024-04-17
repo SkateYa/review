@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //   var name = '小红';
+      function a() {
+        var name = "小白";
+        console.log(this.name);
+      }
+      function d(i) {
+        return i();
+      }
+      var b = {
+        name: "小黄",
+        detail: function () {
+          console.log(this.name);
+        },
+        bibi: function () {
+          return function () {
+            console.log(this.name);
+          };
+        },
+      };
+      var c = b.detail; // 小黄
+      b.a = a;
+      var e = b.bibi(); // 小黄
+      a(); // 小红
+      c();  // 小红
+      b.a(); // 小黄
+      d(b.detail); // 小红
+      e(); // 小红
+    </script>
+  </body>
+</html>

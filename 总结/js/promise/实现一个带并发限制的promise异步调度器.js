@@ -1,0 +1,40 @@
+// https://www.bilibili.com/video/BV11f4y117qp/
+class Scheduler {
+    list = []  
+    maxNum = 2 // 允许同时运行的任务数量
+    workingNum = 0 // 正在执行的任务队列
+    add(promiseCreator) {
+      this.list.push(promiseCreator)
+    }
+    start() {
+      for (var i = 0; i < this.maxNum; i++) {
+        this.doNext()
+      }
+    }
+    doNext() {
+      if (this.list.length && this.workingNum < this.maxNum) {
+        this.workingNum++
+        this.list.shift()()
+          .then(() => {
+            this.workingNum--
+            this.doNext()
+          })
+      }
+    }
+  }
+  
+  const timeout = (time) => new Promise((resolve) => setTimeout(resolve, time))
+  
+  const scheduler = new Scheduler()
+  
+  const addTask = (time, order) => {
+    scheduler.add(() => timeout(time).then(() => console.log(order)))
+  }
+  
+  addTask(1000, 1)
+  addTask(500, 2)
+  addTask(300, 3)
+  addTask(400, 4)
+  
+  scheduler.start()
+  //  2 3 1 4

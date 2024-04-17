@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    
+    function eatHotpot(){
+        return new Promise((resolve)=>{
+            resolve('吃火锅')
+        })
+    }
+
+    function eatTea(){
+        return new Promise((resolve, reject) => {
+            resolve('喝奶茶')
+        });
+    }
+
+    // promise用法：第一个promise里面可以写一个return ，return一个接下来还要调用的promise对象
+    // 接下来可以连续then，第二个then就是调用第一个返回值的promise
+    eatHotpot().then(res=>{
+        console.log(res)
+        return eatTea()
+    }).then(res1=>{
+        console.log('res1',res1)
+    })
+   
+    </script>
+  </body>
+</html>

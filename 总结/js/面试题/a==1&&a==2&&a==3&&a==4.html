@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 第一种方法
+      var a = {
+        value: 0,
+        valueOf: function () {
+          this.value++;
+          return this.value;
+        },
+      };
+
+      // 第二种方法
+      // const a = {
+      //   value:[3,2,1],
+      //   valueOf: function () {return this.value.pop(); },
+      // } 
+
+      // 第三种方法
+      // var a = {
+      //   i: 1,
+      //   toString() {
+      //     return this.i++;
+      //   },
+      // };
+
+       // 第四种方法
+      // var a = [1, 2, 3];
+      // a.join = a.shift;
+
+      Object.defineProperty(window, "a", {
+        get: function () {
+          if (this.value) {
+            return (this.value += 1);
+          } else {
+            return (this.value = 1);
+          }
+        },
+      });
+
+      console.log(a == 1 && a == 2 && a == 3); //true
+      
+    </script>
+  </body>
+</html>

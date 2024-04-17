@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .list {
+        display: flex;
+        width: 336px;
+        flex-wrap: wrap
+    }
+    .list-item {
+        width: 100px;
+        height: 50px;
+        margin-top: 10px;
+        border: 1px solid gray;
+        margin-right: 10px;
+        background-color: gray;
+        color: #fff;
+    }
+    /*list-item 和 moving 同时在一个元素时生效*/
+    .list-item.moving {
+        color: transparent;
+        background-color: transparent;
+        border: 1px dashed gray !important;
+    }
+</style>
+
+<body>
+<div class="list">
+    <div draggable="true" class="list-item">1</div>
+    <div draggable="true" class="list-item">2</div>
+    <div draggable="true" class="list-item">3</div>
+    <div draggable="true" class="list-item">4</div>
+    <div draggable="true" class="list-item">5</div>
+    <div draggable="true" class="list-item">6</div>
+    <div draggable="true" class="list-item">7</div>
+    <div draggable="true" class="list-item">8</div>
+    <div draggable="true" class="list-item">9</div>
+</div>
+</body>
+<script type="text/javascript">
+
+// 使用事件委托，监听父元素
+    let sourceNode;
+    const list = document.querySelector(".list");
+
+    // 当拖拽开始的时候
+    list.ondragstart = (e) => {
+        console.log("当前拖动的节点：");
+        console.log(e.target);
+        e.target.classList.add("moving");
+        sourceNode = e.target;
+    };
+
+    list.ondragover = (e) => {
+        // 阻止默认事件，默认情况下浏览器不允许其他元素拖到该元素上
+        e.preventDefault();
+    };
+
+    // 当拖拽放入某个目标节点后
+    list.ondrop = (e) => {
+        if(e.target === list || e.target === sourceNode) {
+            return;
+        }
+        console.log("拖拽到节点：");
+        console.log(e.target);
+        // Array.from ES6：将类数组对象 转成真正的数组  就可以使用数组自带的方法indexOf了
+        let targetSbin = e.target.nextElementSibling;
+        let sourceSbin = sourceNode.nextElementSibling;
+        // 在目标节点的下一个节点之前插入拖动节点
+        list.insertBefore(sourceNode, targetSbin);
+        // 在拖动节点的下一个节点之前插入目标节点
+        list.insertBefore(e.target, sourceSbin);
+    };
+
+
+    // 当前拖拽节点拖拽结束
+    list.ondragend = (e) => {
+        e.target.classList.remove('moving');
+    }
+    // 381 245 976
+
+
+</script>
+
+</html>

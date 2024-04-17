@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 100px;
+      background-color: hotpink;
+      display: flex;
+    }
+ 
+    .box div {
+      width: 100px;
+    }
+ 
+    .box div:nth-child(1) {
+      flex-basis: 50px;
+    }
+ 
+    .box div:nth-child(2) {
+      flex-basis: 100px;
+    }
+ 
+    .box div:nth-child(3) {
+      flex-basis: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+</body>
+</html>

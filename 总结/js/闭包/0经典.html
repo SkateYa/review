@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function outer(){
+        let a=10;
+        // 外部如果想要使用闭包的变量，则此时则需要 return
+        return function inner(){
+            console.log(a)
+        }
+      }
+     let fun =  outer()
+     fun()
+    </script>
+  </body>
+</html>

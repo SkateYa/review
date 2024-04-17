@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      function test(person) {
+        person.age = 26;
+        // 指向不同的对象
+        person = {
+          name: "hzj",
+          age: 18,
+        };
+        return person;
+      }
+      const p1 = {
+        name: "fyq",
+        age: 19,
+      };
+      const p2 = test(p1);
+      console.log(p1); // {name: 'fyq', age: 26}
+      console.log(p2); // {name: 'hzj', age: 18}
+    </script>
+  </body>
+</html>

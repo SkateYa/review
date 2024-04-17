@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* 利用浮动，左右两栏设置固定大小，并设置对应方向的浮动。中间一栏设置左右两个方向的 margin 值，
+    注意这种方式**，中间一栏必须放到最后：** 
+    */
+    .outer {
+      height: 100px;
+    }
+
+    .left {
+      float: left;
+      width: 200px;
+      height: 100px;
+      background: tomato;
+    }
+
+    .right {
+      float: right;
+      width: 200px;
+      height: 100px;
+      background: gold;
+    }
+
+    .center {
+      height: 100px;
+      /* margin-left: 100px;
+      margin-right: 200px; */
+      margin: 0 200px;
+      background: lightgreen;
+    }
+  </style>
+  <body>
+    <!-- 
+    优点：简单，兼容性好  
+    缺点：需要清除浮动，否则父元素的高度无法撑开，导致其他页面元素混乱
+
+    注意：左右两栏设置固定大小，并设置对应方向的浮动。中间一栏设置左右两个方向的 margin 值，
+    注意这种方式，中间一栏(元素)必须放到最后
+   -->
+    <div class="outer">
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="center"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   4.组合继承（原型链+构造函数）
+      /*  重点：结合了两种模式的优点,使用原型链实现对原型属性和方法的继承，而通过构造函数来实现对实例属性的继承。传参和复用
+　　　　优点：1、可以继承父类原型上的属性，可以传参，可复用。
+　　　　　　　2、每个新实例引入的构造函数属性是私有的。
+　　　　缺点：调用了两次父类构造函数, 生成了两份实例（耗内存），子类的构造函数会代替原型上的那个父类构造函数。
+     */
+      function Parent() {
+        this.age = 11;
+      }
+
+      Parent.prototype.sex = "男";
+
+      function Child() {
+        // 借用构造函数模式
+        Parent.call(this);
+        this.name = "张三";
+      }
+
+      // 原型链继承
+      Child.prototype = new Parent();
+      Child.prototype.constructor = Child;
+      let c1 = new Child();
+      console.log(c1);   // age: 11 name: "张三"
+    </script>
+  </body>
+</html>

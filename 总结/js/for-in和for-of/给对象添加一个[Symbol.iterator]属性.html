@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        a: 1,
+        b: 2,
+        c: 3,
+      };
+
+      obj[Symbol.iterator] = function () {
+        var keys = Object.keys(this);
+        var count = 0;
+        return {
+          next() {
+            if (count < keys.length) {
+              return {
+                value: obj[keys[count++]],
+                done: false,
+              };
+            } else {
+              return {
+                value: undefined,
+                done: true,
+              };
+            }
+          },
+        };
+      };
+
+      for (var k of obj) {
+        console.log(k); // 1 2 3
+      }
+    </script>
+  </body>
+</html>
